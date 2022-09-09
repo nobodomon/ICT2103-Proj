@@ -27,36 +27,8 @@ export default class DefaultPage extends React.Component {
                 <div className="container p-0">
                     <div className="row align-items-stretch indexLayout">
                         <div className="col-lg-3 col-md-4 col-12 d-flex flex-column">
-                            <QrCard></QrCard>
-                            <QuickActionsPanel className="h-100">
-                                <QuickActions src={food} label="Meal Type" to="/test"></QuickActions>
-                                <QuickActions src={goToRoom} label="Go To Room" to="/details"></QuickActions>
-                                <QuickActions src={customDashboard} label="Dashboards" to="/Logout"></QuickActions>
-                                <QuickActions src={vitalsDashboard} label="Vitals" to="/Logout"></QuickActions>
-                                <QuickActions src={printDorm} label="Dorm QRCode" to="/Logout"></QuickActions>
-                                <QuickActions src={uploadAvatar} label="Profile Pic" to="/Logout"></QuickActions>
-                                <QuickActions src={logout} label="Logout" to="/Logout"></QuickActions>
-                            </QuickActionsPanel>
                         </div>
                         <div className="col-lg-9 col-md-8 col-12">
-                            <ListContainer>
-                                <ListTile title={"Added Staff 328 to Staff List"} subtitle={"1:40am"} singleLine={true}></ListTile>
-                                <ListTile title={"Edited Staff 593 (Permissions > Staff > General) from No Access to View Only"} subtitle={"10:40am"} singleLine={true}></ListTile>
-                                <ListTile title={"Added Staff 825 to Staff List"} subtitle={"7:40am"} singleLine={true}></ListTile>
-                                <ListTile title={"Added Staff 676 to Staff List"} subtitle={"4:40am"} singleLine={true}></ListTile>
-                                <ListTile title={"Added Staff 966 to Staff List"} subtitle={"1:40pm"} singleLine={true}></ListTile>
-                                <ListTile title={"Deleted Cluster Blue from Punggol Lodge One"} subtitle={"10:40pm"} singleLine={true}></ListTile>
-                                <ListTile title={"Added Staff 974 to Staff List"} subtitle={"7:40pm"} singleLine={true}></ListTile>
-                                <ListTile title={"Added Staff 165 to Staff List"} subtitle={"10 May 22"} singleLine={true}></ListTile>
-                                <ListTile title={"Added Staff 529 to Staff List"} subtitle={"10 May 22"} singleLine={true}></ListTile>
-                                <ListTile title={"Added Staff 793 to Staff List"} subtitle={"10 May 22"} singleLine={true}></ListTile>
-                                <ListTile title={"Added Staff 328 to Staff List"} subtitle={"1:40am"} singleLine={true}></ListTile>
-                                <ListTile title={"Edited Staff 593 (Permissions > Staff > General) from No Access to View Only"} subtitle={"10:40am"} singleLine={true}></ListTile>
-                                <ListTile title={"Added Staff 825 to Staff List"} subtitle={"7:40am"} singleLine={true}></ListTile>
-                                <ListTile title={"Added Staff 676 to Staff List"} subtitle={"4:40am"} singleLine={true}></ListTile>
-                                <ListTile title={"Added Staff 966 to Staff List"} subtitle={"1:40pm"} singleLine={true}></ListTile>
-                                <ListTile title={"Deleted Cluster Blue from Punggol Lodge One"} subtitle={"10:40pm"} singleLine={true}></ListTile>
-                            </ListContainer>
                         </div>
                     </div>
                 </div>

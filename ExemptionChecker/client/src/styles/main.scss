@@ -77,6 +77,7 @@ $xxl : 1400px;
     margin-top: auto;
     margin-bottom: auto;
     transition: 0.3s;
+    position: relative;
 
     @media screen and (min-width: $xxl) {
         width: 50vw;
@@ -103,6 +104,30 @@ $xxl : 1400px;
         width: 90vw;
 
     }
+
+
+    .modalMessage{
+        position: absolute;
+        opacity: 0;
+        padding:30px;
+        font-size: 1rem;
+        background-color: rgba($chimericBlack,0.6);
+        color: white;
+        border-radius: $borderRadius;
+
+        &.show{
+            animation: modalFadeIn 3s forwards;
+            @keyframes modalFadeIn {
+                0% {
+                    opacity: 0;
+                }
+                16.5%, 100% {
+                    opacity: 1;
+                }
+            }
+
+        }
+    }
 }
 
 .loginContainer {
@@ -127,8 +152,7 @@ $xxl : 1400px;
 
     >.leftPanel {
         padding: 0px;
-        position: absolute;
-        width: 50%;
+        width: 100%;
         height: 100%;
 
         @media screen and (max-width: $md) {
@@ -144,12 +168,10 @@ $xxl : 1400px;
         //backdrop-filter: blur(15px);
         background-size: 400% 400%;
         content: "";
-        position: absolute;
-        width: 50%;
-        right: 0;
         height: 100%;
         display: flex;
         align-items: center;
+        position:relative;
         justify-content: center;
         overflow: hidden;
         flex-direction: column;
@@ -2641,8 +2663,8 @@ nav {
 }
 
 .tableRow {
-    display: flex;
-    align-items: flex-start;
+    grid-template-columns: repeat(4, 1fr);
+    display: grid;
     transition: background-color 0.3s;
     cursor: pointer;
 
@@ -2695,7 +2717,6 @@ nav {
 
 .expandedRow {
     row-gap: 15px;
-
     @media screen and (max-width: $md) {
         row-gap: 0px;
     }
@@ -2703,9 +2724,13 @@ nav {
 
 .expansionColumn {
     display: grid;
-    row-gap: 10px;
+    row-gap: 15px;
+    column-gap: 15px;
+    grid-template-columns: repeat(2, 1fr);
+    display:grid;
 
     @media screen and (max-width: $md) {
+        grid-template-columns: repeat(1, 1fr);
         row-gap: 0px;
     }
 
@@ -2727,6 +2752,11 @@ nav {
 
 .headerRow {
     background-color: #eee;
+    grid-template-columns: repeat(4, 1fr);
+    >.cell{
+        font-weight: bold;
+        text-transform: uppercase;
+    }
 }
 
 .headerCell {
@@ -2754,11 +2784,14 @@ nav {
         float: left;
         height: 100%;
         width: 100%;
-        visibility: hidden;
+        display:none;
+        opacity: 0;
+        transition: opacity 0.3s;
     }
 
     >.step.active {
-        visibility: visible;
+        opacity: 1;
+        display:flex;
         >.login-form {
             >.leftPanel-Title {
                 &:after {

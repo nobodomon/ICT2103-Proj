@@ -3,7 +3,7 @@ import Nav, {  } from './Components/nav'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import React from 'react';
 import Home from './Pages/Home';
-import Test from './Pages/Test';
+import Users from './Pages/Users';
 import DefaultPage from './Pages/DefaultPage';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
@@ -64,35 +64,10 @@ export default function App() {
             <SlideDrawer show={drawerOpen} toggle={drawerToggleClickHandler} direction="top">
 
               <DrawerSection label={"Favourites"}>
-                <DrawerItem label="Misconduct" to={"/"} width="25%" logo={misconduct}></DrawerItem>
-                <DrawerItem label="Exit Req." to={"/"} width="25%"></DrawerItem>
-                <DrawerItem label="Facility" to={"/"} width="25%"></DrawerItem>
-                <DrawerItem label="Feedback" to={"/"} width="25%"></DrawerItem>
-                <DrawerItem label="Transfer" to={"/"} width="25%"></DrawerItem>
-                <DrawerItem label="Tasks" to={"/"} width="25%"></DrawerItem>
+                <DrawerItem label="Dashboard" to={"/"} width="25%"></DrawerItem>
               </DrawerSection>
               <DrawerSection label={"Modules"}>
-
                 <DrawerItem label="Dashboard" to={"/"} width="25%"></DrawerItem>
-                <DrawerItem label="Estate" to={"/"} width="25%"></DrawerItem>
-                <DrawerItem label="Resident" to={"/"} width="25%"></DrawerItem>
-                <DrawerItem label="Report Sick" to={"/"} width="25%"></DrawerItem>
-                <DrawerItem label="Staff" to={"/"} width="25%"></DrawerItem>
-                <DrawerItem label="Permission" to={"/"} width="25%"></DrawerItem>
-                <DrawerItem label="Client" to={"/"} width="25%"></DrawerItem>
-                <DrawerItem label="Agreement" to={"/"} width="25%"></DrawerItem>
-                <DrawerItem label="Accessory" to={"/"} width="25%"></DrawerItem>
-                <DrawerItem label="Misconduct" to={"/"} width="25%"></DrawerItem>
-                <DrawerItem label="Exit Req." to={"/"} width="25%"></DrawerItem>
-                <DrawerItem label="Facility" to={"/"} width="25%"></DrawerItem>
-                <DrawerItem label="Feedback" to={"/"} width="25%"></DrawerItem>
-                <DrawerItem label="Transfer" to={"/"} width="25%"></DrawerItem>
-                <DrawerItem label="Tasks" to={"/"} width="25%"></DrawerItem>
-                <DrawerItem label="Visitor" to={"/"} width="25%"></DrawerItem>
-                <DrawerItem label="Security" to={"/"} width="25%"></DrawerItem>
-                <DrawerItem label="Reports" to={"/"} width="25%"></DrawerItem>
-                <DrawerItem label="Notification" to={"/"} width="25%"></DrawerItem>
-                <DrawerItem label="History" to={"/"} width="25%"></DrawerItem>
               </DrawerSection>
             </SlideDrawer>
             {backdrop}
@@ -103,7 +78,6 @@ export default function App() {
             </Routes>
           </div>
         </div>
-          <Footer></Footer>
       </Router>
     )
   } else {
@@ -111,31 +85,15 @@ export default function App() {
       <Router>
         {/* {backdrop} */}
         <div className="App">
-          <LoggedInNav logout={logout} toggle={drawerToggleClickHandler} show={drawerOpen}></LoggedInNav>
+          <LoggedInNav user={token} logout={logout} toggle={drawerToggleClickHandler} show={drawerOpen}></LoggedInNav>
           <header className="App-header">
             {backdrop}
             <SlideDrawer show={drawerOpen} toggle={drawerToggleClickHandler} direction={"top"}>
-              <DrawerSection>
-                <DrawerItem type={"favourite"} label="Misconduct" to={"/"} logo={misconduct}></DrawerItem>
-                <DrawerItem type={"active"} label="Exit Req." to={"/"} logo={exit}></DrawerItem>
-                <DrawerItem type={"favourite"} label="Facility" to={"/"} logo={facility}></DrawerItem>
-                <DrawerItem type={"favourite"} label="Feedback" to={"/"} logo={feedback}></DrawerItem>
-                <DrawerItem type={"favourite"} label="Transfer" to={"/"} logo={transfer_v2}></DrawerItem>
-                <DrawerItem label="Tasks" to={"/"} logo={task}></DrawerItem>
+              <DrawerSection label={"Modules"}>
                 <DrawerItem label="Dashboard" to={"/"} logo={dashboard}></DrawerItem>
-                <DrawerItem label="Estate" to={"/"} logo={overview}></DrawerItem>
-                <DrawerItem label="Resident" to={"/"} logo={tenants}></DrawerItem>
-                <DrawerItem label="Report Sick" to={"/"} logo={firstAidSign}></DrawerItem>
-                <DrawerItem label="Staff" to={"/"} logo={staff}></DrawerItem>
-                <DrawerItem label="Permission" to={"/"} logo={permissions}></DrawerItem>
-                <DrawerItem label="Client" to={"/"} logo={clients}></DrawerItem>
-                <DrawerItem label="Agreement" to={"/"} logo={agreements}></DrawerItem>
-                <DrawerItem label="Accessory" to={"/"} logo={accessory}></DrawerItem>
-                <DrawerItem label="Visitor" to={"/"} logo={visitor}></DrawerItem>
-                <DrawerItem label="Security" to={"/"} logo={security}></DrawerItem>
-                <DrawerItem label="Reports" to={"/"} logo={reports}></DrawerItem>
-                <DrawerItem label="Notification" to={"/"} logo={notification}></DrawerItem>
-                <DrawerItem label="History" to={"/"} logo={history}></DrawerItem>
+                <DrawerItem label="Users" to={"/Users"} logo={dashboard}></DrawerItem>
+                <DrawerItem label="Courses" to={"/Courses"} logo={dashboard}></DrawerItem>
+                <DrawerItem label="Modules" to={"/Modules"} logo={dashboard}></DrawerItem>
               </DrawerSection>
             </SlideDrawer>
             <Routes>
@@ -143,15 +101,16 @@ export default function App() {
               </Route>
               <Route path="/Home" element={<Home />}>
               </Route>
-              <Route path="/test" element={<Test />}>
+              <Route path="/Users" element={<Users />}>
               </Route>
-              <Route path="/details" element={<Details />}>
+              <Route path="/Courses" element={<Details />}>
+              </Route>
+              <Route path="/Modules" element={<Details />}>
               </Route>
               <Route path="/Logout" element={<Logout logout={logout}></Logout>}></Route>
             </Routes>
           </header>
         </div>
-          <Footer></Footer>
       </Router>
     );
   }
@@ -161,7 +120,7 @@ export default function App() {
 class LoggedInNav extends React.Component {
 
   state = {
-    title: <img src={appLogo} height="15px" className="d-inline-block align-items-center appLogo" alt=""></img>
+    title: "ExemptionChecker"
   }
   componentDidMount() {
     window.addEventListener("resize", this.resize.bind(this));
@@ -172,19 +131,18 @@ class LoggedInNav extends React.Component {
     const md = 768;
    if(window.innerWidth >= md){
         this.setState({
-          title: <img src={appLogo} height="15px" className="d-inline-block align-items-center appLogo" alt=""></img>
+          title: "ExemptionChecker"
         })
     } else{
         this.setState({
-          title: <SwappingNavTitle title={document.title} secondaryTitle={<img src={appLogo} height="15px" className=" appLogo" alt=""></img>
-        }></SwappingNavTitle>
+          title: "ExemptionChecker"
         })
     }
   }
   render() {
 
     return (
-      <Nav title={this.state.title
+      <Nav user={this.props.user} title={this.state.title
       } toggle={this.props.toggle} show={this.props.show}>
       </Nav>
     )
@@ -208,7 +166,7 @@ class LoggedOutNav extends React.Component {
     return (
 
       <Nav title={
-        <img src={appLogo} height="15px" className="d-inline-block align-items-center appLogo" alt=""></img>
+        "ExemptionChecker"
       } toggle={this.props.toggle} >
       </Nav>
     )

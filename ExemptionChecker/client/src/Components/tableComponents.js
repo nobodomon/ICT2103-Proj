@@ -46,33 +46,31 @@ export class ExpandableRow extends React.Component {
                 {this.state.expanded? 
                 <div className={this.state.expandedClass}>
                     <div className="row justify-content-center align-items-start expandedRow">
-                        <div className="col-12 col-lg-3 expansionColumn justify-content-center align-items-center">
+                        <div className="d-flex col-12 col-lg-3 justify-content-center align-items-center">
                             <img src={placeHolderUser} width="128px"></img>
                         </div>
-                        <div className="col-12 col-md-6 col-lg-4 expansionColumn">
-                            <StdInput label={"Name"} editable={this.state.editMode} showSaveBtn={this.state.editMode} showIndicator={this.state.editMode} onClick={this.handleClick}></StdInput>
-                            <StdInput label={"NRIC/FIN"} editable={this.state.editMode} showSaveBtn={this.state.editMode} showIndicator={this.state.editMode} onClick={this.handleClick}></StdInput>
-                            <StdInput label={"Work Permit"} editable={this.state.editMode} showSaveBtn={this.state.editMode} showIndicator={this.state.editMode} onClick={this.handleClick}></StdInput>
-                            <StdInput label={"Permit Expiry"} type={"date"} editable={this.state.editMode} showSaveBtn={this.state.editMode} showIndicator={this.state.editMode} onClick={this.handleClick}></StdInput>
-                            <StdInput label={"Check-In Date"} type={"date"} editable={this.state.editMode} showSaveBtn={this.state.editMode} showIndicator={this.state.editMode} onClick={this.handleClick}></StdInput>
-                            <StdInput label={"Phone Number"} width={"75px"} type={"tel"} value={"+65"} subValue={"12345678"} editable={this.state.editMode} showSaveBtn={this.state.editMode} showIndicator={this.state.editMode} onClick={this.handleClick}></StdInput>
-                        </div>
-                        <div className="col-12 col-md-6 col-lg-4 expansionColumn">
-                            <StdInput label={"Gender"} value={"Male"} type={"dropdown"} options={[{value:"Male", label:"Male"},{value:"Female",label:"Female"}]} editable={this.state.editMode} showSaveBtn={this.state.editMode} showIndicator={this.state.editMode} onClick={this.handleClick}>
 
-                            </StdInput>
-                            <StdInput label={"Nationality"} editable={this.state.editMode} showSaveBtn={this.state.editMode} showIndicator={this.state.editMode} onClick={this.handleClick}></StdInput>
-                            <StdInput label={"Client"} editable={this.state.editMode} showSaveBtn={this.state.editMode} showIndicator={this.state.editMode} onClick={this.handleClick}></StdInput>
-                            <StdInput label={"Room/Bed"} editable={this.state.editMode} showSaveBtn={this.state.editMode} showIndicator={this.state.editMode} onClick={this.handleClick}></StdInput>
-                            <StdInput label={"Location (Time)"} type={"time"}  editable={this.state.editMode} showSaveBtn={this.state.editMode} showIndicator={this.state.editMode} onClick={this.handleClick}></StdInput>
-                            <StdInput label={"Remarks"} type={"textarea"} editable={this.state.editMode} showSaveBtn={this.state.editMode} showIndicator={this.state.editMode} onClick={this.handleClick}></StdInput>
+                        <div className="col-12 col-lg-9 expansionColumn">
+                            {Object.keys(this.props.fieldSettings).map((field, index) => {
+                                return(
+                                    <StdInput 
+                                        key={index}
+                                        label={field} 
+                                        type={this.props.fieldSettings[field].type} 
+                                        editable={this.props.fieldSettings[field].editable} 
+                                        showSaveBtn={this.props.fieldSettings[field].editable} 
+                                        showIndicator={this.props.fieldSettings[field].editable} 
+                                        onClick={this.handleClick}
+                                        value={this.props.values[field]}>
+                                    </StdInput>
+                                )
+                            })}
                         </div>
                         {this.state.editMode? 
                         <div className="expansionColumnActions">
                             <div className="row">
                                 
                                 <div className="col-md-6 col-12 d-flex justify-content-center">
-                                    <StdButton className="" onClick={this.exitEditMode}>Exit Edit Mode</StdButton>
                                     
                                     <StdButton className="primary">Save all changes</StdButton>
                                 </div>

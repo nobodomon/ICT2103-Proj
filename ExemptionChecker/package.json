@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server/index.js",
+    "start": "babel-node server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "parcel-start": "parcel index.html"
   },
@@ -27,11 +27,13 @@
     "buffer": "^6.0.3",
     "cors": "^2.8.5",
     "crypto-browserify": "^3.12.0",
+    "crypto-js": "^4.1.1",
     "express": "^4.18.1",
     "express-rate-limit": "^6.4.0",
     "fs": "^0.0.1-security",
     "helmet": "^5.0.2",
     "https-browserify": "^1.0.0",
+    "knex": "^2.3.0",
     "os": "^0.1.2",
     "os-browserify": "^0.3.0",
     "parcel": "^2.5.0",
@@ -40,10 +42,15 @@
     "react-app-rewired": "^2.2.1",
     "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
+    "request": "^2.88.2",
     "sass": "^1.51.0",
     "sqlite3": "^5.0.6",
     "stream-browserify": "^3.0.0",
     "stream-http": "^3.2.0",
     "url": "^0.11.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.19.0",
+    "@babel/node": "^7.18.10"
   }
 }

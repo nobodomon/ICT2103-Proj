@@ -2,11 +2,25 @@ import React from "react";
 import { InputField } from "../Components/formElements";
 import { useState } from "react";
 import PropTypes from 'prop-types';
-import { MultiStepBox, StdButton, StdInput } from "../Components/common";
+import { MultiStepBox, StdButton, StdInput, Step} from "../Components/common";
 import { DetailsContainerDivider } from "./Details";
 
+const loginSteps = {0: "login", 1: "register",2: "forgot"}
+
+
 async function loginUser(credentials) {
-  return fetch('/attemptLogin', {
+  return fetch('/users/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(credentials)
+  }).then(function (res) { return res.json(); })
+}
+
+
+async function registerUser(credentials){
+  return fetch('/users/createUser', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -21,16 +35,18 @@ export default class Login extends React.Component {
     this.state = {
       username: "",
       password: "",
+      message: "",
       transform: "translateX(0%)",
     }
     this.setPassword = this.setPassword.bind(this);
     this.setUsername = this.setUsername.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
+    this.handleRegister = this.handleRegister.bind(this);
     this.setStep = this.setStep.bind(this);
     window.addEventListener('resize', this.resize.bind(this));
   }
 
-  resize() {
+  resize = () => {
     if (window.innerWidth <= 576) {
       this.setState({
         transform: 'translateX(0%)'
@@ -79,13 +95,36 @@ export default class Login extends React.Component {
     })
   }
 
-  handleSubmit = async e => {
-    console.log("Submitted")
+  handleLogin = async e => {
+    console.log(e,"Submitted")
     e.preventDefault();
     const token = await loginUser({
       username: this.state.username, password: this.state.password
     });
-    this.props.setToken(token);
+    if(token.success){
+      this.props.setToken(token);
+    }else{
+      this.setState({
+        message: token.message
+      })
+    }
+  }
+
+  handleRegister = async e => {
+    console.log(e,"Submitted")
+    e.preventDefault();
+    const token = await registerUser({
+      username: this.state.username, password: this.state.password
+    });
+
+    if(token.success){
+      this.props.setToken(token);
+    }else{
+      this.setState({
+        message: token.message
+      })
+    }
+
   }
 
   render() {
@@ -93,7 +132,7 @@ export default class Login extends React.Component {
       <div className="d-flex loginPage">
         <div className="loginContainer">
           <div className="leftPanel" style={{ transform: this.state.transform }}>
-            <MultiStepBox currentStep={0}>
+            <MultiStepBox steps={loginSteps} currentStep={0}>
               {/* <div className="login-form">
                 <div className="leftPanel-Title">
                   <span>Login</span>
@@ -109,7 +148,7 @@ export default class Login extends React.Component {
                 </div>
               </div> */}
               <LoginFormBox title={"Login"}
-                handleSubmit={this.handleSubmit}
+                handleSubmit={this.handleLogin}
                 fields={[{
                   label: "Username",
                   onChange: this.setUsername,
@@ -123,6 +162,21 @@ export default class Login extends React.Component {
                   onClick: null,
                 }]}>
               </LoginFormBox>
+              <RegisterFormBox title={"Register"}
+                handleSubmit={this.handleRegister}
+                fields={[{
+                  label: "Username",
+                  onChange: this.setUsername,
+                }, {
+                  label: "Password",
+                  onChange: this.setPassword,
+                }]}
+                actions={[{
+                  label: "Submit",
+                  type: "Submit",
+                  onClick: null,
+                }]}>
+              </RegisterFormBox>
               <ForgetPasswordFormBox title={"Forget Password"}
                 handleSubmit={this.handleSubmit}
                 fields={[{
@@ -165,6 +219,11 @@ export default class Login extends React.Component {
               </div>
           </div>
         </div>
+        <div className={"modalMessage " + (this.state.message.length > 0 ? "show" : "")} onAnimationEnd={()=>this.setState({
+          message: ""
+        })}>
+          {this.state.message}
+        </div>
       </div>
     )
   }
@@ -194,7 +253,38 @@ export class LoginFormBox extends React.Component {
                 <StdButton key={index} type={action.type} className="primary" onClick={action.onClick}>{action.label}</StdButton>)
             })}
           </div>
-          <div onClick={this.props.nextStep}><a className="forgetPassword">Forgot Password?</a></div>
+          <div onClick={()=>this.props.setStep(1)}><a className="forgetPassword">Don't have an account? Click here to register.</a></div>
+          <div onClick={()=>this.props.setStep(2)}><a className="forgetPassword">Forgot Password?</a></div>
+        </form>
+        <div className="spacer">
+        </div>
+      </div>
+    )
+  }
+}
+
+export class RegisterFormBox extends React.Component {
+  render() {
+    return (
+
+      <div className="login-form">
+        <div className="leftPanel-Title">
+          <span>{this.props.title}</span>
+        </div>
+        <form onSubmit={this.props.handleSubmit}>
+          {this.props.fields.map((field, index) => {
+            return (
+              <StdInput key={index} showIndicator={false} showSaveBtn={false} label={field.label} onChange={field.onChange}></StdInput>
+            )
+          })}
+          <div className="row-cols-md-2 row-cols-1 loginActions">
+            {this.props.actions.map((action, index) => {
+              return (
+                <StdButton key={index} type={action.type} className="primary" onClick={action.onClick}>{action.label}</StdButton>)
+            })}
+          </div>
+          <div onClick={()=>this.props.setStep(0)}><a className="forgetPassword">Already have an account?</a></div>
+          <div onClick={()=>this.props.setStep(2)}><a className="forgetPassword">Forgot Password?</a></div>
         </form>
         <div className="spacer">
         </div>

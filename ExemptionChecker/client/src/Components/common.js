@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/Hamburger.scss";
 import footer from "../Assets/footer.png";
 import { Link } from "react-router-dom";
-import { searchSuggestions } from "../Pages/Test";
+import { searchSuggestions } from "../Pages/PageLayout";
 
 export class DivSpacing extends React.Component {
     state = {
@@ -616,12 +616,6 @@ export class StdInput extends React.Component {
                             </div>
                             <input country={'sg'} className="stdInput" type={"tel"} disabled={!this.state.editable} ref={this.subInput} autoComplete={this.props.autoComplete} placeholder={""} onChange={(e) => this.onEditHandle(e, this.subInput)}>
                             </input>
-
-                            {this.props.showIndicator &&
-                                this.state.editable ?
-                                "":
-                                <span className="stdInputToolTip">Click To Edit</span>
-                            }
                             {this.props.showIndicator ?
                                 this.state.editable ?
                                     <i className="bi bi-pencil "></i> :
@@ -642,13 +636,30 @@ export class StdInput extends React.Component {
                     }
                     {this.props.type === "text" &&
                         <div onClick={() => this.toggleEdit()} className={"stdInputGroup d-flex align-items-center" + " " + (this.state.valueChanged ? "leftBorderRadius" : "borderRadius")} >
-                            <input className="stdInput" type={this.props.type} disabled={!this.state.editable} ref={this.primaryInput} autoComplete={this.props.autoComplete} placeholder={""} onChange={(e) => this.onEditHandle(e, this.primaryInput)}>
+                            <input className="stdInput" value={this.props.value} type={this.props.type} disabled={!this.state.editable} ref={this.primaryInput} autoComplete={this.props.autoComplete} placeholder={""} onChange={(e) => this.onEditHandle(e, this.primaryInput)}>
                             </input>
-                            {this.props.showIndicator &&
+                            {this.props.showIndicator ?
                                 this.state.editable ?
-                                "":
-                                <span className="stdInputToolTip">Click To Edit</span>
+                                    <i className="bi bi-pencil "></i> :
+                                    <svg className="editLock" viewBox="0 0 30 30" preserveAspectRatio={"xMidYMid meet"}>
+                                        <path className={"lockBody"} d={"M 10 10 L 20 10 Q 25 10 25 15 V 25 Q 25 30 20 30 H 10 Q 5 30 5 25 V 15 Q 5 10 10 10 H 25 "}>
+                                        </path>
+                                        <path d={"M 15 20 L 15 20 L 14 19.8 L 13 23 L 17 23 L 16 19.8 L 15 20 A 1 1 0 0 0 15 15 A 1 1 0 0 0 15 20"} className={"keyHole"}></path>
+                                        <path className="bolt" fill={"none"} d={"M 20 20 V 8 A 1 1 0 0 0 10 8 V 10"}>
+
+                                        </path>
+                                    </svg> : ""
                             }
+
+                            <div className={this.state.feedbackClass} onAnimationEnd={this.reset}>
+                                {this.state.feedback}
+                            </div>
+                        </div>
+                    }
+                    {this.props.type === "number" &&
+                        <div onClick={() => this.toggleEdit()} className={"stdInputGroup d-flex align-items-center" + " " + (this.state.valueChanged ? "leftBorderRadius" : "borderRadius")} >
+                            <input className="stdInput" value={this.props.value} type={this.props.type} disabled={!this.state.editable} ref={this.primaryInput} autoComplete={this.props.autoComplete} placeholder={""} onChange={(e) => this.onEditHandle(e, this.primaryInput)}>
+                            </input>
                             {this.props.showIndicator ?
                                 this.state.editable ?
                                     <i className="bi bi-pencil "></i> :
@@ -669,13 +680,8 @@ export class StdInput extends React.Component {
                     }
                     {this.props.type === "date" &&
                         <div onClick={() => this.toggleEdit()} className={"stdInputGroup d-flex align-items-center" + " " + (this.state.valueChanged ? "leftBorderRadius" : "borderRadius")}>
-                            <input className="stdInput" type={this.props.type} disabled={!this.state.editable} ref={this.primaryInput} autoComplete={this.props.autoComplete} placeholder={""} onChange={(e) => this.onEditHandle(e, this.primaryInput)}>
+                            <input className="stdInput" value={this.props.value} type={this.props.type} disabled={!this.state.editable} ref={this.primaryInput} autoComplete={this.props.autoComplete} placeholder={""} onChange={(e) => this.onEditHandle(e, this.primaryInput)}>
                             </input>
-                            {this.props.showIndicator &&
-                                this.state.editable ?
-                                "":
-                                <span className="stdInputToolTip">Click To Edit</span>
-                            }
                             {this.props.showIndicator ?
                                 this.state.editable ?
                                     <i className="bi bi-pencil "></i> :
@@ -698,11 +704,6 @@ export class StdInput extends React.Component {
                         <div onClick={() => this.toggleEdit()} className={"stdInputGroup d-flex align-items-center" + " " + (this.state.valueChanged ? "leftBorderRadius" : "borderRadius")}>
                             <input className="stdInput" type={this.props.type} disabled={!this.state.editable} ref={this.primaryInput} autoComplete={this.props.autoComplete} placeholder={""} onChange={(e) => this.onEditHandle(e, this.primaryInput)}>
                             </input>
-                            {this.props.showIndicator &&
-                                this.state.editable ?
-                                "":
-                                <span className="stdInputToolTip">Click To Edit</span>
-                            }
                             {this.props.showIndicator ?
                                 this.state.editable ?
                                     <i className="bi bi-pencil "></i> :
@@ -733,11 +734,6 @@ export class StdInput extends React.Component {
                                 </div>
                                 <div className="dropdown-spacer"></div>
                             </div>
-                            {this.props.showIndicator &&
-                                this.state.editable ?
-                                "":
-                                <span className="stdInputToolTip">Click To Edit</span>
-                            }
                             {this.props.showIndicator ?
                                 this.state.editable ?
                                     <i className="bi bi-pencil "></i> :
@@ -778,11 +774,6 @@ export class StdInput extends React.Component {
                                 </div>
                                 <div className="dropdown-spacer"></div>
                             </div>
-                            {this.props.showIndicator &&
-                                this.state.editable ?
-                                "":
-                                <span className="stdInputToolTip">Click To Edit</span>
-                            }
                             {this.props.showIndicator ?
                                 this.state.editable ?
                                     <i className="bi bi-pencil "></i> :
@@ -805,11 +796,6 @@ export class StdInput extends React.Component {
                         <div onClick={() => this.toggleEdit()} className={"stdInputGroup d-flex align-items-center" + " " + (this.state.valueChanged ? "leftBorderRadius" : "borderRadius")}>
                             <input className="stdInput" type={"textarea"} disabled={!this.state.editable} ref={this.primaryInput} autoComplete={this.props.autoComplete} placeholder={""} onChange={(e) => this.onEditHandle(e, this.primaryInput)}>
                             </input>
-                            {this.props.showIndicator &&
-                                this.state.editable ?
-                                "":
-                                <span className="stdInputToolTip">Click To Edit</span>
-                            }
                             {this.props.showIndicator ?
                                 this.state.editable ?
                                     <i className="bi bi-pencil "></i> :
@@ -1799,14 +1785,12 @@ export class MultiStepBox extends React.Component {
     nextStep() {
         this.setState({
             currentStep: this.state.currentStep + 1,
-            progression: (this.state.currentStep + 1) * (100 / React.Children.count(this.props.children)) * -1
         })
     }
 
     prevStep() {
         this.setState({
             currentStep: this.state.currentStep - 1,
-            progression: (this.state.currentStep - 1) * (100 / React.Children.count(this.props.children)) * -1
         })
     }
 
@@ -1818,7 +1802,7 @@ export class MultiStepBox extends React.Component {
 
     render() {
         return (
-            <div className="Multistep-Container" style={{ transform: ("translateX(" + this.state.progression + "%)"), minWidth: (React.Children.count(this.props.children) * 100 + "%") }}>
+            <div className="Multistep-Container">
                 {this.props.children.map((child, index) => {
                     if (React.isValidElement(child)) {
                         return (
@@ -1830,6 +1814,24 @@ export class MultiStepBox extends React.Component {
                         return child
                     }
                 })}
+            </div>
+        )
+    }
+}
+
+
+export class Step extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            currentStep: this.props.currentStep
+        }
+    }
+
+    render() {
+        return (
+            <div className={"step " + (this.props.currentStep == this.props.step? "active" : "")}>
+                {this.props.children}
             </div>
         )
     }
