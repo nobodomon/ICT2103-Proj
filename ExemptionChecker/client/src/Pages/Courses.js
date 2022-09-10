@@ -11,12 +11,12 @@ export default class Courses extends React.Component {
     }
 
     settings ={
-        title:"Courses",
+        title:"Polytechnic Courses",
         primaryColor: "#48a1da",
         accentColor: "#8fc140",
         textColor: "#ffffff",
         textColorInvert: "#606060",
-        api: "/courses/",
+        api: "/polytechnicCourses/",
     }
 
     async componentDidMount(){

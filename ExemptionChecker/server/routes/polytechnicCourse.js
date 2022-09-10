@@ -1,6 +1,6 @@
 const express = require("express");
 
-const courseRoutes = require("../controller/courseController.js");
+const courseRoutes = require("../controller/polytechnicCourseController.js");
 
 const router = express.Router();
 

@@ -7,26 +7,9 @@ import { Cell, ListTable, HeaderRow, ExpandableRow } from "../Components/tableCo
 import { DetailsTableHeader } from "./Details";
 
 export const searchSuggestions = [
-    { type: "specific", value: "@gender", label: "@gender" },
-    { type: "multiple", value: "+gender", label: "+gender" },
-    { type: "specific", value: "@Location(Time)", label: "@Location(Time)" },
-    { type: "multiple", value: "+Location(Time)", label: "+Location(Time)" },
-    { type: "specific", value: "@NRIC/FIN", label: "@NRIC/FIN" },
-    { type: "multiple", value: "+ExitRequestFrom", label: "+ExitRequestFrom" },
-    { type: "specific", value: "@gender", label: "@gender" },
-    { type: "multiple", value: "+gender", label: "+gender" },
-    { type: "specific", value: "@gender", label: "@gender" },
-    { type: "multiple", value: "+gender", label: "+gender" },
-    { type: "specific", value: "@gender", label: "@gender" },
-    { type: "multiple", value: "+gender", label: "+gender" },
 ]
 
 const CurrentTags = [
-    { type: "base", value: ":fast" },
-    { type: "specific", value: "@agreement(abc)" },
-    { type: "specific", value: "@birthdayAfter(09-10)" },
-    { type: "specific", value: "@dorm(abc)" },
-    { type: "multiple", value: "+level(3)" }
 ]
 
 const settings = {
@@ -263,102 +246,6 @@ TableHeader.defaultProps = {
     component: "",
 }
 
-export class SeeMorePopUp extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            data: "",
-            isLoading: true,
-            loadingClass: "loading",
-            animationFinish: false,
-        }
-        this.startTimer = this.startTimer.bind(this);
-        this.closePopUp = this.closePopUp.bind(this);
-        this.scaleFinish = this.scaleFinish.bind(this);
-    }
-
-    componentDidMount() {
-        this.setState({ isLoading: true, loadingClass: "loading" })
-    }
-    closePopUp() {
-        console.log("Closing");
-        this.setState({
-            data: "",
-            isLoading: true,
-            animationFinish: false,
-            loadingClass: "loading"
-        });
-        this.props.handleClose();
-    }
-
-    scaleFinish() {
-        this.setState({
-            animationFinish: true
-        })
-    }
-
-    startTimer() {
-        console.log("Starting Timer");
-        if (this.props.show) {
-
-            setTimeout(() => {
-                this.setState({
-                    isLoading: false,
-                    loadingClass: "finishLoading"
-                })
-            }, 500);
-        }
-    }
-
-    render() {
-        if (this.props.show) {
-            return (
-                <div className={"SeeMorePopUpContainer show " + this.state.loadingClass}>
-
-                    <div className="loadingWheelContainer" onAnimationEnd={this.scaleFinish}>
-                        {this.state.isLoading &&
-                            <div className="loadingWheel">
-
-                                {this.startTimer()}
-                            </div>
-                        }
-                        {(!this.state.isLoading && this.state.animationFinish) &&
-                            <DetailsTableHeader handleClose={this.closePopUp}
-                                headerQuickActions={
-                                    [
-                                        { onClick: this.closePopUp, icon: <i class="bi bi-x-circle-fill"></i>, title: "Close", },
-                                        { onClick: () => { }, icon: <i class="bi bi-arrow-clockwise"></i>, title: "Refresh" },
-                                        { onClick: () => { }, icon: <i class="bi bi-fullscreen"></i>, title: "Fullscreen" },
-                                    ]
-                                }
-                                actions={[
-                                    { label: "Access Logs" },
-                                    { label: "Upload Photo" },
-                                    { label: "Print Card" },
-                                    { label: "Absence Reason" },
-                                    { label: "Report Sick" },
-                                ]}
-                            ></DetailsTableHeader>
-                        }
-                        {(!this.state.isLoading && this.state.animationFinish) &&
-                            <div className="detailsContainer">
-
-                            </div>
-                        }
-                    </div>
-                </div>
-            )
-        } else {
-
-            return (
-                <div className="SeeMorePopUpContainer">
-
-                </div>
-            )
-        }
-    }
-}
-
 export class HeaderExpansion extends React.Component {
     render() {
         if (this.props.expanded) {
@@ -453,20 +340,23 @@ class AddEntry extends React.Component{
 
     render(){
         return (
-            <div className="container-fluid">
+            <div className="container-fluid addEntry">
+                <form className={"addEntry-inputFields"} onSubmit={this.handleCourseCreation}>
                 {Object.keys(this.props.fieldSettings).map(
                     (key, index) => {
                         return (this.props.fieldSettings[key].primaryKey? "" : 
                             <StdInput 
                             label = {key}
                             enabled = {true}
-                            
-                            onChange = {this.onChange}>
+                            onChange = {this.onChange}
+                            >
                             </StdInput>)
                     }
                 )}
-                <StdButton onClick={this.handleCourseCreation}>Submit</StdButton>
-            </div>
+                <StdButton type={"submit"}>Submit</StdButton>
+            
+                </form>
+                </div>
         )
     }
 }

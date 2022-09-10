@@ -28,8 +28,8 @@ exports.deleteUser = async (req, res) => {
 }
 
 exports.updateUser = async (req, res) => {
-    const {uid, username, password, role} = req.body;
-    knex.update({uid: uid, username:username, password: password, role: role}).from("Users").where({uid: uid}).then(userData =>{
+    const {uid, username, password, role, polytechnicCourse} = req.body;
+    knex.update({uid: uid, username:username, password: password, role: role, polytechnicCourse: polytechnicCourse}).from("Users").where({uid: uid}).then(userData =>{
         knex.select("*").from("Users").then(userData =>{ 
             res.json({success:true, userData, message: "Users fetched!"});
         })
@@ -52,6 +52,17 @@ exports.login = async (req, res) => {
 }
 
 exports.settings = async (req, res) => {
+    
+    polytechnicCourses = await knex.select("*").from("PolytechnicCourses").then(polyCourseData =>{
+        var tempCourseList = [];
+        console.log(polyCourseData);
+        for(polycourse in polyCourseData){
+            tempCourseList.push({label: polyCourseData[polycourse]["course code"] + " - " +  polyCourseData[polycourse]["course name"], value:  polyCourseData[polycourse]["cid"]});
+        }
+        console.log(tempCourseList)
+        return tempCourseList;
+    });
+
     const columnSettings = {
         // Configures the headers of the table
         // Pls match header names with column names (case sensitive!)
@@ -79,8 +90,13 @@ exports.settings = async (req, res) => {
             editable:true,
         },
         "password":{
-            type: "text",
+            type: "password",
             editable:false,
+        },
+        "polytechnicCourse":{
+            type: "dropdown",
+            editable:true,
+            options: polytechnicCourses,
         }
     }
 

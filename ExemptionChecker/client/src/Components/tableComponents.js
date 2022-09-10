@@ -71,22 +71,12 @@ export class ExpandableRow extends React.Component {
                                         hasSaveBtn={true} 
                                         showIndicator={this.props.fieldSettings[field].editable} 
                                         value={this.props.values[field]}
-                                        onChange={this.updateHandle}>
+                                        onChange={this.updateHandle}
+                                        options={this.props.fieldSettings[field].options}>
                                     </StdInput>
                                 )
                             })}
                         </div>
-                        {this.state.editMode? 
-                        <div className="expansionColumnActions">
-                            <div className="row">
-                                
-                                <div className="col-md-6 col-12 d-flex justify-content-center">
-                                    
-                                    <StdButton className="primary">Save all changes</StdButton>
-                                </div>
-                            </div>
-                        </div>:<div/>}
-                        <StdButton className={"primary"} onClick={()=>this.props.seeMoreHandle("abc")}>See More</StdButton>
                     </div>
                 </div>:""}
             </div>

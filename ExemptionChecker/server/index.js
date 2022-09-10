@@ -17,7 +17,7 @@ const { randomUUID } = require("crypto");
 
 //import routes
 const userMethods = require('./routes/auth.js');
-const courseMethods = require('./routes/course.js');
+const polytechnicCourseMethods = require('./routes/polytechnicCourse.js');
 
 const app = express();
 var server = http.createServer(app);
@@ -37,7 +37,7 @@ app.use(limiter);
 
 //Use methods
 app.use("/users", userMethods);
-app.use("/courses", courseMethods);
+app.use("/polytechnicCourses", polytechnicCourseMethods);
 
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);

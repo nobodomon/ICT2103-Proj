@@ -31,6 +31,8 @@ knex.schema
           table.string('username').unique()
           table.string('password')
           table.string('role')
+          table.integer('polytechnicCourse')
+          table.foreign('polytechnicCourse').references('cid').inTable('PolytechnicCourses')
         })
         .then(() => {
           // Log success message
@@ -50,20 +52,20 @@ knex.schema
     })
 
 knex.schema
-    .hasTable("Courses")
+    .hasTable("PolytechnicCourses")
       .then((exists) => {
         if (!exists) {
           // If no Course table exists
           // create new, with "cid","course code", "course name"
           // and use "cid" as a primary identification
           // and increment "cid" with every new record (course)
-          return knex.schema.createTable("Courses", (table)  => {
+          return knex.schema.createTable("PolytechnicCourses", (table)  => {
             table.increments('cid').primary()
             table.string("course code")
             table.string('course name')
           })
           .then(() => {
-            console.log('Table \'Course\' created')
+            console.log('Table \'PolytechnicCourses\' created')
           })
           .catch((error) => {
             console.error(`There was an error creating table: ${error}`)
@@ -83,7 +85,7 @@ knex.select('*').from('Users')
   .then(data => console.log('data:', data))
   .catch(err => console.log(err))
 
-knex.select("*").from("Courses")
+knex.select("*").from("PolytechnicCourses")
   .then(data => console.log('data:', data))
   .catch(err => console.log(err))
 // Export the database
