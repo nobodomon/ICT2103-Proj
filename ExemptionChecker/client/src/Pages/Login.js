@@ -2,8 +2,9 @@ import React from "react";
 import { InputField } from "../Components/formElements";
 import { useState } from "react";
 import PropTypes from 'prop-types';
-import { MultiStepBox, StdButton, StdInput, Step} from "../Components/common";
+import { MultiStepBox, StdButton, Step} from "../Components/common";
 import { DetailsContainerDivider } from "./Details";
+import { StdInput } from "../Components/input";
 
 const loginSteps = {0: "login", 1: "register",2: "forgot"}
 
@@ -20,7 +21,7 @@ async function loginUser(credentials) {
 
 
 async function registerUser(credentials){
-  return fetch('/users/createUser', {
+  return fetch('/users/create', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -83,15 +84,15 @@ export default class Login extends React.Component {
     }
   }
 
-  setUsername(e) {
+  setUsername(field, value) {
     this.setState({
-      username: e.target.value
+      username: value
     })
   }
 
-  setPassword(e) {
+  setPassword(field,value) {
     this.setState({
-      password: e.target.value
+      password: value
     })
   }
 
@@ -133,20 +134,6 @@ export default class Login extends React.Component {
         <div className="loginContainer">
           <div className="leftPanel" style={{ transform: this.state.transform }}>
             <MultiStepBox steps={loginSteps} currentStep={0}>
-              {/* <div className="login-form">
-                <div className="leftPanel-Title">
-                  <span>Login</span>
-                </div>
-                <form onSubmit={this.handleSubmit}>
-                  <StdInput showIndicator={false} showSaveBtn={false} label={"Username"} id="Username" title="Username" onChange={this.setUsername}></StdInput>
-                  <StdInput showIndicator={false} showSaveBtn={false} label={"Password"} id="Password" title="Password" onChange={this.setPassword}></StdInput>
-                  <button type="submit" className="btn btn-success">Submit</button>
-                  <div onClick={this.props.nextstep}><a className="forgetPassword">Forgot Password?</a></div>
-                </form>
-                <div className="spacer">
-
-                </div>
-              </div> */}
               <LoginFormBox title={"Login"}
                 handleSubmit={this.handleLogin}
                 fields={[{
@@ -244,7 +231,7 @@ export class LoginFormBox extends React.Component {
         <form onSubmit={this.props.handleSubmit}>
           {this.props.fields.map((field, index) => {
             return (
-              <StdInput key={index} showIndicator={false} showSaveBtn={false} label={field.label} onChange={field.onChange}></StdInput>
+              <StdInput key={index} enabled={true} showIndicator={false} showSaveBtn={false} label={field.label} onChange={field.onChange}></StdInput>
             )
           })}
           <div className="row-cols-md-2 row-cols-1 loginActions">
@@ -308,7 +295,7 @@ export class ForgetPasswordFormBox extends React.Component {
             )
           })}
           <div className="loginActions">
-            <StdButton type="button" onClick={this.props.prevStep} className="secondary">Back</StdButton>
+            <StdButton type="button" onClick={()=>this.props.setStep(0)} className="secondary">Back</StdButton>
             <StdButton type="button" className="primary">Submit</StdButton>
           </div>
           </form>
@@ -318,36 +305,3 @@ export class ForgetPasswordFormBox extends React.Component {
     )
   }
 }
-
-
-
-{/* <div className="login-form">
-              <div className="leftPanel-Title">
-                <span>Login</span>
-              </div>
-              <form onSubmit={this.handleSubmit}>
-                <StdInput showIndicator={false} showSaveBtn={false} label={"Username"} id="Username" title="Username" onChange={this.setUsername}></StdInput>
-                <StdInput showIndicator={false} showSaveBtn={false} label={"Password"} id="Password" title="Password" onChange={this.setPassword}></StdInput>
-                <button type="submit" className="btn btn-success">Submit</button>
-                <div onClick={() => this.setStep("fp")}><a className="forgetPassword">Forgot Password?</a></div>
-              </form>
-              <div className="spacer">
-              
-              </div>
-            </div>
-            <div className="login-form">
-              <div className="leftPanel-Title">
-                <span>Forget Password</span>
-              </div>
-              <form onSubmit={this.handleSubmit}>
-                <StdInput showIndicator={false} showSaveBtn={false} label={"Username"} id="Username" title="Username" onChange={this.setUsername}></StdInput>
-                <StdInput showIndicator={false} showSaveBtn={false} label={"Password"} id="Password" title="Password" onChange={this.setPassword}></StdInput>
-                <div className="row-cols-md-2 row-cols-1 loginActions">
-                  <StdButton type="button" onClick={() => this.setStep("")} className="secondary">Back</StdButton>
-                  <StdButton type="button" className="primary">Submit</StdButton>
-                </div>
-              </form>
-              <div className="spacer">
-
-              </div>
-            </div> */}

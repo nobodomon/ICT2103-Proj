@@ -2,7 +2,7 @@
 import React from "react"
 import DatapageLayout from "./PageLayout"
 
-export default class Users extends React.Component {
+export default class Courses extends React.Component {
     state={
         content:null,
         headers:[],
@@ -11,12 +11,12 @@ export default class Users extends React.Component {
     }
 
     settings ={
-        title:"Users",
+        title:"Courses",
         primaryColor: "#48a1da",
         accentColor: "#8fc140",
         textColor: "#ffffff",
         textColorInvert: "#606060",
-        api: "/users/",
+        api: "/courses/",
     }
 
     async componentDidMount(){
@@ -40,7 +40,7 @@ export default class Users extends React.Component {
     }
 
     getSettings = async () => {
-        return fetch(this.settings.api + "settings" , {
+        return fetch( this.settings.api + "settings" , {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -52,19 +52,20 @@ export default class Users extends React.Component {
     }
 
     getContent = async () =>{
-        return fetch( this.settings.api + "allUsers" , {
+        return fetch( this.settings.api + "allCourses" , {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
         }).then(res => {
+            console.log(res);
             return res.json();
         });
     }
 
-    updateUser = async (user) =>{
+    updateCourse = async (user) =>{
         console.log(user);
-        return fetch(this.settings.api + "updateUser" , {
+        return fetch( this.settings.api + "updateCourse" , {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -75,8 +76,8 @@ export default class Users extends React.Component {
         });
     }
 
-    handleUpdate = async (user) =>{
-        await this.updateUser(user).then((content)=>{
+    handleUpdate = async (course) =>{
+        await this.updateCourse(course).then((content)=>{
             this.setState(
                 {
                     content:content,
@@ -108,7 +109,7 @@ export default class Users extends React.Component {
                 settings={this.settings}
                 fieldSettings={this.state.settings.fieldSettings} 
                 headers={this.state.settings.columnSettings.headers} 
-                data={this.state.content.userData}
+                data={this.state.content.courseData}
                 updateHandle = {this.handleUpdate}
                 requestRefresh = {this.requestRefresh}>
             </DatapageLayout>

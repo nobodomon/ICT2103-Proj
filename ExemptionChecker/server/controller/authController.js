@@ -9,7 +9,7 @@ exports.allUsers = async (req, res) => {
     });
 }
 
-exports.createUser = async (req, res) => {
+exports.create = async (req, res) => {
     const {username, password} = req.body;
     knex.insert({username: username, password: SHA256(password), role: "user"}).into("Users").then(userData =>{
         res.json({success:true, userData, message: "User created!"});
@@ -28,9 +28,11 @@ exports.deleteUser = async (req, res) => {
 }
 
 exports.updateUser = async (req, res) => {
-    const {username, password} = req.body;
-    knex.update({password: password}).from("Users").where({username: username}).then(userData =>{
-        res.json(userData)
+    const {uid, username, password, role} = req.body;
+    knex.update({uid: uid, username:username, password: password, role: role}).from("Users").where({uid: uid}).then(userData =>{
+        knex.select("*").from("Users").then(userData =>{ 
+            res.json({success:true, userData, message: "Users fetched!"});
+        })
     }).catch(err => {
         res.json({success:false, message: err.message});
     });
@@ -66,6 +68,7 @@ exports.settings = async (req, res) => {
         "uid":{
             type: "number",
             editable:false,
+            primaryKey: true
         },
         "username":{
             type: "text",

@@ -1,6 +1,7 @@
 import e from "cors";
 import React from "react";
-import { ActionsButton, DivSpacing, Hamburger, IconButton, IconButtonWithText, SearchBar, SearchTags, SizedBox, StdButton, StdInput, TagsBox } from "../Components/common";
+import { ActionsButton, DivSpacing, Hamburger, IconButton, IconButtonWithText, SearchBar, SearchTags, SizedBox, StdButton, TagsBox } from "../Components/common";
+import { StdInput } from "../Components/input";
 import SlideDrawer, { BlankDrawerItem, DrawerItemNonLink } from "../Components/sideNav";
 import { Cell, ListTable, HeaderRow, ExpandableRow } from "../Components/tableComponents";
 import { DetailsTableHeader } from "./Details";
@@ -29,10 +30,6 @@ const CurrentTags = [
 ]
 
 const settings = {
-    primaryColor: "#48a1da",
-    accentColor: "#8fc140",
-    textColor: "#ffffff",
-    textColorInvert: "#606060",
 }
 
 export default class DatapageLayout extends React.Component {
@@ -54,7 +51,7 @@ export default class DatapageLayout extends React.Component {
         this.expand = this.expand.bind(this);
     }
     componentDidMount() {
-        document.title = "Exit Request"
+        document.title = this.props.settings.title;
         window.addEventListener("resize", this.resize.bind(this));
         this.resize();
     }
@@ -125,17 +122,12 @@ export default class DatapageLayout extends React.Component {
                 <div className="col-12">
                     <TableHeader actions={
                         [
-                            { label: "Add Residents", onClick: () => { this.setExpansionContent("cs") } },
-                            { label: "Delete Entries", onClick: () => { this.setExpansionContent("cs") } },
+                            { label: "Add " + this.props.settings.title, onClick: () => { this.setExpansionContent("add") } },
+                            { label: "Delete " + this.props.settings.title, onClick: () => { this.setExpansionContent("cs") } },
                             { label: "Generate Spreadsheet", onClick: () => { this.setExpansionContent("cs") } },
-                            { label: "Absence Reason", onClick: () => { this.setExpansionContent("cs") } },
-                            { label: "Bulk Edit", onClick: () => { this.setExpansionContent("cs") } },
-                            { label: "Print Card", onClick: () => { this.setExpansionContent("cs") } },
-                            { label: "Tag Macros", onClick: () => { this.setExpansionContent("tm") } },
-                            { label: "Column Setting", onClick: () => { this.setExpansionContent("cs") } },
                         ]
-                    } settings={settings} showBottomMenu={this.state.showBottomMenu} handles={this.setExpansionContent} persist={this.state.showBottomMenu} expanded={this.state.expanded} component={this.state.expansionContent} handleClose={this.expand}></TableHeader>
-                    <TableFooter settings={settings} toggle={this.drawerToggleClickHandler} showBottomMenu={this.state.showBottomMenu}></TableFooter>
+                    } requestRefresh={this.props.requestRefresh} fieldSettings={this.props.fieldSettings} settings={this.props.settings} showBottomMenu={this.state.showBottomMenu} handles={this.setExpansionContent} persist={this.state.showBottomMenu} expanded={this.state.expanded} component={this.state.expansionContent} handleClose={this.expand}></TableHeader>
+                    <TableFooter settings={this.props.settings} toggle={this.drawerToggleClickHandler} showBottomMenu={this.state.showBottomMenu}></TableFooter>
                     <DivSpacing spacing={1}></DivSpacing>
                     <div className="d-flex justify-content-center align-items-center">
                         <ListTable settings={this.settings}>
@@ -144,8 +136,10 @@ export default class DatapageLayout extends React.Component {
                                     return <Cell width={"100%"} key={index}>{key}</Cell>
                                 })}
                             </HeaderRow>
-                            {this.props.data.map((row, index) => {      
-                                return <ExpandableRow values={row} fieldSettings={this.props.fieldSettings} key={index} settings={settings} headers={this.props.headers} setExpansionContent={this.setExpansionContent} handleSeeMore={this.handleSeeMore} handleClose={this.handleClose} popUpContent={this.state.popUpContent}>
+                            {this.props.data && 
+                            
+                            this.props.data.map((row, index) => {      
+                                return <ExpandableRow updateHandle={this.props.updateHandle} values={row} fieldSettings={this.props.fieldSettings} key={index} settings={settings} headers={this.props.headers} setExpansionContent={this.setExpansionContent} handleSeeMore={this.handleSeeMore} handleClose={this.handleClose} popUpContent={this.state.popUpContent}>
                                     {this.props.headers.map((cell, secIndex) => {
                                         return <Cell width={"100%"} key={secIndex}>{row[cell]}</Cell>
                                     })}
@@ -157,14 +151,9 @@ export default class DatapageLayout extends React.Component {
                 </div>
                 <BottomMenu actions={
                     [
-                        { label: "Add Residents", onClick: () => { this.setExpansionContent("cs") } },
-                        { label: "Delete Entries", onClick: () => { this.setExpansionContent("cs") } },
+                        { label: "Add " + this.props.settings.title, onClick: () => { this.setExpansionContent("add") } },
+                        { label: "Delete " + this.props.settings.title, onClick: () => { this.setExpansionContent("cs") } },
                         { label: "Generate Spreadsheet", onClick: () => { this.setExpansionContent("cs") } },
-                        { label: "Absence Reason", onClick: () => { this.setExpansionContent("cs") } },
-                        { label: "Bulk Edit", onClick: () => { this.setExpansionContent("cs") } },
-                        { label: "Print Card", onClick: () => { this.setExpansionContent("cs") } },
-                        { label: "Tag Macros", onClick: () => { this.setExpansionContent("tm") } },
-                        { label: "Column Setting", onClick: () => { this.setExpansionContent("cs") } },
                     ]
                 } settings={this.settings} show={this.state.drawerOpen} showBottomMenu={this.state.showBottomMenu} handles={this.setExpansionContent}></BottomMenu>
             </div>
@@ -237,7 +226,7 @@ export class TableHeader extends React.Component {
                                 </div>
                                 <div className="tableTitlePulseAnimation-3" style={this.state.searchBarExtended ? { "--ScaleMultiplier": .75 } : { "--ScaleMultiplier": 2 }}>
                                 </div>
-                                <span className="tableTitle">{document.title}</span>
+                                <span className="tableTitle">{this.props.settings.title}</span>
                             </div>}
                         <SearchBar className={"searchHotBar"} onClick={this.toggleSearchBar} toggleTagMacros={this.props.handles} searchCallBack={this.searchCallBack} persist={this.props.showBottomMenu} toolTip={<div>
 
@@ -248,7 +237,7 @@ export class TableHeader extends React.Component {
                             </p>
                         </div>}></SearchBar>
                         <IconButton title={"Refresh"} size={"48px"} icon={
-                            <i className="bi bi-arrow-clockwise"></i>
+                            <i className="bi bi-arrow-clockwise" onClick={this.props.requestRefresh}></i>
                         }>
                         </IconButton>
                         {this.props.showBottomMenu ? "" :
@@ -257,7 +246,7 @@ export class TableHeader extends React.Component {
                                     actions={this.props.actions}></TableQuickAction></div>}
                     </div>
                 </div>
-                <HeaderExpansion expanded={this.props.expanded} component={this.props.component} handleClose={this.props.handleClose}>
+                <HeaderExpansion settings={this.props.settings} requestRefresh={this.props.requestRefresh} fieldSettings={this.props.fieldSettings} expanded={this.props.expanded} component={this.props.component} handleClose={this.props.handleClose}>
                 </HeaderExpansion>
                 <DivSpacing spacing={1}></DivSpacing>
                 <TagsBox showlabel={true} enableDeleteAll={true} className=" p-2" deleteAllTags={this.deleteAllTags}>
@@ -373,10 +362,20 @@ export class SeeMorePopUp extends React.Component {
 export class HeaderExpansion extends React.Component {
     render() {
         if (this.props.expanded) {
+            if (this.props.component === "add") {
+                return(
+
+                    <HeaderExpansionPane handleClose={this.props.handleClose} title={"Add Entry"}>
+                        <AddEntry settings={this.props.settings} requestRefresh={this.props.requestRefresh} fieldSettings = {this.props.fieldSettings}></AddEntry>
+                    </HeaderExpansionPane>
+                )
+            }
+
+
             if (this.props.component === "cs") {
                 return (
                     <HeaderExpansionPane handleClose={this.props.handleClose} title={"Column Settings"}>
-                        <ColumnSettings></ColumnSettings>
+                        <ColumnSettings settings={this.props.settings} requestRefresh={this.props.requestRefresh}></ColumnSettings>
                     </HeaderExpansionPane>
                 )
             }
@@ -384,7 +383,7 @@ export class HeaderExpansion extends React.Component {
             if (this.props.component === "tm") {
                 return (
                     <HeaderExpansionPane handleClose={this.props.handleClose} title={"Tag Macros"}>
-                        <TagMacros>
+                        <TagMacros settings={this.props.settings} requestRefresh={this.props.requestRefresh}>
                         </TagMacros>
                     </HeaderExpansionPane>
                 )
@@ -419,6 +418,59 @@ class HeaderExpansionPane extends React.Component {
 
 
 }
+
+class AddEntry extends React.Component{
+    state = {
+        courseToAdd: {},
+    }
+
+    onChange = (field, value) => {
+        var tempCourse = this.state.courseToAdd;
+        tempCourse[field] = value;
+        this.setState({
+            courseToAdd: tempCourse
+        })
+    }
+
+    createCourse = async (courseToAdd) => {
+        console.log(courseToAdd);
+        return fetch(this.props.settings.api + "create", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(courseToAdd),
+        }).then((res => {
+            return res.json();
+        }));
+    }
+
+    handleCourseCreation = async () => {
+        await this.createCourse(this.state.courseToAdd).then((content) => {
+            this.props.requestRefresh();
+        })
+    }
+
+    render(){
+        return (
+            <div className="container-fluid">
+                {Object.keys(this.props.fieldSettings).map(
+                    (key, index) => {
+                        return (this.props.fieldSettings[key].primaryKey? "" : 
+                            <StdInput 
+                            label = {key}
+                            enabled = {true}
+                            
+                            onChange = {this.onChange}>
+                            </StdInput>)
+                    }
+                )}
+                <StdButton onClick={this.handleCourseCreation}>Submit</StdButton>
+            </div>
+        )
+    }
+}
+
 class ColumnSettings extends React.Component {
     render() {
         return (

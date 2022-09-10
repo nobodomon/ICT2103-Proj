@@ -4,35 +4,16 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import React from 'react';
 import Home from './Pages/Home';
 import Users from './Pages/Users';
+import Courses from './Pages/Courses';
 import DefaultPage from './Pages/DefaultPage';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
 import useToken from './Components/useToken';
 import Logout from './Pages/Logout';
-import appLogo from "./Assets/app-logo.png"
 import SlideDrawer, { Backdrop, DrawerItem, DrawerSection } from './Components/sideNav';
-import misconduct from "./Assets/nav/misconduct.png";
-import accessory from "./Assets/nav/accessory.png";
-import agreements from "./Assets/nav/agreements.png";
-import clients from "./Assets/nav/clients.png";
+
 import dashboard from "./Assets/nav/dashboard.png";
-import exit from "./Assets/nav/exit.png";
-import facility from "./Assets/nav/facility.png";
-import feedback from "./Assets/nav/feedback.png";
-import firstAidSign from "./Assets/nav/first-aid-sign.png";
-import history from "./Assets/nav/history.png";
-import notification from "./Assets/nav/notification.png";
-import overview from "./Assets/nav/overview.png";
-import permissions from "./Assets/nav/permissions.png";
-import reports from "./Assets/nav/reports.png";
-import security from "./Assets/nav/security.png";
-import staff from "./Assets/nav/staff.png";
-import task from "./Assets/nav/task.png";
-import tenants from "./Assets/nav/tenants.png";
-import transfer_v2 from "./Assets/nav/transfer_v2.png";
-import visitor from "./Assets/nav/visitor.png";
 import Details from './Pages/Details';
-import { AnimatedBackGround, Footer } from './Components/common';
 
 /* function getToken() {  
   const tokenString = sessionStorage.getItem('token');
@@ -103,7 +84,7 @@ export default function App() {
               </Route>
               <Route path="/Users" element={<Users />}>
               </Route>
-              <Route path="/Courses" element={<Details />}>
+              <Route path="/Courses" element={<Courses />}>
               </Route>
               <Route path="/Modules" element={<Details />}>
               </Route>

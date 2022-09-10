@@ -1,5 +1,6 @@
 import React from "react";
-import { StdButton, StdInput, StdInputDropDownOption } from "./common";
+import { StdButton, StdInputDropDownOption } from "./common";
+import { StdInput } from "./input";
 
 
 import placeHolderUser from "../Assets/placeholderUser.png";
@@ -32,6 +33,15 @@ export class ExpandableRow extends React.Component {
             })
         }
     }
+
+    updateHandle = (field, value) =>{
+        let user = this.props.values;
+        user[field] = value;
+
+        this.props.updateHandle(user);
+        
+    }
+
     render() {
         return (
             <div 
@@ -57,11 +67,11 @@ export class ExpandableRow extends React.Component {
                                         key={index}
                                         label={field} 
                                         type={this.props.fieldSettings[field].type} 
-                                        editable={this.props.fieldSettings[field].editable} 
-                                        showSaveBtn={this.props.fieldSettings[field].editable} 
+                                        enabled={this.props.fieldSettings[field].editable}
+                                        hasSaveBtn={true} 
                                         showIndicator={this.props.fieldSettings[field].editable} 
-                                        onClick={this.handleClick}
-                                        value={this.props.values[field]}>
+                                        value={this.props.values[field]}
+                                        onChange={this.updateHandle}>
                                     </StdInput>
                                 )
                             })}

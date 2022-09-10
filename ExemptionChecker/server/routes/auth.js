@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.post("/allUsers", authRoutes.allUsers);
 
-router.post("/createUser", authRoutes.createUser);
+router.post("/create", authRoutes.create);
 
 router.post("/deleteUser", authRoutes.deleteUser);
 

@@ -1259,6 +1259,50 @@ nav {
     }
 }
 
+.inputBox{
+    border-radius: $borderRadius;
+    transition: border 0.3s linear;
+
+    display:flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-items: center;
+    &>.inputBox-Label{
+        width: 100%;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        font-weight: bold;
+        &:after{
+            content: ":";
+        }
+    }
+    &>.stdInputGroup{
+        height:34px;
+        width:calc(100% - 31.5px)
+    }
+
+    .read-only{
+        height:34px;
+        width:100%;
+        border-radius: $borderRadius;
+        padding-left:15px;
+        display:flex;
+        justify-content: flex-start;
+        align-items: center;
+        border: 1px solid #eee;
+    }
+
+    &.inputSave{
+        
+    }
+    &.same-line{
+        &>.inputBox-Label{
+            width: 50%;
+            margin-bottom: 0px;
+        }
+    }
+}
+
 .stdInputGroup {
 
     width: 100%;
