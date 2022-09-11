@@ -4,22 +4,23 @@ exports.allCourses = async (req, res) => {
     knex.select("*").from("PolytechnicCourses").join("Polytechnics", function()
         {
             this.on("PolytechnicCourses.polytechnic", "=", "Polytechnics.pid")
-        }).then(courseData =>{
-        res.json({success:true, courseData, message: "Courses fetched!"});
+        }).then(data =>{
+        console.log(data);
+        res.json({success:true, data, message: "Courses fetched!"});
     }).catch(err => {
         res.json({success:false, message: err.message});
     });
 }
 
 exports.create = async (req, res) => {
-    knex.insert({"polytechnic": req.body["polytechnic"], "course name": req.body["course name"],"course code": req.body["course code"]}).into("PolytechnicCourses").then(courseData =>{
-        res.json({success:true, courseData, message: "Course created!"});
+    knex.insert({"polytechnic": req.body["polytechnic"], "course name": req.body["course name"],"course code": req.body["course code"]}).into("PolytechnicCourses").then(data =>{
+        res.json({success:true, data, message: "Course created!"});
     }).catch(err => {
         res.json({success:false, message: err.message});
     });
 }
 
-exports.deleteCourse = async (req, res) => {
+exports.delete = async (req, res) => {
     const {cid} = req.body;
     knex.delete().from("PolytechnicCourses").where({cid: cid}).then(courseData =>{
         res.json(courseData)
@@ -28,10 +29,11 @@ exports.deleteCourse = async (req, res) => {
     });
 }
 
-exports.updateCourse = async (req, res) => {
-    knex.update({cid: req.body["cid"], "polytechnic": req.body["polytechnic"], "course name": req.body["course name"], "course code": req.body["course code"]}).from("PolytechnicCourses").where({cid: cid}).then(courseData =>{
-        knex.select("*").from("PolytechnicCourses").then(courseData =>{ 
-            res.json({success:true, courseData, message: "Courses fetched!"});
+exports.update = async (req, res) => {
+    console.log(req.body);
+    knex.update({cid: req.body["cid"], "polytechnic": req.body["Polytechnic"], "course name": req.body["course name"], "course code": req.body["course code"]}).from("PolytechnicCourses").where({cid:  req.body["cid"]}).then(data =>{
+        knex.select("*").from("PolytechnicCourses").then(data =>{ 
+            res.json({success:true, data, message: "Courses fetched!"});
         })
     }).catch(err => {
         res.json({success:false, message: err.message});
@@ -69,6 +71,12 @@ exports.settings = async (req, res) => {
             primaryKey: true,
             displayLabel: "Course ID",
         },
+        "polytechnic": {
+            type: "dropdown",
+            editable: true,
+            displayLabel: "Polytechnic",
+            options: polytechnics,
+        },
         "course code": {
             type: "text",
             editable: true,
@@ -78,12 +86,6 @@ exports.settings = async (req, res) => {
             type: "text",
             editable: true,
             displayLabel: "Course Name",
-        },
-        "polytechnic name": {
-            type: "dropdown",
-            editable: true,
-            displayLabel: "Polytechnic",
-            options: polytechnics,
         }
     }
 

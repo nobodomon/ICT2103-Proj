@@ -108,7 +108,7 @@ export default class Users extends React.Component {
                 settings={this.settings}
                 fieldSettings={this.state.settings.fieldSettings} 
                 headers={this.state.settings.columnSettings.headers} 
-                data={this.state.content.userData}
+                data={this.state.content.data}
                 updateHandle = {this.handleUpdate}
                 requestRefresh = {this.requestRefresh}>
             </DatapageLayout>

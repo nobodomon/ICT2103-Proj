@@ -106,7 +106,7 @@ export default class DatapageLayout extends React.Component {
                     <TableHeader actions={
                         [
                             { label: "Add " + this.props.settings.title, onClick: () => { this.setExpansionContent("add") } },
-                            { label: "Delete " + this.props.settings.title, onClick: () => { this.setExpansionContent("cs") } },
+                            { label: "Delete " + this.props.settings.title, onClick: () => { this.setExpansionContent("del") } },
                             { label: "Generate Spreadsheet", onClick: () => { this.setExpansionContent("cs") } },
                         ]
                     } requestRefresh={this.props.requestRefresh} fieldSettings={this.props.fieldSettings} settings={this.props.settings} showBottomMenu={this.state.showBottomMenu} handles={this.setExpansionContent} persist={this.state.showBottomMenu} expanded={this.state.expanded} component={this.state.expansionContent} handleClose={this.expand}></TableHeader>
@@ -124,6 +124,7 @@ export default class DatapageLayout extends React.Component {
                             this.props.data.map((row, index) => {      
                                 return <ExpandableRow updateHandle={this.props.updateHandle} values={row} fieldSettings={this.props.fieldSettings} key={index} settings={settings} headers={this.props.headers} setExpansionContent={this.setExpansionContent} handleSeeMore={this.handleSeeMore} handleClose={this.handleClose} popUpContent={this.state.popUpContent}>
                                     {this.props.headers.map((cell, secIndex) => {
+                                        
                                         return <Cell width={"100%"} key={secIndex}>{row[cell]}</Cell>
                                     })}
                                 </ExpandableRow>
@@ -257,7 +258,13 @@ export class HeaderExpansion extends React.Component {
                     </HeaderExpansionPane>
                 )
             }
-
+            if (this.props.component === "del"){
+                return(
+                    <HeaderExpansionPane handleClose={this.props.handleClose} title={"Delete Entry"}>
+                        <DeleteEntry settings={this.props.settings} requestRefresh={this.props.requestRefresh} fieldSettings = {this.props.fieldSettings}></DeleteEntry>
+                    </HeaderExpansionPane>
+                )
+            }
 
             if (this.props.component === "cs") {
                 return (
@@ -354,6 +361,64 @@ class AddEntry extends React.Component{
                             options={this.props.fieldSettings[key].options}
                             >
                             </StdInput>)
+                    }
+                )}
+                <StdButton type={"submit"}>Submit</StdButton>
+            
+                </form>
+                </div>
+        )
+    }
+}
+
+class DeleteEntry extends React.Component{
+    state = {
+        courseToDelete: {},
+    }
+
+    onChange = (field, value) => {
+        var tempCourse = this.state.courseToDelete;
+        tempCourse[field] = value;
+        this.setState({
+            courseToDelete: tempCourse
+        })
+    }
+
+    deleteCourse = async (courseToDelete) => {
+        console.log(courseToDelete);
+        return fetch(this.props.settings.api + "delete", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(courseToDelete),
+        }).then((res => {
+            return res.json();
+        }));
+    }
+
+    handleCourseDeletion = async () => {
+        await this.deleteCourse(this.state.courseToDelete).then((content) => {
+            this.props.requestRefresh();
+        })
+    }
+
+    render(){
+        return (
+            <div className="container-fluid deleteEntry">
+                <form className={"deleteEntry-inputFields"} onSubmit={this.handleCourseDeletion}>
+                {Object.keys(this.props.fieldSettings).map(
+                    (key, index) => {
+                        return (this.props.fieldSettings[key].primaryKey? 
+                            <StdInput 
+                            label = {key}
+                            type={this.props.fieldSettings[key].type}
+                            enabled = {true}
+                            fieldLabel={key}
+                            onChange = {this.onChange}
+                            options={this.props.fieldSettings[key].options}
+                            >
+                            </StdInput> : "")
                     }
                 )}
                 <StdButton type={"submit"}>Submit</StdButton>

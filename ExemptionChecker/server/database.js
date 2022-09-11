@@ -118,11 +118,36 @@ knex.schema
       console.error(`There was an error creating table: ${error}`)
     })
   }
+}).then(()=>{
+  console.log('done')
+}).catch((error)=>{
+  console.error(`There was an error setting up the database: ${error}`)
+})
+
+knex.schema
+.hasTable("Universities")
+.then((exists)=>{
+  if(!exists) {
+    return knex.schema.createTable("Universities", (table)=>{
+      table.increments('uid').primary()
+      table.string("university name")
+    })
+    .then(()=>{
+      console.log('Table \'Universities\' created')
+    })
+    .catch((error)=>{
+      console.error(`There was an error creating table: ${error}`)
+    })
+  }
 })
 
 // Just for debugging purposes:
 // Log all data in "books" table
 knex.select('*').from('Users')
+  .then(data => console.log('data:', data))
+  .catch(err => console.log(err))
+
+knex.select('*').from('Polytechnics')
   .then(data => console.log('data:', data))
   .catch(err => console.log(err))
 
@@ -134,5 +159,8 @@ knex.select("*").from("PolytechnicModules")
   .then(data => console.log('data:', data))
   .catch(err => console.log(err))
 
+knex.select("*").from("Universities")
+  .then(data => console.log('data:', data))
+  .catch(err => console.log(err))
 // Export the database
 module.exports = knex

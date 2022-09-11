@@ -65,7 +65,7 @@ export default class Courses extends React.Component {
 
     updateCourse = async (user) =>{
         console.log(user);
-        return fetch( this.settings.api + "updateCourse" , {
+        return fetch( this.settings.api + "update" , {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -109,7 +109,7 @@ export default class Courses extends React.Component {
                 settings={this.settings}
                 fieldSettings={this.state.settings.fieldSettings} 
                 headers={this.state.settings.columnSettings.headers} 
-                data={this.state.content.courseData}
+                data={this.state.content.data}
                 updateHandle = {this.handleUpdate}
                 requestRefresh = {this.requestRefresh}>
             </DatapageLayout>

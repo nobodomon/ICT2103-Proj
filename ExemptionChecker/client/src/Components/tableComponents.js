@@ -35,10 +35,10 @@ export class ExpandableRow extends React.Component {
     }
 
     updateHandle = (field, value) =>{
-        let user = this.props.values;
-        user[field] = value;
-
-        this.props.updateHandle(user);
+        let data = this.props.values;
+        data[field] = value;
+        console.log(data);
+        this.props.updateHandle(data);
         
     }
 
@@ -76,8 +76,7 @@ export class ExpandableRow extends React.Component {
                                         enabled={this.props.fieldSettings[field].editable}
                                         hasSaveBtn={true} 
                                         showIndicator={this.props.fieldSettings[field].editable} 
-                                        value={this.props.fieldSettings[field].type === "dropdown" ? this.props.fieldSettings[field].options[0].label
-                                 : this.props.values[field]}
+                                        value={this.props.values[field]}
                                         onChange={this.updateHandle}
                                         options={this.props.fieldSettings[field].options}>
                                     </StdInput>

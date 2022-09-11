@@ -2,7 +2,7 @@
 import React from "react"
 import DatapageLayout from "./PageLayout"
 
-export default class Polytechnics extends React.Component {
+export default class Universities extends React.Component {
     state={
         content:null,
         headers:[],
@@ -11,12 +11,12 @@ export default class Polytechnics extends React.Component {
     }
 
     settings ={
-        title:"Polytechnics",
+        title:"Universities",
         primaryColor: "#48a1da",
         accentColor: "#8fc140",
         textColor: "#ffffff",
         textColorInvert: "#606060",
-        api: "/polytechnics/",
+        api: "/universities/",
     }
 
     async componentDidMount(){
@@ -52,7 +52,7 @@ export default class Polytechnics extends React.Component {
     }
 
     getContent = async () =>{
-        return fetch( this.settings.api + "allPolytechnics" , {
+        return fetch( this.settings.api + "allUniversities" , {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

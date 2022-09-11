@@ -21,7 +21,7 @@ export class StdInput extends React.Component {
       valueChanged: value != this.state.value ? true : false,
     });
     if (!this.props.hasSaveBtn) {
-      this.props.onChange(this.props.fieldLabel, value);
+      this.props.onChange(this.props.label, value);
     }
   };
 
@@ -43,7 +43,7 @@ export class StdInput extends React.Component {
       valueChanged: false,
     });
     this.feedback("Changes Saved");
-    this.props.onChange(this.props.fieldLabel, value);
+    this.props.onChange(this.props.label, value);
   };
 
   feedback = (message) =>{
@@ -669,13 +669,13 @@ class StdDropDownBox extends React.Component {
   state = {
     valueChanged: false,
     value: this.props.value,
-    newValue: this.props.value,
+    newValue: this.props.value ? this.props.options.find((option) => option.value === this.props.value).label : "",
     options: this.props.options? this.props.options : [],
   };
 
   componentDidMount() {
     this.setState({
-      newValue: this.props.value,
+      newValue: this.props.value ? this.props.options.find((option) => option.value === this.props.value).label : "",
     });
   }
 

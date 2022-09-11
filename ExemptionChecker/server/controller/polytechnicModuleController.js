@@ -1,16 +1,19 @@
 const knex = require("../database.js");
 
 exports.allModules = async (req, res) => {
-    knex.select("*").from("PolytechnicModules").then(polytechnicModuleData =>{
-        res.json({success:true, polytechnicModuleData, message: "Polytechnics fetched!"});
+    knex.select("*").from("PolytechnicModules").join("PolytechnicCourses", function(){
+        this.on("PolytechnicModules.polytechnicCourse", "=", "PolytechnicCourses.cid")
+    }).then(data =>{
+        res.json({success:true, data, message: "Polytechnics fetched!"});
     }).catch(err => {
         res.json({success:false, message: err.message});
     });
 }
 
 exports.create = async (req, res) => {
-    knex.insert({"module code": req.body["module code"], "module name" : req.body["module name"], "Polytechnic Course":req.body["Polytechnic Course"]}).into("PolytechnicModules").then(polytechnicModuleData =>{
-        res.json({success:true, polytechnicModuleData, message: "Module created!"});
+    console.log(req.body);
+    knex.insert({"module code": req.body["module code"], "module name" : req.body["module name"], "polytechnicCourse":req.body["polytechnicCourse"]}).into("PolytechnicModules").then(data =>{
+        res.json({success:true, data, message: "Module created!"});
     }).catch(err => {
         res.json({success:false, message: err.message});
     });
@@ -26,9 +29,9 @@ exports.delete = async (req, res) => {
 }
 
 exports.update = async (req, res) => {
-    knex.update({mid: req.body["mid"], "module code": req.body["module code"], "module name" : req.body["module name"], "Polytechnic Course":req.body["Polytechnic Course"]}).from("PolytechnicModules").where({mid: mid}).then(polytechnicModuleData =>{
-        knex.select("*").from("PolytechnicModules").then(polytechnicModuleData =>{ 
-            res.json({success:true, polytechnicModuleData, message: "Polytechnics fetched!"});
+    knex.update({mid: req.body["mid"], "module code": req.body["module code"], "module name" : req.body["module name"], "polytechnicCourse":req.body["polytechnicCourse"]}).from("PolytechnicModules").where({mid: mid}).then(data =>{
+        knex.select("*").from("PolytechnicModules").then(data =>{ 
+            res.json({success:true, data, message: "Polytechnics fetched!"});
         })
     }).catch(err => {
         res.json({success:false, message: err.message});
@@ -55,7 +58,7 @@ exports.settings = async (req, res) => {
             "mid",
             "module code",
             "module name",
-            "polytechnicCourse",
+            "course name",
         ],
     }
 

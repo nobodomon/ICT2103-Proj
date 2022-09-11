@@ -21,6 +21,8 @@ const polytechnicMethods = require('./routes/polytechnics.js');
 const polytechnicCourseMethods = require('./routes/polytechnicCourse.js');
 const polytechnicModuleMethods = require('./routes/polytechnicModule.js');
 
+const universityMethods = require('./routes/university.js');
+
 const app = express();
 var server = http.createServer(app);
 
@@ -42,6 +44,7 @@ app.use("/users", userMethods);
 app.use("/polytechnics", polytechnicMethods);
 app.use("/polytechnicCourses", polytechnicCourseMethods);
 app.use("/polytechnicModules", polytechnicModuleMethods);
+app.use("/universities", universityMethods);
 
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);

@@ -1,16 +1,16 @@
 const knex = require("../database.js");
 
 exports.allPolytechnics = async (req, res) => {
-    knex.select("*").from("Polytechnics").then(polytechnicData =>{
-        res.json({success:true, polytechnicData, message: "Polytechnics fetched!"});
+    knex.select("*").from("Polytechnics").then(data =>{
+        res.json({success:true, data, message: "Polytechnics fetched!"});
     }).catch(err => {
         res.json({success:false, message: err.message});
     });
 }
 
 exports.create = async (req, res) => {
-    knex.insert({"polytechnic name": req.body["polytechnic name"]}).into("Polytechnics").then(moduleData =>{
-        res.json({success:true, moduleData, message: "Module created!"});
+    knex.insert({"polytechnic name": req.body["polytechnic name"]}).into("Polytechnics").then(data =>{
+        res.json({success:true, data, message: "Module created!"});
     }).catch(err => {
         res.json({success:false, message: err.message});
     });
@@ -18,17 +18,17 @@ exports.create = async (req, res) => {
 
 exports.delete = async (req, res) => {
     const {pid} = req.body;
-    knex.delete().from("Polytechnics").where({pid: pid}).then(polytechnicData =>{
-        res.json({success: true, polytechnicData, message: "Polytechnic deleted!"});
+    knex.delete().from("Polytechnics").where({pid: pid}).then(data =>{
+        res.json({success: true, data, message: "Polytechnic deleted!"});
     }).catch(err => {
         res.json({success:false, message: err.message});
     });
 }
 
 exports.update = async (req, res) => {
-    knex.update({pid: req.body["pid"], "polytechnic name": req.body["polytechnic name"]}).from("Polytechnics").where({pid: pid}).then(polytechnicData =>{
-        knex.select("*").from("Polytechnics").then(polytechnicData =>{ 
-            res.json({success:true, polytechnicData, message: "Polytechnics fetched!"});
+    knex.update({pid: req.body["pid"], "polytechnic name": req.body["polytechnic name"]}).from("Polytechnics").where({pid: pid}).then(data =>{
+        knex.select("*").from("Polytechnics").then(data =>{ 
+            res.json({success:true, data, message: "Polytechnics fetched!"});
         })
     }).catch(err => {
         res.json({success:false, message: err.message});

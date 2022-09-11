@@ -8,9 +8,9 @@ router.post("/allCourses", courseRoutes.allCourses);
 
 router.post("/create", courseRoutes.create);
 
-router.post("/deleteCourse", courseRoutes.deleteCourse);
+router.post("/delete", courseRoutes.delete);
 
-router.post("/updateCourse", courseRoutes.updateCourse);
+router.post("/update", courseRoutes.update);
 
 router.post("/settings", courseRoutes.settings);
 
