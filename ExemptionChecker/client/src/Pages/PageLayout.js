@@ -347,8 +347,11 @@ class AddEntry extends React.Component{
                         return (this.props.fieldSettings[key].primaryKey? "" : 
                             <StdInput 
                             label = {key}
+                            type={this.props.fieldSettings[key].type}
                             enabled = {true}
+                            fieldLabel={key}
                             onChange = {this.onChange}
+                            options={this.props.fieldSettings[key].options}
                             >
                             </StdInput>)
                     }

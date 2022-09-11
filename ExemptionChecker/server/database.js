@@ -52,6 +52,26 @@ knex.schema
     })
 
 knex.schema
+  .hasTable("Polytechnics")
+    .then((exists) => {
+      if (!exists) {
+        return knex.schema.createTable("Polytechnics", (table) => {
+          table.increments("pid").primary();
+          table.string("polytechnic name");
+        }).then(() => {
+          console.log("Table 'Polytechnics' created");
+        }).catch((error) => {
+          console.error(`There was an error creating table: ${error}`);
+        })
+      }
+    })
+    .then(() => {
+      console.log("done");
+    }).catch((error) => {
+      console.error(`There was an error setting up the database: ${error}`);
+    });
+
+knex.schema
     .hasTable("PolytechnicCourses")
       .then((exists) => {
         if (!exists) {
@@ -63,6 +83,8 @@ knex.schema
             table.increments('cid').primary()
             table.string("course code")
             table.string('course name')
+            table.integer('polytechnic')
+            table.foreign('polytechnic').references('pid').inTable('Polytechnics')
           })
           .then(() => {
             console.log('Table \'PolytechnicCourses\' created')
@@ -78,6 +100,25 @@ knex.schema
         console.error(`There was an error setting up the database: ${error}`)
       })
 
+knex.schema
+.hasTable("PolytechnicModules")
+.then((exists)=>{
+  if(!exists) {
+    return knex.schema.createTable("PolytechnicModules", (table)=>{
+      table.increments('mid').primary()
+      table.string("module code")
+      table.string('module name')
+      table.integer('polytechnicCourse')
+      table.foreign('polytechnicCourse').references('cid').inTable('PolytechnicCourses')
+    })
+    .then(()=>{
+      console.log('Table \'PolytechnicModules\' created')
+    })
+    .catch((error)=>{
+      console.error(`There was an error creating table: ${error}`)
+    })
+  }
+})
 
 // Just for debugging purposes:
 // Log all data in "books" table
@@ -88,5 +129,10 @@ knex.select('*').from('Users')
 knex.select("*").from("PolytechnicCourses")
   .then(data => console.log('data:', data))
   .catch(err => console.log(err))
+
+knex.select("*").from("PolytechnicModules")
+  .then(data => console.log('data:', data))
+  .catch(err => console.log(err))
+
 // Export the database
 module.exports = knex

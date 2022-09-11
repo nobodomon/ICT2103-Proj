@@ -1,11 +1,11 @@
-BEGIN TRANSACTION;
-CREATE TABLE IF NOT EXISTS "PolytechnicCourses" (
+
+CREATE TABLE "PolytechnicCourses" (
 	"cid"	integer NOT NULL,
 	"course code"	varchar(255),
 	"course name"	varchar(255),
 	PRIMARY KEY("cid" AUTOINCREMENT)
 );
-CREATE TABLE IF NOT EXISTS "Users" (
+CREATE TABLE "Users" (
 	"uid"	integer,
 	"username"	text UNIQUE,
 	"password"	text,
@@ -14,4 +14,3 @@ CREATE TABLE IF NOT EXISTS "Users" (
 	PRIMARY KEY("uid" AUTOINCREMENT),
 	FOREIGN KEY("polytechnicCourse") REFERENCES "PolytechnicCourses"("cid")
 );
-COMMIT;

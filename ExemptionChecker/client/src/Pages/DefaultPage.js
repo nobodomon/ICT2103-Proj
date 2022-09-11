@@ -31,23 +31,32 @@ export default class DefaultPage extends React.Component {
     render() {
         return (
             <BodyContainer>
-                <div className="col-6">
-                    <StdInput type={"text"} label={"Text Box"}></StdInput> 
-                    <StdInput type={"password"} label={"Password Box"}></StdInput>
-                    <StdInput type={"number"} label={"Number Box"}></StdInput>
-                    <StdInput type={"time"} label={"Time Box"}></StdInput> 
-                    <StdInput type={"date"} label={"Date Box"}></StdInput>   
-                    <StdInput type={"datetime"} label={"Date Time Box"}></StdInput> 
+                <div className="col-4">
+                    <StdInput type={"text"} label={"Text Box"} onChange={()=>{}}></StdInput> 
+                    <StdInput type={"password"} label={"Password Box"} onChange={()=>{}}></StdInput>
+                    <StdInput type={"number"} label={"Number Box"} onChange={()=>{}}></StdInput>
+                    <StdInput type={"time"} label={"Time Box"} onChange={()=>{}}></StdInput> 
+                    <StdInput type={"date"} label={"Date Box"} onChange={()=>{}}></StdInput>   
+                    <StdInput type={"datetime"} label={"Date Time Box"} onChange={()=>{}}></StdInput> 
                     <StdInput type={"dropdown"} options={testOptions} label={"Dropdown Box"}></StdInput>   
                 </div>
-                <div className="col-6">  
-                    <StdInput enabled={true} type={"text"} label={"Text Box"}></StdInput>
-                    <StdInput enabled={true} type={"password"} label={"Password Box"}></StdInput> 
-                    <StdInput enabled={true} type={"number"} label={"Number Box"}></StdInput>
-                    <StdInput enabled={true} type={"time"} label={"Time Box"}></StdInput> 
-                    <StdInput enabled={true} type={"date"} label={"Date Box"}></StdInput>   
-                    <StdInput enabled={true} type={"datetime"} label={"Date Time Box"}></StdInput>   
-                    <StdInput enabled={true} options={testOptions} type={"dropdown"} label={"Dropdown Box"}></StdInput>   
+                <div className="col-4">  
+                    <StdInput enabled={true} type={"text"} label={"Text Box"} onChange={()=>{}}></StdInput>
+                    <StdInput enabled={true} type={"password"} label={"Password Box"} onChange={()=>{}}></StdInput> 
+                    <StdInput enabled={true} type={"number"} label={"Number Box"} onChange={()=>{}}></StdInput>
+                    <StdInput enabled={true} type={"time"} label={"Time Box"} onChange={()=>{}}></StdInput> 
+                    <StdInput enabled={true} type={"date"} label={"Date Box"} onChange={()=>{}}></StdInput>   
+                    <StdInput enabled={true} type={"datetime"} label={"Date Time Box"} onChange={()=>{}}></StdInput>   
+                    <StdInput enabled={true} options={testOptions} type={"dropdown"} label={"Dropdown Box"} onChange={()=>{}}></StdInput>   
+                </div>
+                <div className="col-4">  
+                    <StdInput hasSaveBtn={true} enabled={true} type={"text"} label={"Text Box"} onChange={()=>{}}></StdInput>
+                    <StdInput hasSaveBtn={true} enabled={true} type={"password"} label={"Password Box"} onChange={()=>{}}></StdInput> 
+                    <StdInput hasSaveBtn={true} enabled={true} type={"number"} label={"Number Box"} onChange={()=>{}}></StdInput>
+                    <StdInput hasSaveBtn={true} enabled={true} type={"time"} label={"Time Box"} onChange={()=>{}}></StdInput> 
+                    <StdInput hasSaveBtn={true} enabled={true} type={"date"} label={"Date Box"} onChange={()=>{}}></StdInput>   
+                    <StdInput hasSaveBtn={true} enabled={true} type={"datetime"} label={"Date Time Box"} onChange={()=>{}}></StdInput>   
+                    <StdInput hasSaveBtn={true} enabled={true} options={testOptions} type={"dropdown"} label={"Dropdown Box"} onChange={()=>{}}></StdInput>   
                 </div>
             </BodyContainer>
         )

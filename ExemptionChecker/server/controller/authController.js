@@ -79,23 +79,28 @@ exports.settings = async (req, res) => {
         "uid":{
             type: "number",
             editable:false,
+            displayLabel: "User ID",
             primaryKey: true
         },
         "username":{
             type: "text",
             editable:true,
+            displayLabel: "Username",
         },
         "role":{
             type: "text",
             editable:true,
+            displayLabel: "Role",
         },
         "password":{
             type: "password",
             editable:false,
+            displayLabel: "Password",
         },
         "polytechnicCourse":{
             type: "dropdown",
             editable:true,
+            displayLabel: "Polytechnic Course",
             options: polytechnicCourses,
         }
     }

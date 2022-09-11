@@ -1,7 +1,10 @@
 const knex = require("../database.js");
 
 exports.allCourses = async (req, res) => {
-    knex.select("*").from("PolytechnicCourses").then(courseData =>{
+    knex.select("*").from("PolytechnicCourses").join("Polytechnics", function()
+        {
+            this.on("PolytechnicCourses.polytechnic", "=", "Polytechnics.pid")
+        }).then(courseData =>{
         res.json({success:true, courseData, message: "Courses fetched!"});
     }).catch(err => {
         res.json({success:false, message: err.message});
@@ -9,7 +12,7 @@ exports.allCourses = async (req, res) => {
 }
 
 exports.create = async (req, res) => {
-    knex.insert({"course name": req.body["course name"],"course code": req.body["course code"]}).into("PolytechnicCourses").then(courseData =>{
+    knex.insert({"polytechnic": req.body["polytechnic"], "course name": req.body["course name"],"course code": req.body["course code"]}).into("PolytechnicCourses").then(courseData =>{
         res.json({success:true, courseData, message: "Course created!"});
     }).catch(err => {
         res.json({success:false, message: err.message});
@@ -26,7 +29,7 @@ exports.deleteCourse = async (req, res) => {
 }
 
 exports.updateCourse = async (req, res) => {
-    knex.update({cid: req.body["cid"], "course name": req.body["course name"], "course code": req.body["course code"]}).from("PolytechnicCourses").where({cid: cid}).then(courseData =>{
+    knex.update({cid: req.body["cid"], "polytechnic": req.body["polytechnic"], "course name": req.body["course name"], "course code": req.body["course code"]}).from("PolytechnicCourses").where({cid: cid}).then(courseData =>{
         knex.select("*").from("PolytechnicCourses").then(courseData =>{ 
             res.json({success:true, courseData, message: "Courses fetched!"});
         })
@@ -36,11 +39,23 @@ exports.updateCourse = async (req, res) => {
 }
 
 exports.settings = async (req, res) => {
+    polytechnics = await knex.select("*").from("Polytechnics").then(polyData =>{
+        var tempPolyList = [];
+        console.log(polyData);
+        for(poly in polyData){
+            tempPolyList.push({label: polyData[poly]["polytechnic name"], value:  polyData[poly]["pid"]});
+        }
+        console.log(tempPolyList)
+        return tempPolyList;
+    });
+
+
     const columnSettings = {
         // Configures the headers of the table
         // Pls match header names with column names (case sensitive!)
         headers: [
             "cid",
+            "polytechnic name",
             "course code",
             "course name",
         ],
@@ -51,15 +66,24 @@ exports.settings = async (req, res) => {
         "cid": {
             type: "number",
             editable: false,
-            primaryKey: true
+            primaryKey: true,
+            displayLabel: "Course ID",
         },
         "course code": {
             type: "text",
-            editable: true
+            editable: true,
+            displayLabel: "Course Code",
         },
         "course name": {
             type: "text",
-            editable: true
+            editable: true,
+            displayLabel: "Course Name",
+        },
+        "polytechnic name": {
+            type: "dropdown",
+            editable: true,
+            displayLabel: "Polytechnic",
+            options: polytechnics,
         }
     }
 

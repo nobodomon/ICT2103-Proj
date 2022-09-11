@@ -7,6 +7,7 @@ export class StdInput extends React.Component {
     value: this.props.value,
     newValue: this.props.value,
     valueChanged: false,
+    feedbackClass: "feedback",
   };
   componentDidMount() {
     this.setState({
@@ -19,10 +20,8 @@ export class StdInput extends React.Component {
       newValue: value,
       valueChanged: value != this.state.value ? true : false,
     });
-    console.log(this.props.label, value);
-
     if (!this.props.hasSaveBtn) {
-      this.props.onChange(this.props.label, value);
+      this.props.onChange(this.props.fieldLabel, value);
     }
   };
 
@@ -43,9 +42,23 @@ export class StdInput extends React.Component {
       value: value,
       valueChanged: false,
     });
-    this.props.onChange(this.props.label, value);
+    this.feedback("Changes Saved");
+    this.props.onChange(this.props.fieldLabel, value);
   };
 
+  feedback = (message) =>{
+    this.setState({
+        feedbackClass: "feedback show",
+        feedback: message
+    })
+  }
+
+  reset =() => {
+    this.setState({
+        feedbackClass: "feedback",
+        feedback: ""
+    })
+  }
   render() {
     if (this.state.enabled) {
       return (
@@ -700,7 +713,6 @@ class StdDropDownBox extends React.Component {
         <div className="dropdownWrapper">
           <div className="dropdown">
           {this.props.options.map((option,index) => {
-            console.log(option)
             return <div className="dropdownOptions" key={index} onClick ={()=>this.dropdownSelect(option)}>{option.label}</div>;
           })}
           </div>

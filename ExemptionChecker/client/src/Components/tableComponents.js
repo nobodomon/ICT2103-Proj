@@ -62,15 +62,22 @@ export class ExpandableRow extends React.Component {
 
                         <div className="col-12 col-lg-9 expansionColumn">
                             {Object.keys(this.props.fieldSettings).map((field, index) => {
+                                if(this.props.fieldSettings[field].type === "dropdown"){
+                                    console.log(
+                                        this.props.values[field],
+                                       )
+                                }
                                 return(
                                     <StdInput 
                                         key={index}
-                                        label={field} 
+                                        label={this.props.fieldSettings[field].displayLabel}
+                                        fieldLabel={field}
                                         type={this.props.fieldSettings[field].type} 
                                         enabled={this.props.fieldSettings[field].editable}
                                         hasSaveBtn={true} 
                                         showIndicator={this.props.fieldSettings[field].editable} 
-                                        value={this.props.values[field]}
+                                        value={this.props.fieldSettings[field].type === "dropdown" ? this.props.fieldSettings[field].options[0].label
+                                 : this.props.values[field]}
                                         onChange={this.updateHandle}
                                         options={this.props.fieldSettings[field].options}>
                                     </StdInput>

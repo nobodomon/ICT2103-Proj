@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import React from 'react';
 import Home from './Pages/Home';
 import Users from './Pages/Users';
+import Polytechnics from './Pages/Polytechnics';
 import Courses from './Pages/Courses';
 import DefaultPage from './Pages/DefaultPage';
 import Login from './Pages/Login';
@@ -14,6 +15,7 @@ import SlideDrawer, { Backdrop, DrawerItem, DrawerSection } from './Components/s
 
 import dashboard from "./Assets/nav/dashboard.png";
 import Details from './Pages/Details';
+import PolytechnicModules from './Pages/PolytechnicModules';
 
 /* function getToken() {  
   const tokenString = sessionStorage.getItem('token');
@@ -73,6 +75,7 @@ export default function App() {
               <DrawerSection label={"Modules"}>
                 <DrawerItem label="Dashboard" to={"/"} logo={dashboard}></DrawerItem>
                 <DrawerItem label="Users" to={"/Users"} logo={dashboard}></DrawerItem>
+                <DrawerItem label="Polytechnics" to={"/Polytechnics"} logo={dashboard}></DrawerItem>
                 <DrawerItem label="Courses" to={"/Courses"} logo={dashboard}></DrawerItem>
                 <DrawerItem label="Modules" to={"/Modules"} logo={dashboard}></DrawerItem>
               </DrawerSection>
@@ -84,9 +87,11 @@ export default function App() {
               </Route>
               <Route path="/Users" element={<Users />}>
               </Route>
+              <Route path="/Polytechnics" element={<Polytechnics />}>
+              </Route>
               <Route path="/Courses" element={<Courses />}>
               </Route>
-              <Route path="/Modules" element={<Details />}>
+              <Route path="/Modules" element={<PolytechnicModules />}>
               </Route>
               <Route path="/Logout" element={<Logout logout={logout}></Logout>}></Route>
             </Routes>

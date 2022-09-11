@@ -1267,6 +1267,8 @@ nav {
     justify-content: flex-start;
     flex-wrap: wrap;
     align-items: center;
+    
+    position:relative;
     &>.inputBox-Label{
         width: 100%;
         margin-bottom: 15px;
@@ -1299,6 +1301,58 @@ nav {
         &>.inputBox-Label{
             width: 50%;
             margin-bottom: 0px;
+        }
+    }
+
+    &>.feedback {
+        position: absolute;
+        place-items: center;
+        visibility: hidden;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        display: inline-grid;
+        pointer-events: none;
+        width: 100%;
+        height: 34px;
+        bottom:0;
+        isolation: isolate;
+        overflow: hidden;
+        opacity: 1;
+        transition: 0.3s;
+
+        &:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 34px;
+            border-radius: 50%;
+            height: 34px;
+            background-color: $active;
+            opacity: 0;
+            z-index: -1;
+            transition: .3s;
+            transform-origin: right;
+        }
+
+        &.show {
+            width: 100%;
+            border-radius: $borderRadius;
+            opacity: 1;
+            right: 0px;
+            color: white;
+            font-family: "Rubik";
+            font-weight: 700;
+            text-transform: uppercase;
+            animation: feedbackText 1s cubic-bezier(0.175, 1, 0.32, 1.275) 0s 2 alternate both;
+            transition: 0.3s;
+            visibility: visible;
+
+            &:after {
+                animation: feedback 1s cubic-bezier(0.175, 1, 0.32, 1.275) 0s 2 alternate both;
+                transition: 0.3s;
+            }
         }
     }
 }
@@ -1598,6 +1652,29 @@ nav {
     }
 }
 
+
+@keyframes feedback {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    30% {
+        transform: scale(1);
+        width: 34px;
+        height: 34px;
+        right: 50%;
+        border-radius: 16px;
+    }
+
+    100% {
+        width: 100%;
+        opacity: 1;
+        right: 0px;
+        border-radius: $borderRadius;
+    }
+}
+
 .stdInputContainer {
     position: relative;
     justify-content: end;
@@ -1714,27 +1791,6 @@ nav {
     }
 }
 
-@keyframes feedback {
-    0% {
-        opacity: 0;
-        transform: scale(0);
-    }
-
-    30% {
-        transform: scale(1);
-        width: 34px;
-        height: 34px;
-        right: 50%;
-        border-radius: 16px;
-    }
-
-    100% {
-        width: 100%;
-        opacity: 1;
-        right: 0px;
-        border-radius: $borderRadius;
-    }
-}
 
 .inputSave {
     border-right: 1px solid #eee;
