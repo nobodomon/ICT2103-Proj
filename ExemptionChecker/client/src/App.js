@@ -17,6 +17,8 @@ import Polytechnics from './Pages/Polytechnics';
 import Courses from './Pages/Courses';
 import PolytechnicModules from './Pages/PolytechnicModules';
 import Universities from './Pages/Universities';
+import UniversityCourses from './Pages/UniversityCourses';
+import UniversityModules from './Pages/UniversityModules';
 
 /* function getToken() {  
   const tokenString = sessionStorage.getItem('token');
@@ -46,12 +48,8 @@ export default function App() {
           <LoggedOutNav toggle={drawerToggleClickHandler}></LoggedOutNav>
           <div className="App-header">
             <SlideDrawer show={drawerOpen} toggle={drawerToggleClickHandler} direction="top">
-
-              <DrawerSection label={"Favourites"}>
-                <DrawerItem label="Dashboard" to={"/"} width="25%"></DrawerItem>
-              </DrawerSection>
               <DrawerSection label={"Modules"}>
-                <DrawerItem label="Dashboard" to={"/"} width="25%"></DrawerItem>
+                <DrawerItem label="Dashboard" to={"/"} logo={dashboard}></DrawerItem>
               </DrawerSection>
             </SlideDrawer>
             {backdrop}
@@ -80,6 +78,8 @@ export default function App() {
                 <DrawerItem label="Courses" to={"/Courses"} logo={dashboard}></DrawerItem>
                 <DrawerItem label="Modules" to={"/Modules"} logo={dashboard}></DrawerItem>
                 <DrawerItem label="Universities" to={"/Universities"} logo={dashboard}></DrawerItem>
+                <DrawerItem label="University Courses" to={"/UniversityCourses"} logo={dashboard}></DrawerItem>
+                <DrawerItem label="University Modules" to={"/UniversityModules"} logo={dashboard}></DrawerItem>
               </DrawerSection>
             </SlideDrawer>
             <Routes>
@@ -96,6 +96,10 @@ export default function App() {
               <Route path="/Modules" element={<PolytechnicModules />}>
               </Route>
               <Route path="/Universities" element={<Universities/>}>
+              </Route>
+              <Route path="/UniversityCourses" element={<UniversityCourses />}>
+              </Route>
+              <Route path="/UniversityModules" element={<UniversityModules />}>
               </Route>
               <Route path="/Logout" element={<Logout logout={logout}></Logout>}></Route>
             </Routes>

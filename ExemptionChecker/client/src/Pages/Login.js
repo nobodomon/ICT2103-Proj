@@ -119,6 +119,7 @@ export default class Login extends React.Component {
     });
 
     if(token.success){
+      console.log(token)
       this.props.setToken(token);
     }else{
       this.setState({

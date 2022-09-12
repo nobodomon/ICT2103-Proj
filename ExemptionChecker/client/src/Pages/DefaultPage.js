@@ -39,6 +39,7 @@ export default class DefaultPage extends React.Component {
                     <StdInput type={"date"} label={"Date Box"} onChange={()=>{}}></StdInput>   
                     <StdInput type={"datetime"} label={"Date Time Box"} onChange={()=>{}}></StdInput> 
                     <StdInput type={"dropdown"} options={testOptions} label={"Dropdown Box"}></StdInput>   
+                    <StdInput type={"multiselect"} options={testOptions} label={"Multi-select Box"} onChange={()=>{}}></StdInput>
                 </div>
                 <div className="col-4">  
                     <StdInput enabled={true} type={"text"} label={"Text Box"} onChange={()=>{}}></StdInput>
@@ -48,6 +49,7 @@ export default class DefaultPage extends React.Component {
                     <StdInput enabled={true} type={"date"} label={"Date Box"} onChange={()=>{}}></StdInput>   
                     <StdInput enabled={true} type={"datetime"} label={"Date Time Box"} onChange={()=>{}}></StdInput>   
                     <StdInput enabled={true} options={testOptions} type={"dropdown"} label={"Dropdown Box"} onChange={()=>{}}></StdInput>   
+                    <StdInput enabled={true} options={testOptions} type={"multiselect"} label={"Multi-select Box"} onChange={()=>{}}></StdInput>
                 </div>
                 <div className="col-4">  
                     <StdInput hasSaveBtn={true} enabled={true} type={"text"} label={"Text Box"} onChange={()=>{}}></StdInput>
@@ -57,6 +59,8 @@ export default class DefaultPage extends React.Component {
                     <StdInput hasSaveBtn={true} enabled={true} type={"date"} label={"Date Box"} onChange={()=>{}}></StdInput>   
                     <StdInput hasSaveBtn={true} enabled={true} type={"datetime"} label={"Date Time Box"} onChange={()=>{}}></StdInput>   
                     <StdInput hasSaveBtn={true} enabled={true} options={testOptions} type={"dropdown"} label={"Dropdown Box"} onChange={()=>{}}></StdInput>   
+                    <StdInput hasSaveBtn={true} enabled={true} options={testOptions} type={"multiselect"} label={"Multi-select Box"} onChange={()=>{}}></StdInput>   
+
                 </div>
             </BodyContainer>
         )

@@ -1455,6 +1455,11 @@ nav {
                         color: $active;
                         transition: 0.3s;
                     }
+
+                    &.active{
+                        background-color: $active;
+                        color: white;
+                    }
                 }
             }
         }

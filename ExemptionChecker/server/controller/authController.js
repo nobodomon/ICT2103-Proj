@@ -12,7 +12,11 @@ exports.allUsers = async (req, res) => {
 exports.create = async (req, res) => {
     const {username, password} = req.body;
     knex.insert({username: username, password: SHA256(password), role: "user"}).into("Users").then(data =>{
+        knex.select("*").from("Users").where({username:username}).then(data =>{
         res.json({success:true, data, message: "User created!"});
+        }).catch(err => {
+            res.json({success:false, message: err.message});
+        })
     }).catch(err => {
         res.json({success:false, message: err.message});
     });

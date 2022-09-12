@@ -66,7 +66,7 @@ export class UserPanel extends React.Component {
                 {this.state.showUserDetail && 
                 <IconButtonAsLink to={"/Logout"} className={"invert"} onClick={this.routeChange("/Logout")} icon={<i class="bi bi-box-arrow-left"></i>}></IconButtonAsLink>
                 }
-                {this.state.showUserDetail ? <ListTile leading={<img src={placeholderUser} width={"32px"}></img>} title={<span className="m-0">{this.props.user? this.props.user.userData[0].username : ""}</span>}>
+                {this.state.showUserDetail ? <ListTile leading={<img src={placeholderUser} width={"32px"}></img>} title={<span className="m-0">{this.props.user? this.props.user.data[0].username : ""}</span>}>
 
                 </ListTile> : <ListTile leading={<img src={placeholderUser} width={"32px"}></img>}>
 
