@@ -33,6 +33,8 @@ knex.schema
           table.string('role')
           table.integer('polytechnicCourse')
           table.foreign('polytechnicCourse').references('cid').inTable('PolytechnicCourses').onDelete('CASCADE').onUpdate('CASCADE')
+          table.integer('universityCourse')
+          table.foreign('universityCourse').references('cid').inTable('UniversityCourses').onDelete('CASCADE').onUpdate('CASCADE')
         })
         .then(() => {
           // Log success message
