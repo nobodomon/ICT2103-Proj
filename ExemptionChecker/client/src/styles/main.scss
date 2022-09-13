@@ -3090,6 +3090,28 @@ nav {
     }
 }
 
+.listMapper{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 15px;
+    row-gap: 15px;
+
+    .button{
+        grid-column: 1 / span 2;
+    }
+    @media screen and (max-width: $md) {
+        grid-template-columns: repeat(1, 1fr);
+        .button{
+            grid-column: 1 / span 1;
+        }
+    }
+
+    .listMapperItem{
+        padding:15px;
+
+    }
+}
+
 .button {
     padding: 10px 10px;
     appearance: none;

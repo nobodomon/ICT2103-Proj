@@ -1,7 +1,8 @@
 import { TableFooter, TableQuickAction, HeaderExpansion, BottomMenu } from "./PageLayout";
 import React from "react";
-import { IconButton, DivSpacing, StdInput, StdButton, SearchBar, StdSearchBar, StdInputDropDownOption } from "../Components/common";
+import { IconButton, DivSpacing, StdButton, SearchBar, StdSearchBar, StdInputDropDownOption } from "../Components/common";
 import { Helmet } from "react-helmet"
+import { StdInput } from "../Components/input";
 
 import placeHolderUser from "../Assets/placeholderUser.png";
 

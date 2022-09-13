@@ -16,8 +16,6 @@ exports.create = async (req, res) => {
         "module code": req.body["module code"], 
         "module name" : req.body["module name"], 
         "polytechnicCourse":req.body["polytechnicCourse"],
-        "taughtFrom": req.body["taughtFrom"],
-        "taughtTo": req.body["taughtTo"],
     }).into("PolytechnicModules").then(data =>{
         res.json({success:true, data, message: "Module created!"});
     }).catch(err => {
@@ -41,12 +39,42 @@ exports.update = async (req, res) => {
         "module code": req.body["module code"], 
         "module name" : req.body["module name"], 
         "polytechnicCourse":req.body["polytechnicCourse"], 
-        "taughtFrom": req.body["taughtFrom"],
-        "taughtTo": req.body["taughtTo"],
     }).from("PolytechnicModules").where({mid: mid}).then(data =>{
         knex.select("*").from("PolytechnicModules").then(data =>{ 
             res.json({success:true, data, message: "Polytechnics fetched!"});
         })
+    }).catch(err => {
+        res.json({success:false, message: err.message});
+    });
+}
+
+exports.addLink = async (req, res) => {
+    //insert new entry into the database
+    knex.insert({
+        "module code": req.body["module code"], 
+        "module name" : req.body["module name"], 
+        "polytechnicCourse":req.body["polytechnicCourse"],
+    }).into("PolytechnicModules").then(data =>{
+        res.json({success:true, data, message: "Module created!"});
+    }).catch(err => {
+        res.json({success:false, message: err.message});
+    });
+}
+
+exports.deleteLink = async (req, res) => {
+    const {mid} = req.body;
+    knex.delete().from("PolytechnicModules").where({mid: mid}).then(polytechnicModuleData =>{
+        res.json({success: true, polytechnicModuleData, message: "Polytechnic deleted!"});
+    }).catch(err => {
+        res.json({success:false, message: err.message});
+    });
+}
+
+
+exports.getModule = async (req, res) => {
+    const {mid} = req.body;
+    knex.select("*").from("PolytechnicModules").where({mid: mid}).then(data =>{
+        res.json({success:true, data, message: "Module fetched!"});
     }).catch(err => {
         res.json({success:false, message: err.message});
     });
@@ -99,18 +127,6 @@ exports.settings = async (req, res) => {
             editable: true,
             displayLabel: "Polytechnic Course",
             options: polytechnicCourses,
-        },
-        "taughtFrom" : {
-            type: "date",
-            editable: true,
-            dateFormat: "YYYY",
-            displayLabel: "Taught From Year",
-        },
-        "taughtTo" : {
-            type: "date",
-            editable: true,
-            dateFormat: "YYYY",
-            displayLabel: "Taught To Year",
         },
     }
 

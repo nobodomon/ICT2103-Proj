@@ -50,24 +50,6 @@ exports.update = async (req, res) => {
     });
 
 
-
-    range = await knex
-        .min("taughtFrom as minAdmission")
-        .max("taughtTo as maxAdmission")
-        .from("PolytechnicModules")
-        .where({polytechnicCourse: polytechnicCourse}).then(data =>{
-        var tempRange = [];
-        console.log(data);
-        tempRange.push(data[0]["minAdmission"]);
-        tempRange.push(data[0]["maxAdmission"] === null ? 9999 : data[0]["maxAdmission"]); 
-        return tempRange;
-    })
-    console.log(range);
-    if(polytechnicAdmissionYear < parseInt(range[0]) || polytechnicAdmissionYear > parseInt(range[1])){
-        return res.json({success:false, message: "Polytechnic admission year is out of range!"});
-    }
-
-
     knex.update({
         uid: uid, 
         username:username, 
@@ -79,10 +61,10 @@ exports.update = async (req, res) => {
         universityAdmissionYear: universityAdmissionYear
         }).from("Users").where({uid: uid}).then(data =>{
         knex.select("*").from("Users").then(data =>{ 
-            res.json({success:true, data, message: "Users fetched!"});
+            return res.json({success:true, data, message: "Users fetched!"});
         })
     }).catch(err => {
-        res.json({success:false, message: err.message});
+        return res.json({success:false, message: err.message});
     });
 }
 
@@ -162,23 +144,11 @@ exports.settings = async (req, res) => {
             displayLabel: "Polytechnic Course",
             options: polytechnicCourses,
         },
-        "polytechnicAdmissionYear":{
-            type: "date",
-            dateFormat:"YYYY",
-            editable: true,
-            displayLabel: "Polytechnic Admission Year",
-        },
         "universityCourse":{
             type: "dropdown",
             editable:true,
             displayLabel: "University Course",
             options: universityCourses,
-        },
-        "universityAdmissionYear":{
-            type: "date",
-            dateFormat:"YYYY",
-            editable:true,
-            displayLabel: "University Admission Year",
         },
     }
 

@@ -32,10 +32,8 @@ knex.schema
           table.string('password')
           table.string('role')
           table.integer('polytechnicCourse')
-          table.string('polytechnicAdmissionYear')
           table.foreign('polytechnicCourse').references('cid').inTable('PolytechnicCourses').onDelete('CASCADE').onUpdate('CASCADE')
           table.integer('universityCourse')
-          table.string('universityAdmissionYear')
           table.foreign('universityCourse').references('cid').inTable('UniversityCourses').onDelete('CASCADE').onUpdate('CASCADE')
         })
         .then(() => {
@@ -114,8 +112,6 @@ knex.schema
       table.string('module name')
       table.integer('polytechnicCourse')
       table.foreign('polytechnicCourse').references('cid').inTable('PolytechnicCourses').onDelete('CASCADE').onUpdate('CASCADE')
-      table.string("taughtFrom")
-      table.string("taughtTo")
     })
     .then(()=>{
       console.log('Table \'PolytechnicModules\' created')

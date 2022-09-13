@@ -79,6 +79,7 @@ export default class Users extends React.Component {
 
     handleUpdate = async (data) =>{
         await this.update(data).then((content)=>{
+            console.log(content);
             if(content.success){
                 this.setState({
                     error:"",

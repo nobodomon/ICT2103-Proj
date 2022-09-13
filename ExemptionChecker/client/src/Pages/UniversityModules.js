@@ -118,6 +118,7 @@ export default class UniversityModules extends React.Component {
                 updateHandle = {this.handleUpdate}
                 requestRefresh = {this.requestRefresh}
                 error = {this.state.error}>
+
             </DatapageLayout>
             
             )

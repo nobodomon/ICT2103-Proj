@@ -42,12 +42,14 @@ export class StdInput extends React.Component {
       value: value,
       valueChanged: false,
     });
+    console.log(this.props.onChange(this.props.fieldLabel, value));
     this.props.onChange(this.props.fieldLabel, value) ?
       this.feedback({success:true, msg: "Changes Saved"}) : 
       this.feedback({success:false, msg: "Failed to save changes"});
   };
 
   feedback = (message) =>{
+    console.log(message);
     if(message.success){
       this.setState({
         feedbackClass: "feedback show",

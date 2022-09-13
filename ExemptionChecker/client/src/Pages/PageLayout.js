@@ -129,10 +129,7 @@ export default class DatapageLayout extends React.Component {
                             
                             this.props.data.map((row, index) => {      
                                 return <ExpandableRow updateHandle={this.props.updateHandle} values={row} fieldSettings={this.props.fieldSettings} key={index} settings={settings} headers={this.props.headers} setExpansionContent={this.setExpansionContent} handleSeeMore={this.handleSeeMore} handleClose={this.handleClose} popUpContent={this.state.popUpContent}>
-                                    {this.props.headers.map((cell, secIndex) => {
-                                        
-                                        return <Cell width={"100%"} key={secIndex}>{row[cell]}</Cell>
-                                    })}
+                                    {this.props.children? this.props.children[index]: ""}
                                 </ExpandableRow>
                             })}
                         </ListTable>
