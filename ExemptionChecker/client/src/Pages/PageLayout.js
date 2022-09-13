@@ -101,7 +101,13 @@ export default class DatapageLayout extends React.Component {
             return <div></div>
         }
         return (
-            <div className="justify-content-center d-flex container-fluid listPageContainer">
+            <div className="d-flex flex-column container-fluid listPageContainer">
+                {this.props.error != "" && 
+                    <div className="listPageContainer-error">
+                        {this.props.error}
+                        <IconButton icon = {<i className="bi bi-x-circle-fill"></i>}></IconButton>
+                    </div>
+                }
                 <div className="col-12">
                     <TableHeader actions={
                         [
@@ -359,6 +365,7 @@ class AddEntry extends React.Component{
                             fieldLabel={key}
                             onChange = {this.onChange}
                             options={this.props.fieldSettings[key].options}
+                            dateFormat = {this.props.fieldSettings[key].dateFormat}
                             >
                             </StdInput>)
                     }
@@ -417,6 +424,7 @@ class DeleteEntry extends React.Component{
                             fieldLabel={key}
                             onChange = {this.onChange}
                             options={this.props.fieldSettings[key].options}
+                            dateFormat = {this.props.fieldSettings[key].dateFormat}
                             >
                             </StdInput> : "")
                     }

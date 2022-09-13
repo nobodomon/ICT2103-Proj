@@ -87,19 +87,19 @@ export default function App() {
               </Route>
               <Route path="/Home" element={<Home />}>
               </Route>
-              <Route path="/Users" element={<Users />}>
+              <Route path="/Users" element={<Users user={token}/>}>
               </Route>
-              <Route path="/Polytechnics" element={<Polytechnics />}>
+              <Route path="/Polytechnics" element={<Polytechnics user={token}/>}>
               </Route>
-              <Route path="/Courses" element={<Courses />}>
+              <Route path="/Courses" element={<Courses user={token}/>}>
               </Route>
-              <Route path="/Modules" element={<PolytechnicModules />}>
+              <Route path="/Modules" element={<PolytechnicModules user={token}/>}>
               </Route>
-              <Route path="/Universities" element={<Universities/>}>
+              <Route path="/Universities" element={<Universities user={token}/>}>
               </Route>
-              <Route path="/UniversityCourses" element={<UniversityCourses />}>
+              <Route path="/UniversityCourses" element={<UniversityCourses user={token}/>}>
               </Route>
-              <Route path="/UniversityModules" element={<UniversityModules />}>
+              <Route path="/UniversityModules" element={<UniversityModules user={token}/>}>
               </Route>
               <Route path="/Logout" element={<Logout logout={logout}></Logout>}></Route>
             </Routes>

@@ -22,7 +22,7 @@ exports.create = async (req, res) => {
     });
 }
 
-exports.deleteUser = async (req, res) => {
+exports.delete = async (req, res) => {
     const {username} = req.body;
     knex.delete().from("Users").where({username: username}).then(data =>{
         res.json({success:true, data, message: "User deleted!"});
@@ -31,9 +31,53 @@ exports.deleteUser = async (req, res) => {
     });
 }
 
-exports.updateUser = async (req, res) => {
-    const {uid, username, password, role, polytechnicCourse} = req.body;
-    knex.update({uid: uid, username:username, password: password, role: role, polytechnicCourse: req.body["Polytechnic Course"], universityCourse: req.body["University Course"]}).from("Users").where({uid: uid}).then(data =>{
+exports.update = async (req, res) => {
+    const {uid, username, password, role, polytechnicCourse,polytechnicAdmissionYear,universityCourse,universityAdmissionYear} = req.body;
+    if(polytechnicCourse == null && polytechnicAdmissionYear != null){
+        return res.json({success:false, message: "Polytechnic course cannot be empty!"});
+    } 
+
+    
+
+    universityCourses = await knex.select("*").from("UniversityCourses").then(uniCourseData =>{
+        var tempCourseList = [];
+        console.log(uniCourseData);
+        for(unicourse in uniCourseData){
+            tempCourseList.push({label: uniCourseData[unicourse]["course code"] + " - " +  uniCourseData[unicourse]["course name"], value:  uniCourseData[unicourse]["cid"]});
+        }
+        console.log(tempCourseList)
+        return tempCourseList;
+    });
+
+
+
+    range = await knex
+        .min("taughtFrom as minAdmission")
+        .max("taughtTo as maxAdmission")
+        .from("PolytechnicModules")
+        .where({polytechnicCourse: polytechnicCourse}).then(data =>{
+        var tempRange = [];
+        console.log(data);
+        tempRange.push(data[0]["minAdmission"]);
+        tempRange.push(data[0]["maxAdmission"] === null ? 9999 : data[0]["maxAdmission"]); 
+        return tempRange;
+    })
+    console.log(range);
+    if(polytechnicAdmissionYear < parseInt(range[0]) || polytechnicAdmissionYear > parseInt(range[1])){
+        return res.json({success:false, message: "Polytechnic admission year is out of range!"});
+    }
+
+
+    knex.update({
+        uid: uid, 
+        username:username, 
+        password: password, 
+        role: role, 
+        polytechnicCourse: polytechnicCourse, 
+        polytechnicAdmissionYear: polytechnicAdmissionYear,
+        universityCourse: universityCourse,
+        universityAdmissionYear: universityAdmissionYear
+        }).from("Users").where({uid: uid}).then(data =>{
         knex.select("*").from("Users").then(data =>{ 
             res.json({success:true, data, message: "Users fetched!"});
         })
@@ -56,6 +100,7 @@ exports.login = async (req, res) => {
 }
 
 exports.settings = async (req, res) => {
+    const {uid} = req.body;
     polytechnicCourses = await knex.select("*").from("PolytechnicCourses").then(polyCourseData =>{
         var tempCourseList = [];
         console.log(polyCourseData);
@@ -117,13 +162,24 @@ exports.settings = async (req, res) => {
             displayLabel: "Polytechnic Course",
             options: polytechnicCourses,
         },
+        "polytechnicAdmissionYear":{
+            type: "date",
+            dateFormat:"YYYY",
+            editable: true,
+            displayLabel: "Polytechnic Admission Year",
+        },
         "universityCourse":{
             type: "dropdown",
             editable:true,
             displayLabel: "University Course",
             options: universityCourses,
-
-        }
+        },
+        "universityAdmissionYear":{
+            type: "date",
+            dateFormat:"YYYY",
+            editable:true,
+            displayLabel: "University Admission Year",
+        },
     }
 
     const settings = {

@@ -8,9 +8,9 @@ router.post("/allUsers", authRoutes.allUsers);
 
 router.post("/create", authRoutes.create);
 
-router.post("/deleteUser", authRoutes.deleteUser);
+router.post("/delete", authRoutes.delete);
 
-router.post("/updateUser", authRoutes.updateUser);
+router.post("/update", authRoutes.update);
 
 router.post("/login", authRoutes.login);
 

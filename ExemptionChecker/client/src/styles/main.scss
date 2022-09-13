@@ -529,7 +529,18 @@ nav {
 }
 
 .listPageContainer {
-    position: relative
+    position: relative;
+
+    .listPageContainer-error{
+        padding:15px;
+        background-color: rgb(255, 0, 0, 0.1);
+        margin-top: 15px;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 }
 
 @function randomNum($min, $max) {
@@ -1354,6 +1365,12 @@ nav {
                 transition: 0.3s;
             }
         }
+        
+        &.failed{
+            &:after{
+                background-color: $exclude;
+            }
+        }
     }
 }
 
@@ -1406,6 +1423,8 @@ nav {
         transition: 0.3s;
         position: relative;
         isolation: isolate;
+
+        overflow: hidden;
 
 
         ~.dropdownWrapper {
@@ -1469,7 +1488,6 @@ nav {
             opacity: 1;
             margin-top: 34px;
             animation: dropdownAnim 0.3s ease-in;
-
             >.dropdown {
                 max-height: calc(34px * var(--maxItems));
                 height: 100%;
@@ -1479,7 +1497,6 @@ nav {
 
             }
         }
-
         &:disabled {
             background-color: rgba(#eee,0.2);
             transition: 0.3s;

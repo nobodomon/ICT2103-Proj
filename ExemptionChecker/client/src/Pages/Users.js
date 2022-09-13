@@ -8,6 +8,7 @@ export default class Users extends React.Component {
         headers:[],
         loading:true,
         settings: {},
+        error: "",
     }
 
     settings ={
@@ -45,6 +46,7 @@ export default class Users extends React.Component {
             headers: {
                 "Content-Type": "application/json",
             },
+            body: JSON.stringify(this.props.user.data[0]),
         }).then(res => {
             console.log(res);
             return res.json();
@@ -62,26 +64,32 @@ export default class Users extends React.Component {
         });
     }
 
-    updateUser = async (user) =>{
-        console.log(user);
-        return fetch(this.settings.api + "updateUser" , {
+    update = async (data) =>{
+        console.log(data);
+        return fetch(this.settings.api + "update" , {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(user)
+            body: JSON.stringify(data)
         }).then(async res => {
             return res.json();
         });
     }
 
-    handleUpdate = async (user) =>{
-        await this.updateUser(user).then((content)=>{
-            this.setState(
-                {
-                    content:content,
-                }
-            )
+    handleUpdate = async (data) =>{
+        await this.update(data).then((content)=>{
+            if(content.success){
+                this.setState({
+                    error:"",
+                })
+                return true;
+            }else{
+                this.setState({
+                    error:content.message,
+                })
+                return false;
+            }
         })
     }
 
@@ -110,7 +118,8 @@ export default class Users extends React.Component {
                 headers={this.state.settings.columnSettings.headers} 
                 data={this.state.content.data}
                 updateHandle = {this.handleUpdate}
-                requestRefresh = {this.requestRefresh}>
+                requestRefresh = {this.requestRefresh}
+                error={this.state.error}>
             </DatapageLayout>
             
             )

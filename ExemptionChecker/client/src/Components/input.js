@@ -21,7 +21,7 @@ export class StdInput extends React.Component {
       valueChanged: value != this.state.value ? true : false,
     });
     if (!this.props.hasSaveBtn) {
-      this.props.onChange(this.props.label, value);
+      this.props.onChange(this.props.fieldLabel, value);
     }
   };
 
@@ -42,15 +42,23 @@ export class StdInput extends React.Component {
       value: value,
       valueChanged: false,
     });
-    this.feedback("Changes Saved");
-    this.props.onChange(this.props.label, value);
+    this.props.onChange(this.props.fieldLabel, value) ?
+      this.feedback({success:true, msg: "Changes Saved"}) : 
+      this.feedback({success:false, msg: "Failed to save changes"});
   };
 
   feedback = (message) =>{
-    this.setState({
+    if(message.success){
+      this.setState({
         feedbackClass: "feedback show",
-        feedback: message
-    })
+        feedback: message.msg
+      })
+    }else{
+      this.setState({
+        feedbackClass: "feedback failed show",
+        feedback: message.msg
+      })
+    }
   }
 
   reset =() => {
@@ -94,7 +102,31 @@ export class StdInput extends React.Component {
               value={this.state.newValue}
             ></StdTimeBox>
           )}
-          {this.props.type === "date" && (
+          {this.props.type === "date" && this.props.dateFormat === "YYYY" &&(
+            <StdNumberBox
+              updateValue={this.updateValue}
+              value={this.state.newValue}
+              max={this.props.max ? this.props.max : new Date().getFullYear()}
+              min={this.props.min ? this.props.min : new Date().getFullYear()-100}
+            ></StdNumberBox>
+          )}
+          {this.props.type === "date" && this.props.dateFormat === "MM" &&(
+            <StdNumberBox
+              updateValue={this.updateValue}
+              value={this.state.newValue}
+              max={this.props.max ? this.props.max : 12}
+              min={this.props.min ? this.props.min : 1}
+            ></StdNumberBox>
+          )}
+          {this.props.type === "date" && this.props.dateFormat === "DD" &&(
+            <StdNumberBox
+              updateValue={this.updateValue}
+              value={this.state.newValue}
+              max={this.props.max ? this.props.max : 31}
+              min={this.props.min ? this.props.min : 1}
+            ></StdNumberBox>
+          )}
+          {this.props.type === "date" && !["YYYY","MM","DD"].includes(this.props.dateFormat) &&(
             <StdDateBox
               updateValue={this.updateValue}
               value={this.state.newValue}
@@ -636,6 +668,8 @@ class StdNumberBox extends React.Component {
           placeholder={""}
           onChange={(e) => this.onChange(e)}
           value={this.state.newValue}
+          min = {this.props.min}
+          max = {this.props.max}
         ></input>
         {this.props.showIndicator ? (
           this.state.editable ? (

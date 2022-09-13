@@ -12,7 +12,13 @@ exports.allModules = async (req, res) => {
 
 exports.create = async (req, res) => {
     console.log(req.body);
-    knex.insert({"module code": req.body["module code"], "module name" : req.body["module name"], "polytechnicCourse":req.body["polytechnicCourse"]}).into("PolytechnicModules").then(data =>{
+    knex.insert({
+        "module code": req.body["module code"], 
+        "module name" : req.body["module name"], 
+        "polytechnicCourse":req.body["polytechnicCourse"],
+        "taughtFrom": req.body["taughtFrom"],
+        "taughtTo": req.body["taughtTo"],
+    }).into("PolytechnicModules").then(data =>{
         res.json({success:true, data, message: "Module created!"});
     }).catch(err => {
         res.json({success:false, message: err.message});
@@ -29,7 +35,15 @@ exports.delete = async (req, res) => {
 }
 
 exports.update = async (req, res) => {
-    knex.update({mid: req.body["mid"], "module code": req.body["module code"], "module name" : req.body["module name"], "polytechnicCourse":req.body["polytechnicCourse"]}).from("PolytechnicModules").where({mid: mid}).then(data =>{
+    const {mid} = req.body;
+    knex.update({
+        mid: req.body["mid"], 
+        "module code": req.body["module code"], 
+        "module name" : req.body["module name"], 
+        "polytechnicCourse":req.body["polytechnicCourse"], 
+        "taughtFrom": req.body["taughtFrom"],
+        "taughtTo": req.body["taughtTo"],
+    }).from("PolytechnicModules").where({mid: mid}).then(data =>{
         knex.select("*").from("PolytechnicModules").then(data =>{ 
             res.json({success:true, data, message: "Polytechnics fetched!"});
         })
@@ -85,6 +99,18 @@ exports.settings = async (req, res) => {
             editable: true,
             displayLabel: "Polytechnic Course",
             options: polytechnicCourses,
+        },
+        "taughtFrom" : {
+            type: "date",
+            editable: true,
+            dateFormat: "YYYY",
+            displayLabel: "Taught From Year",
+        },
+        "taughtTo" : {
+            type: "date",
+            editable: true,
+            dateFormat: "YYYY",
+            displayLabel: "Taught To Year",
         },
     }
 
