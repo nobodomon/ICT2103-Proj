@@ -67,6 +67,8 @@ export class ExpandableRow extends React.Component {
               </div>
 
               <div className="col-12 col-lg-9 expansionColumn">
+                <div className="expansionColumn-fieldcontainer">
+                  
                 {Object.keys(this.props.fieldSettings).map((field, index) => {
                   return (
                     <StdInput
@@ -84,6 +86,7 @@ export class ExpandableRow extends React.Component {
                     ></StdInput>
                   );
                 })}
+                </div>
                 {this.props.children}
               </div>
             </div>

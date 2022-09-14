@@ -14,10 +14,6 @@ router.post("/update", moduleRoutes.update);
 
 router.post("/settings", moduleRoutes.settings);
 
-router.post("/addLink", moduleRoutes.addLink);
-
-router.post("/deleteLink", moduleRoutes.deleteLink);
-
 router.post("/getModule", moduleRoutes.getModule);
 
 module.exports = router;

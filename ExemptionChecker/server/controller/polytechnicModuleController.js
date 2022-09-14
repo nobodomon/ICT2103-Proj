@@ -44,28 +44,6 @@ exports.update = async (req, res) => {
     });
 }
 
-exports.addLink = async (req, res) => {
-    //insert new entry into the database
-    knex.insert({
-        "module code": req.body["module code"], 
-        "module name" : req.body["module name"], 
-    }).into("PolytechnicModules").then(data =>{
-        res.json({success:true, data, message: "Module created!"});
-    }).catch(err => {
-        res.json({success:false, message: err.message});
-    });
-}
-
-exports.deleteLink = async (req, res) => {
-    const {mid} = req.body;
-    knex.delete().from("PolytechnicModules").where({mid: mid}).then(polytechnicModuleData =>{
-        res.json({success: true, polytechnicModuleData, message: "Polytechnic deleted!"});
-    }).catch(err => {
-        res.json({success:false, message: err.message});
-    });
-}
-
-
 exports.getModule = async (req, res) => {
     const {mid} = req.body;
     knex.select("*").from("PolytechnicModules").where({mid: mid}).then(data =>{

@@ -4,13 +4,6 @@ exports.allModules = async (req, res) => {
   knex
     .select("*")
     .from("UniversityModules")
-    .join("UniversityCourses", function () {
-      this.on(
-        "UniversityModules.universityCourse",
-        "=",
-        "UniversityCourses.cid"
-      );
-    })
     .then((data) => {
       res.json({ success: true, data, message: "University modules fetched!" });
     })
@@ -25,7 +18,6 @@ exports.create = async (req, res) => {
     .insert({
       "module code": req.body["module code"],
       "module name": req.body["module name"],
-      universityCourse: req.body["universityCourse"],
     })
     .into("UniversityModules")
     .then((data) => {
@@ -60,7 +52,6 @@ exports.update = async (req, res) => {
       mid: req.body["mid"],
       "module code": req.body["module code"],
       "module name": req.body["module name"],
-      universityCourse: req.body["universityCourse"],
     })
     .from("UniversityModules")
     .where({ mid: mid })
@@ -81,29 +72,11 @@ exports.update = async (req, res) => {
     });
 };
 exports.settings = async (req, res) => {
-  universityCourses = await knex
-    .select("*")
-    .from("UniversityCourses")
-    .then((uniCourseData) => {
-      var tempCourseList = [];
-      console.log(uniCourseData);
-      for (unicourse in uniCourseData) {
-        tempCourseList.push({
-          label:
-            uniCourseData[unicourse]["course code"] +
-            " - " +
-            uniCourseData[unicourse]["course name"],
-          value: uniCourseData[unicourse]["cid"],
-        });
-      }
-      console.log(tempCourseList);
-      return tempCourseList;
-    });
 
   const columnSettings = {
     // Configures the headers of the table
     // Pls match header names with column names (case sensitive!)
-    headers: ["mid", "module code", "module name", "universityCourse"],
+    headers: ["mid", "module code", "module name"],
   };
 
   const fieldSettings = {
@@ -123,12 +96,6 @@ exports.settings = async (req, res) => {
       type: "text",
       editable: true,
       displayLabel: "Module Name",
-    },
-    "universityCourse": {
-      type: "dropdown",
-      editable: true,
-      displayLabel: "University Course",
-      options: universityCourses,
     },
   };
 

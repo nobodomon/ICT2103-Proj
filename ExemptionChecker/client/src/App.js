@@ -3,7 +3,6 @@ import Nav, {  } from './Components/nav'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import React from 'react';
 import Home from './Pages/Home';
-import Users from './Pages/Users';
 import DefaultPage from './Pages/DefaultPage';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
@@ -13,8 +12,12 @@ import SlideDrawer, { Backdrop, DrawerItem, DrawerSection } from './Components/s
 
 import dashboard from "./Assets/nav/dashboard.png";
 import Details from './Pages/Details';
+
+import Users from './Pages/Users';
+import Skills from './Pages/Skills';
+
 import Polytechnics from './Pages/Polytechnics';
-import Courses from './Pages/Courses';
+import PolytechnicCourses from './Pages/PolytechnicCourses';
 import PolytechnicModules from './Pages/PolytechnicModules';
 import Universities from './Pages/Universities';
 import UniversityCourses from './Pages/UniversityCourses';
@@ -74,9 +77,10 @@ export default function App() {
               <DrawerSection label={"Modules"}>
                 <DrawerItem label="Dashboard" to={"/"} logo={dashboard}></DrawerItem>
                 <DrawerItem label="Users" to={"/Users"} logo={dashboard}></DrawerItem>
+                <DrawerItem label="Skills" to={"/Skills"} logo={dashboard}></DrawerItem>
                 <DrawerItem label="Polytechnics" to={"/Polytechnics"} logo={dashboard}></DrawerItem>
-                <DrawerItem label="Courses" to={"/Courses"} logo={dashboard}></DrawerItem>
-                <DrawerItem label="Modules" to={"/Modules"} logo={dashboard}></DrawerItem>
+                <DrawerItem label="Polytechnic Courses" to={"/PolytechnicCourses"} logo={dashboard}></DrawerItem>
+                <DrawerItem label="Polytechnic Modules" to={"/PolytechnicModules"} logo={dashboard}></DrawerItem>
                 <DrawerItem label="Universities" to={"/Universities"} logo={dashboard}></DrawerItem>
                 <DrawerItem label="University Courses" to={"/UniversityCourses"} logo={dashboard}></DrawerItem>
                 <DrawerItem label="University Modules" to={"/UniversityModules"} logo={dashboard}></DrawerItem>
@@ -89,11 +93,13 @@ export default function App() {
               </Route>
               <Route path="/Users" element={<Users user={token}/>}>
               </Route>
+              <Route path="/Skills" element={<Skills user={token}/>}>
+              </Route>
               <Route path="/Polytechnics" element={<Polytechnics user={token}/>}>
               </Route>
-              <Route path="/Courses" element={<Courses user={token}/>}>
+              <Route path="/PolytechnicCourses" element={<PolytechnicCourses user={token}/>}>
               </Route>
-              <Route path="/Modules" element={<PolytechnicModules user={token}/>}>
+              <Route path="/PolytechnicModules" element={<PolytechnicModules user={token}/>}>
               </Route>
               <Route path="/Universities" element={<Universities user={token}/>}>
               </Route>

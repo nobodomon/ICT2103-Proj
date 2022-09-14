@@ -1299,10 +1299,12 @@ nav {
         width:100%;
         border-radius: $borderRadius;
         padding-left:15px;
+        padding-right: 15px;
         display:flex;
         justify-content: flex-start;
         align-items: center;
         border: 1px solid #eee;
+        overflow: hidden;
     }
 
     &.inputSave{
@@ -2845,17 +2847,19 @@ nav {
 }
 
 .expansionColumn {
-    display: grid;
-    row-gap: 15px;
-    column-gap: 15px;
-    grid-template-columns: repeat(2, 1fr);
-    display:grid;
 
-    @media screen and (max-width: $md) {
-        grid-template-columns: repeat(1, 1fr);
-        row-gap: 0px;
+    .expansionColumn-fieldcontainer{
+
+        display: grid;
+        row-gap: 15px;
+        column-gap: 15px;
+        grid-template-columns: repeat(2, minmax(0,1fr));
+    
+        @media screen and (max-width: $md) {
+            grid-template-columns: repeat(1, minmax(0,1fr));
+            row-gap: 15px;
+        }
     }
-
 
 }
 
@@ -3091,24 +3095,46 @@ nav {
 }
 
 .listMapper{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    column-gap: 15px;
-    row-gap: 15px;
+    display: flex;
+    flex-direction: column;
 
-    .button{
-        grid-column: 1 / span 2;
+    .listMapper-header{
+        margin:15px;
+        margin-left: 0px;
+        font-weight: bold;
     }
-    @media screen and (max-width: $md) {
-        grid-template-columns: repeat(1, 1fr);
-        .button{
-            grid-column: 1 / span 1;
+
+    .listMapper-CourseSelector{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 15px;
+        row-gap: 15px;
+
+        @media screen and (max-width: $md) {
+            grid-template-columns: repeat(1, 1fr);
         }
     }
 
     .listMapperItem{
         padding:15px;
+        transition: 0.3s linear;
+        border-radius: $borderRadius;
+        display:flex;
+        justify-content: flex-start;
+        align-items: center;
+        &:hover{
+            background-color: #eee;
+            cursor: pointer;
+        }
 
+        &.active{
+            background-color: rgba($active, 0.8);
+            color:white;
+
+            &:hover{
+                background-color: rgba($active,1);
+            }
+        }
     }
 }
 

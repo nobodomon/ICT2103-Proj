@@ -1,6 +1,6 @@
 const express = require("express");
 
-const mapRoutes = require("../controller/polytechnicModuleCourseMapController.js");
+const mapRoutes = require("../controller/universityModuleCourseMapController.js");
 
 const router = express.Router();
 
@@ -17,6 +17,3 @@ router.post("/delete", mapRoutes.delete);
 router.post("/settings", mapRoutes.settings);
 
 module.exports = router;
-
-
-

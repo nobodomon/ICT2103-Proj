@@ -3,7 +3,7 @@ import React from "react"
 import { ListMapper } from "../Components/common"
 import DatapageLayout from "./PageLayout"
 
-export default class UniversityModules extends React.Component {
+export default class Skills extends React.Component {
     state={
         content:null,
         headers:[],
@@ -13,12 +13,12 @@ export default class UniversityModules extends React.Component {
     }
 
     settings ={
-        title:"University Modules",
+        title:"Skills",
         primaryColor: "#48a1da",
         accentColor: "#8fc140",
         textColor: "#ffffff",
         textColorInvert: "#606060",
-        api: "/universityModules/",
+        api: "/skills/",
     }
 
     async componentDidMount(){
@@ -55,7 +55,7 @@ export default class UniversityModules extends React.Component {
     }
 
     getContent = async () =>{
-        return fetch( this.settings.api + "allModules" , {
+        return fetch( this.settings.api + "allSkills" , {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -119,11 +119,16 @@ export default class UniversityModules extends React.Component {
                 updateHandle = {this.handleUpdate}
                 requestRefresh = {this.requestRefresh}
                 error = {this.state.error}>
+                
                 {this.state.content.data.map((item, index) => {
-                    return <div><ModuleToCourseMapper 
-                    key={index}  
-                    mid={item.mid}/></div>
-
+                    return <div>
+                        <SkillPolytechnicModuleMapper 
+                            key={index + "polytechnic"}  
+                            sid={item.sid}/>
+                        <SkillUniversityModuleMapper
+                            key={index + "university"}
+                            sid={item.sid}/>
+                        </div>
                 })}
             </DatapageLayout>
             
@@ -132,7 +137,8 @@ export default class UniversityModules extends React.Component {
     }
 }
 
-export class ModuleToCourseMapper extends React.Component{
+
+export class SkillPolytechnicModuleMapper extends React.Component{
     state = {
         content: [],
         currentMap : [],
@@ -210,7 +216,7 @@ export class ModuleToCourseMapper extends React.Component{
     }
 
     getContent = async () =>{
-        return fetch( "/UniversityCourses/allCourses" , {
+        return fetch( "/PolytechnicModules/allModules" , {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -222,7 +228,7 @@ export class ModuleToCourseMapper extends React.Component{
     }
 
     getContentSettings = async () =>{
-        return fetch( "/UniversityCourses/settings" , {
+        return fetch( "/PolytechnicModules/settings" , {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -234,7 +240,7 @@ export class ModuleToCourseMapper extends React.Component{
     }
 
     getSettings = async () =>{
-        return fetch( "/universityModuleCourseMap/settings" , {
+        return fetch( "/skillPolytechnicModuleMap/settings" , {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -246,12 +252,12 @@ export class ModuleToCourseMapper extends React.Component{
     }
 
     getCurrentMap = () =>{
-        return fetch( "/universityModuleCourseMap/allMapsFromModule" , {
+        return fetch( "/skillPolytechnicModuleMap/allMapsFromSkill" , {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({universityModule: this.props.mid}),
+            body: JSON.stringify({skillID: this.props.sid}),
         }).then(res => {
             console.log(res);
             return res.json();
@@ -260,7 +266,7 @@ export class ModuleToCourseMapper extends React.Component{
 
     addLink = async (data) =>{
         console.log(data);
-        return fetch("/universityModuleCourseMap/create" , {
+        return fetch("/skillPolytechnicModuleMap/create" , {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -273,7 +279,7 @@ export class ModuleToCourseMapper extends React.Component{
 
     deleteLink = async (data) =>{
         console.log(data);
-        return fetch("/universityModuleCourseMap/delete" , {
+        return fetch("/skillPolytechnicModuleMap/delete" , {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -290,11 +296,175 @@ export class ModuleToCourseMapper extends React.Component{
         return(
             this.state.loading? <div>Loading</div>:
         
-            <ListMapper title={"Courses this module belongs to"} requestRefresh={this.requestRefresh} currItemID={this.props.mid} addLink={this.addLink} settings={this.state.settings} deleteLink={this.deleteLink} headers={this.state.contentSettings.settings.fieldSettings} data={this.state.content.data} currentMap={this.state.currentMap.data}>
+            <ListMapper title={"Polytechnic Modules this skill belongs to"} requestRefresh={this.requestRefresh} currItemID={this.props.sid} addLink={this.addLink} settings={this.state.settings} deleteLink={this.deleteLink} headers={this.state.contentSettings.settings.fieldSettings} data={this.state.content.data} currentMap={this.state.currentMap.data}>
                 
             </ListMapper>
         )
     }
-
-    
 }
+
+export class SkillUniversityModuleMapper extends React.Component{
+    state = {
+        content: [],
+        currentMap : [],
+        contentSettings: {},
+        loading: true,
+        settings: {},
+    }
+
+    async componentDidMount(){
+        await this.getContent().then((content)=>{
+            console.log(content);
+            this.setState({
+                content:content,
+            })
+        }) 
+
+        await this.getContentSettings().then((settings)=>{
+            console.log(settings);
+            this.setState({
+                contentSettings:settings,
+            })
+        })
+
+        await this.getSettings().then((settings)=>{
+            console.log(settings);
+            this.setState({
+                settings:settings.settings,
+            })
+        })
+
+        await this.getCurrentMap().then((content)=>{
+            console.log(content);
+            this.setState({
+                currentMap:content,
+            })
+        })
+
+        this.setState({
+            
+            loading: false,
+        })
+    }
+
+    requestRefresh = async () =>{
+        this.setState({
+            loading:true,
+        })
+        await this.getContent().then((content)=>{
+            console.log(content);
+            this.setState({
+                content:content,
+            });
+        })
+        await this.getContentSettings().then((settings)=>{
+            console.log(settings);
+            this.setState({
+                contentSettings:settings,
+            })
+        })
+        await this.getSettings().then((settings)=>{
+            console.log(settings);
+            this.setState({
+                settings:settings.settings,
+            })
+        })
+        await this.getCurrentMap().then((content)=>{
+            console.log(content);
+            this.setState({
+                currentMap:content,
+            })
+        })
+        this.setState({
+            loading:false,
+        })
+    }
+
+    getContent = async () =>{
+        return fetch( "/UniversityModules/allModules" , {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        }).then(res => {
+            console.log(res);
+            return res.json();
+        });
+    }
+
+    getContentSettings = async () =>{
+        return fetch( "/UniversityModules/settings" , {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        }).then(res => {
+            console.log(res);
+            return res.json();
+        });
+    }
+
+    getSettings = async () =>{
+        return fetch( "/skillUniversityModuleMap/settings" , {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        }).then(res => {
+            console.log(res);
+            return res.json();
+        });
+    }
+
+    getCurrentMap = () =>{
+        return fetch( "/skillUniversityModuleMap/allMapsFromSkill" , {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({skillID: this.props.sid}),
+        }).then(res => {
+            console.log(res);
+            return res.json();
+        })
+    }
+
+    addLink = async (data) =>{
+        console.log(data);
+        return fetch("/skillUniversityModuleMap/create" , {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data)
+        }).then(async res => {
+            return res.json();
+        });
+    }
+
+    deleteLink = async (data) =>{
+        console.log(data);
+        return fetch("/skillUniversityModuleMap/delete" , {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data)
+        }).then(async res => {
+            return res.json();
+        });
+    }
+
+
+    render(){
+        
+        return(
+            this.state.loading? <div>Loading</div>:
+        
+            <ListMapper title={"University Modules that requires this skill"} requestRefresh={this.requestRefresh} currItemID={this.props.sid} addLink={this.addLink} settings={this.state.settings} deleteLink={this.deleteLink} headers={this.state.contentSettings.settings.fieldSettings} data={this.state.content.data} currentMap={this.state.currentMap.data}>
+                
+            </ListMapper>
+        )
+    }
+}
+

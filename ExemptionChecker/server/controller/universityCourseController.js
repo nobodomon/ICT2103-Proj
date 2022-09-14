@@ -76,6 +76,7 @@ exports.settings = async (req, res) => {
             editable: true,
             displayLabel: "University",
             options: universities,
+            foreignKey: true,
         },
         "course code": {
             type: "text",

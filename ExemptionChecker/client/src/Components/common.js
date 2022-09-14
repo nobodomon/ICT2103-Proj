@@ -1370,14 +1370,42 @@ export class Step extends React.Component {
 }
 
 export class ListMapper extends React.Component{
+
+    addLink = (a,b) =>{
+        const aKey = this.props.settings.tableHeaders[0]
+        const bKey = this.props.settings.tableHeaders[1]
+        const itemToAdd = {}
+        itemToAdd[aKey] = a
+        itemToAdd[bKey] = b
+        console.log(a,b);
+        this.props.addLink(itemToAdd);
+        this.props.requestRefresh();
+    }
+
+    deleteLink = (a,b) =>{
+        const aKey = this.props.settings.tableHeaders[0]
+        const bKey = this.props.settings.tableHeaders[1]
+        const itemToDelete = {}
+        itemToDelete[aKey] = a;
+        itemToDelete[bKey] = b;
+        console.log(a,b);
+        this.props.deleteLink(itemToDelete);
+        this.props.requestRefresh();
+    }
+
     render(){
         return(
             <div className="listMapper">
-                {this.props.data.map((item, index) => {
-                    return (
-                        <ListMapperItem key={index} currentMap={this.props.currentMap} active={item} item={item} headers = {this.props.headers}></ListMapperItem>
-                    )
-                })}
+                <div className="listMapper-header">{this.props.title}</div>
+                <div className="listMapper-CourseSelector">
+                    {this.props.data?
+                    
+                    this.props.data.map((item, index) => {
+                        return (
+                            <ListMapperItem currItem = {this.props.currItemID} addLink={this.addLink} deleteLink={this.deleteLink} key={index} currentMap={this.props.currentMap} item={item} headers = {this.props.headers} settings={this.props.settings}></ListMapperItem>
+                        )
+                    }): ""}
+                </div>
             </div>
         )
     }
@@ -1386,7 +1414,20 @@ export class ListMapper extends React.Component{
 export class ListMapperItem extends React.Component{
     render(){
         return(
-            <div className="listMapperItem">
+            this.props.currentMap.some((item) => item[this.props.settings.matchingHeaders[0]] == this.props.item[this.props.settings.matchingHeaders[1]]) ? 
+                <div className="listMapperItem active"  onClick={()=>this.props.deleteLink(this.props.item[this.props.settings.matchingHeaders[1]],this.props.currItem)}>
+                {Object.keys(this.props.headers).map((key, index) => {
+                    if(!this.props.headers[key].primaryKey && !this.props.headers[key].foreignKey ){
+                        
+                    return (
+                        this.props.item[key] + " "
+                    )
+                    }
+                })}
+            </div>
+            : 
+            
+            <div className="listMapperItem" onClick={()=>this.props.addLink(this.props.item[this.props.settings.matchingHeaders[1]],this.props.currItem,)}>
                 {Object.keys(this.props.headers).map((key, index) => {
                     if(!this.props.headers[key].primaryKey && !this.props.headers[key].foreignKey ){
                         

@@ -120,9 +120,10 @@ export default class PolytechnicModules extends React.Component {
                 requestRefresh = {this.requestRefresh}
                 error = {this.state.error}>
                 {this.state.content.data.map((item, index) => {
-                    return <ModuleToCourseMapper 
+                    return <div><ModuleToCourseMapper 
                     key={index}  
-                    mid={item.mid}/>
+                    mid={item.mid}/></div>
+
                 })}
             </DatapageLayout>
             
@@ -136,7 +137,9 @@ export class ModuleToCourseMapper extends React.Component{
     state = {
         content: [],
         currentMap : [],
+        contentSettings: {},
         loading: true,
+        settings: {},
     }
 
     async componentDidMount(){
@@ -154,6 +157,12 @@ export class ModuleToCourseMapper extends React.Component{
             })
         })
 
+        await this.getSettings().then((settings)=>{
+            console.log(settings);
+            this.setState({
+                settings:settings.settings,
+            })
+        })
 
         await this.getCurrentMap().then((content)=>{
             console.log(content);
@@ -165,6 +174,39 @@ export class ModuleToCourseMapper extends React.Component{
         this.setState({
             
             loading: false,
+        })
+    }
+
+    requestRefresh = async () =>{
+        this.setState({
+            loading:true,
+        })
+        await this.getContent().then((content)=>{
+            console.log(content);
+            this.setState({
+                content:content,
+            });
+        })
+        await this.getContentSettings().then((settings)=>{
+            console.log(settings);
+            this.setState({
+                contentSettings:settings,
+            })
+        })
+        await this.getSettings().then((settings)=>{
+            console.log(settings);
+            this.setState({
+                settings:settings.settings,
+            })
+        })
+        await this.getCurrentMap().then((content)=>{
+            console.log(content);
+            this.setState({
+                currentMap:content,
+            })
+        })
+        this.setState({
+            loading:false,
         })
     }
 
@@ -192,13 +234,25 @@ export class ModuleToCourseMapper extends React.Component{
         });
     }
 
-    getCurrentMap = () =>{
-        return fetch( "/PolytechnicModules/getModule" , {
+    getSettings = async () =>{
+        return fetch( "/polytechnicModuleCourseMap/settings" , {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({mid: this.props.mid}),
+        }).then(res => {
+            console.log(res);
+            return res.json();
+        });
+    }
+
+    getCurrentMap = () =>{
+        return fetch( "/polytechnicModuleCourseMap/allMapsFromModule" , {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({polytechnicModule: this.props.mid}),
         }).then(res => {
             console.log(res);
             return res.json();
@@ -206,7 +260,8 @@ export class ModuleToCourseMapper extends React.Component{
     }
 
     addLink = async (data) =>{
-        return fetch("/PolytechnicModuleCourseMap/create" , {
+        console.log(data);
+        return fetch("/polytechnicModuleCourseMap/create" , {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -218,7 +273,8 @@ export class ModuleToCourseMapper extends React.Component{
     }
 
     deleteLink = async (data) =>{
-        return fetch("/PolytechnicModuleCourseMap/delete" , {
+        console.log(data);
+        return fetch("/polytechnicModuleCourseMap/delete" , {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -235,7 +291,7 @@ export class ModuleToCourseMapper extends React.Component{
         return(
             this.state.loading? <div>Loading</div>:
         
-            <ListMapper addLink={this.addLink} deleteLink={this.deleteLink} headers={this.state.contentSettings.settings.fieldSettings} data={this.state.content.data} currentMap={this.state.currentMap.data}>
+            <ListMapper title={"Courses this module belongs to"} requestRefresh={this.requestRefresh} currItemID={this.props.mid} addLink={this.addLink} settings={this.state.settings} deleteLink={this.deleteLink} headers={this.state.contentSettings.settings.fieldSettings} data={this.state.content.data} currentMap={this.state.currentMap.data}>
                 
             </ListMapper>
         )

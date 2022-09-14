@@ -1,16 +1,16 @@
 const knex = require('../database.js');
 
 exports.allMaps = async (req, res) => {
-    knex.select('*').from('PolytechnicModuleCourseMap').then(data =>{
+    knex.select('*').from('SkillPolytechnicModuleMap').then(data =>{
         res.json({success:true, data, message: 'Map fetched!'});
     }).catch(err => {
         res.json({success:false, message: err.message});
     });
 }
 
-exports.allMapsFromCourse = async (req, res) => {
-    const {polytechnicCourse} = req.body;
-    knex.select('*').from('PolytechnicModuleCourseMap').where({polytechnicCourse: polytechnicCourse}).then(data =>{
+exports.allMapsFromSkill = async (req, res) => {
+    const {skillID} = req.body;
+    knex.select('*').from('SkillPolytechnicModuleMap').where({skillID: skillID}).then(data =>{
         res.json({success:true, data, message: 'Map fetched!'});
     }).catch(err => {
         res.json({success:false, message: err.message});
@@ -18,8 +18,9 @@ exports.allMapsFromCourse = async (req, res) => {
 }
 
 exports.allMapsFromModule = async (req, res) => {
-    const {polytechnicModule} = req.body;
-    knex.select('*').from('PolytechnicModuleCourseMap').where({polytechnicModule: polytechnicModule}).then(data =>{
+    console.log(req.body)
+    const {moduleID} = req.body;
+    knex.select('*').from('SkillPolytechnicModuleMap').where({moduleID: moduleID}).then(data =>{
         res.json({success:true, data, message: 'Map fetched!'});
     }).catch(err => {
         res.json({success:false, message: err.message});
@@ -27,8 +28,8 @@ exports.allMapsFromModule = async (req, res) => {
 }
 
 exports.create = async (req, res) => {
-    const {polytechnicCourse, polytechnicModule} = req.body;
-    knex('PolytechnicModuleCourseMap').insert({polytechnicCourse: polytechnicCourse, polytechnicModule: polytechnicModule}).then(data =>{
+    const {skillID, moduleID} = req.body;
+    knex('SkillPolytechnicModuleMap').insert({skillID: skillID, moduleID: moduleID}).then(data =>{
         res.json({success:true, data, message: 'Map created!'});
     }).catch(err => {
         res.json({success:false, message: err.message});
@@ -36,8 +37,8 @@ exports.create = async (req, res) => {
 }
 
 exports.delete = async (req, res) => {
-    const {polytechnicCourse, polytechnicModule} = req.body;
-    knex('PolytechnicModuleCourseMap').where({polytechnicCourse : polytechnicCourse, polytechnicModule: polytechnicModule}).del().then(data =>{
+    const {skillID, moduleID} = req.body;
+    knex('SkillPolytechnicModuleMap').where({skillID : skillID, moduleID: moduleID}).del().then(data =>{
         res.json({success:true, data, message: 'Map deleted!'});
     }).catch(err => {
         res.json({success:false, message: err.message});
@@ -45,15 +46,16 @@ exports.delete = async (req, res) => {
 }
 
 exports.settings = async (req, res) => {
+
     const settings = {
         matchingHeaders : [
-            'polytechnicCourse',
-            'cid',
+            'moduleID',
+            'mid',
         ],
 
         tableHeaders: [
-            'polytechnicCourse',
-            'polytechnicModule'
+            'moduleID',
+            'skillID'
         ]
     }
     res.json({success:true, settings, message: 'Settings fetched!'});
