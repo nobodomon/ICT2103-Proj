@@ -1,9 +1,7 @@
 const knex = require("../database.js");
 
 exports.allModules = async (req, res) => {
-    knex.select("*").from("PolytechnicModules").join("PolytechnicCourses", function(){
-        this.on("PolytechnicModules.polytechnicCourse", "=", "PolytechnicCourses.cid")
-    }).then(data =>{
+    knex.select("*").from("PolytechnicModules").then(data =>{
         res.json({success:true, data, message: "Polytechnics fetched!"});
     }).catch(err => {
         res.json({success:false, message: err.message});
@@ -15,7 +13,6 @@ exports.create = async (req, res) => {
     knex.insert({
         "module code": req.body["module code"], 
         "module name" : req.body["module name"], 
-        "polytechnicCourse":req.body["polytechnicCourse"],
     }).into("PolytechnicModules").then(data =>{
         res.json({success:true, data, message: "Module created!"});
     }).catch(err => {
@@ -38,7 +35,6 @@ exports.update = async (req, res) => {
         mid: req.body["mid"], 
         "module code": req.body["module code"], 
         "module name" : req.body["module name"], 
-        "polytechnicCourse":req.body["polytechnicCourse"], 
     }).from("PolytechnicModules").where({mid: mid}).then(data =>{
         knex.select("*").from("PolytechnicModules").then(data =>{ 
             res.json({success:true, data, message: "Polytechnics fetched!"});
@@ -53,7 +49,6 @@ exports.addLink = async (req, res) => {
     knex.insert({
         "module code": req.body["module code"], 
         "module name" : req.body["module name"], 
-        "polytechnicCourse":req.body["polytechnicCourse"],
     }).into("PolytechnicModules").then(data =>{
         res.json({success:true, data, message: "Module created!"});
     }).catch(err => {
@@ -100,7 +95,6 @@ exports.settings = async (req, res) => {
             "mid",
             "module code",
             "module name",
-            "course name",
         ],
     }
 
@@ -121,12 +115,6 @@ exports.settings = async (req, res) => {
             type: "text",
             editable: true,
             displayLabel: "Module Name",
-        },
-        "polytechnicCourse": {
-            type: "dropdown",
-            editable: true,
-            displayLabel: "Polytechnic Course",
-            options: polytechnicCourses,
         },
     }
 

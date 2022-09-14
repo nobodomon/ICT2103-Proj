@@ -110,8 +110,6 @@ knex.schema
       table.increments('mid').primary()
       table.string("module code")
       table.string('module name')
-      table.integer('polytechnicCourse')
-      table.foreign('polytechnicCourse').references('cid').inTable('PolytechnicCourses').onDelete('CASCADE').onUpdate('CASCADE')
     })
     .then(()=>{
       console.log('Table \'PolytechnicModules\' created')
@@ -196,6 +194,32 @@ knex.schema
     console.error(`There was an error setting up the database: ${error}`)
   })
 
+
+knex.schema
+  .hasTable("PolytechnicModuleCourseMap")
+    .then((exists)=>{
+      if(!exists) {
+        return knex.schema.createTable("PolytechnicModuleCourseMap", (table)=>{
+          table.integer('polytechnicModule')
+          table.foreign('polytechnicModule').references('mid').inTable('PolytechnicModules').onDelete('CASCADE').onUpdate('CASCADE')
+          table.integer('polytechnicCourse')
+          table.foreign('polytechnicCourse').references('cid').inTable('PolytechnicCourses').onDelete('CASCADE').onUpdate('CASCADE')
+          table.primary(['polytechnicModule', 'polytechnicCourse'])
+        })
+        .then(()=>{
+          console.log('Table \'PolytechnicModuleCourseMap\' created')
+        })
+        .catch((error)=>{
+          console.error(`There was an error creating table: ${error}`)
+        })
+      }
+  }).then(()=>{
+    console.log('done')
+  }
+  ).catch((error)=>{
+    console.error(`There was an error setting up the database: ${error}`)
+  }
+)
 
 // Just for debugging purposes:
 // Log all data in "books" table
