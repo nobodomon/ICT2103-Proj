@@ -206,7 +206,7 @@ export class ModuleToCourseMapper extends React.Component{
     }
 
     addLink = async (data) =>{
-        return fetch("/PolytechnicModules/addCourseToModule" , {
+        return fetch("/PolytechnicModuleCourseMap/create" , {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -217,12 +217,25 @@ export class ModuleToCourseMapper extends React.Component{
         });
     }
 
+    deleteLink = async (data) =>{
+        return fetch("/PolytechnicModuleCourseMap/delete" , {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data)
+        }).then(async res => {
+            return res.json();
+        });
+    }
+
+
     render(){
         
         return(
             this.state.loading? <div>Loading</div>:
         
-            <ListMapper headers={this.state.contentSettings.settings.fieldSettings} data={this.state.content.data} currentMap={this.state.currentMap.data}>
+            <ListMapper addLink={this.addLink} deleteLink={this.deleteLink} headers={this.state.contentSettings.settings.fieldSettings} data={this.state.content.data} currentMap={this.state.currentMap.data}>
                 
             </ListMapper>
         )

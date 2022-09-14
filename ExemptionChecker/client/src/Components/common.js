@@ -1375,7 +1375,7 @@ export class ListMapper extends React.Component{
             <div className="listMapper">
                 {this.props.data.map((item, index) => {
                     return (
-                        <ListMapperItem key={index} active={item} item={item} headers = {this.props.headers}></ListMapperItem>
+                        <ListMapperItem key={index} currentMap={this.props.currentMap} active={item} item={item} headers = {this.props.headers}></ListMapperItem>
                     )
                 })}
             </div>
