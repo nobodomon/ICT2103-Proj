@@ -20,12 +20,16 @@ exports.allMapsFromSkill = async (req, res) => {
 exports.allMapsFromModule = async (req, res) => {
     console.log(req.body)
     const {moduleID} = req.body;
-    knex.select('*').from('SkillPolytechnicModuleMap').where({moduleID: moduleID}).then(data =>{
+    knex.select('*').from('SkillPolytechnicModuleMap').join("Skills", function(){
+        this.on("Skills.sid", "=", "SkillPolytechnicModuleMap.skillID")
+    }).where({moduleID: moduleID}).then(data =>{
         res.json({success:true, data, message: 'Map fetched!'});
     }).catch(err => {
         res.json({success:false, message: err.message});
     });
 }
+
+
 
 exports.create = async (req, res) => {
     const {skillID, moduleID} = req.body;
@@ -56,7 +60,27 @@ exports.settings = async (req, res) => {
         tableHeaders: [
             'moduleID',
             'skillID'
-        ]
+        ],
+
+        fieldSettings: {
+            "moduleID":{
+                displayLabel: "Module",
+                foreignKey:true,
+            },
+            "skillID":{
+
+                displayLabel: "Skill",
+                foreignKey:true,
+            },
+            "skill":{
+                displayLabel: "Skills",
+            },
+
+            "sid":{
+                displayLabel: "Skill ID",
+                foreignKey:true,
+            }
+        },
     }
     res.json({success:true, settings, message: 'Settings fetched!'});
 }

@@ -3097,6 +3097,7 @@ nav {
 .listMapper{
     display: flex;
     flex-direction: column;
+    max-height: 350px;
 
     .listMapper-header{
         margin:15px;
@@ -3104,7 +3105,7 @@ nav {
         font-weight: bold;
     }
 
-    .listMapper-CourseSelector{
+    .listMapper-Selector{
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         column-gap: 15px;

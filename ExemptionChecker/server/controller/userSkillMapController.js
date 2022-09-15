@@ -55,8 +55,8 @@ exports.settings = async (req, res) => {
             ],
     
             tableHeaders: [
-                'userID',
-                'skillID'
+                'skillID',
+                'userID'
             ]
         }
     

@@ -6,6 +6,10 @@ const router = express.Router();
 
 router.post("/allSkills", skillRoutes.allSkills);
 
+router.post("/allSkillsFromPolytechnicCourse", skillRoutes.allSkillsFromPolytechnicCourse);
+
+router.post("/allSkillsFromUniversityCourse", skillRoutes.allSkillsFromUniversityCourse);
+
 router.post("/create", skillRoutes.create);
 
 router.post("/delete", skillRoutes.delete);

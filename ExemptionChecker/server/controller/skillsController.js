@@ -8,6 +8,35 @@ exports.allSkills = async (req, res) => {
     });
 }
 
+exports.allSkillsFromPolytechnicCourse = async (req, res) => {
+    const { courseID } = req.body;
+    knex.select('sid', 'skill', 'polytechnicCourse').from('Skills').join('SkillPolytechnicModuleMap', function(){
+        this.on('Skills.sid', '=', 'SkillPolytechnicModuleMap.skillID')
+    }).join("PolytechnicModuleCourseMap", function(){
+        this.on("SkillPolytechnicModuleMap.moduleID", "=", "PolytechnicModuleCourseMap.polytechnicModule")
+    }).where({polytechnicCourse: courseID}).then(data =>{
+        res.json({success:true, data, message: 'Skills fetched!'});
+    }
+    ).catch(err => {
+        res.json({success:false, message: err.message});
+    });
+}
+
+exports.allSkillsFromUniversityCourse = async (req, res) => {
+    const { courseID } = req.body;
+    knex.select('sid', 'skill', 'universityCourse').from('Skills').join('SkillUniversityModuleMap', function(){
+        this.on('Skills.sid', '=', 'SkillUniversityModuleMap.skillID')
+    }).join("UniversityModuleCourseMap", function(){
+        this.on("SkillUniversityModuleMap.moduleID", "=", "UniversityModuleCourseMap.universityModule")
+    }).where({universityCourse: courseID}).then(data =>{
+        res.json({success:true, data, message: 'Skills fetched!'});
+    }
+    ).catch(err => {
+        res.json({success:false, message: err.message});
+    });
+}
+
+
 exports.create = async (req, res) => {
     const {skill} = req.body;
     knex('Skills').insert({skill: skill}).then(data =>{
@@ -63,9 +92,35 @@ exports.settings = async (req, res) => {
         },
     }
 
+    const listViewSettings = {
+        "PolytechnicCourseSkills":{
+            fieldSettings:{
+                "sid":{
+                    displayLabel: "Skill ID",
+                    foreignKey:true,
+                },
+                "skill":{
+                    displayLabel: "Skill",
+                },
+            }
+        },
+        "UniversityCourseSkills": {
+            fieldSettings:{
+                "sid":{
+                    displayLabel: "Skill ID",
+                    foreignKey:true,
+                },
+                "skill":{
+                    displayLabel: "Skill",
+                },
+            }
+        }
+    }
+
     const settings = {
         columnSettings: columnSettings,
         fieldSettings: fieldSettings,
+        listViewSettings: listViewSettings,
     }
 
     res.json({success : true, settings: settings, message: "Settings fetched!"});

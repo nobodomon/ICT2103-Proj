@@ -1397,7 +1397,7 @@ export class ListMapper extends React.Component{
         return(
             <div className="listMapper">
                 <div className="listMapper-header">{this.props.title}</div>
-                <div className="listMapper-CourseSelector">
+                <div className="listMapper-Selector">
                     {this.props.data?
                     
                     this.props.data.map((item, index) => {
@@ -1428,6 +1428,41 @@ export class ListMapperItem extends React.Component{
             : 
             
             <div className="listMapperItem" onClick={()=>this.props.addLink(this.props.item[this.props.settings.matchingHeaders[1]],this.props.currItem,)}>
+                {Object.keys(this.props.headers).map((key, index) => {
+                    if(!this.props.headers[key].primaryKey && !this.props.headers[key].foreignKey ){
+                        
+                    return (
+                        this.props.item[key] + " "
+                    )
+                    }
+                })}
+            </div>
+        )
+    }
+}
+
+export class ListMapperView extends React.Component{
+    render(){
+        return(
+            <div className="listMapper">
+                <div className="listMapper-header">{this.props.title}</div>
+                <div className="listMapper-Selector">
+                    {this.props.data?
+                    this.props.data.map((item, index) => {
+                        return (
+                            <ListMapperViewItem key={index} item={item} headers = {this.props.headers} settings={this.props.settings}></ListMapperViewItem>
+                        )
+                    }): ""}
+                </div>
+            </div>
+        )
+    }
+}
+
+export class ListMapperViewItem extends React.Component{
+    render(){
+        return(
+            <div className="listMapperItem active">
                 {Object.keys(this.props.headers).map((key, index) => {
                     if(!this.props.headers[key].primaryKey && !this.props.headers[key].foreignKey ){
                         

@@ -1,6 +1,6 @@
 
 import React from "react"
-import { ListMapper } from "../Components/common"
+import { ListMapper, ListMapperView } from "../Components/common"
 import DatapageLayout from "./PageLayout"
 
 export default class UniversityModules extends React.Component {
@@ -120,10 +120,20 @@ export default class UniversityModules extends React.Component {
                 requestRefresh = {this.requestRefresh}
                 error = {this.state.error}>
                 {this.state.content.data.map((item, index) => {
-                    return <div><ModuleToCourseMapper 
-                    key={index}  
-                    mid={item.mid}/></div>
+                    return(
+                        <div>
+                        <ModuleToCourseMapper
+                            key={index}  
+                            mid={item.mid}>
+                        </ModuleToCourseMapper>
+                        <ModuleSkills
+                            key={index}
+                            mid={item.mid}>
+                        </ModuleSkills>
+                    </div>
 
+                    ) 
+                    
                 })}
             </DatapageLayout>
             
@@ -295,6 +305,112 @@ export class ModuleToCourseMapper extends React.Component{
             </ListMapper>
         )
     }
+}
 
+
+
+export class ModuleSkills extends React.Component{
+    state = {
+        content: [],
+        currentMap : [],
+        contentSettings: {},
+        loading: true,
+        settings: {},
+    }
+
+    async componentDidMount(){
+        await this.getContent().then((content)=>{
+            console.log(content);
+            this.setState({
+                content:content.data,
+            });
+        })
+
+        await this.getSettings().then((settings)=>{
+            console.log(settings);
+            this.setState({
+                settings:settings.settings,
+            })
+        })
+
+
+        this.setState({
+            
+            loading: false,
+        })
+    }
+
+    requestRefresh = async () =>{
+        this.setState({
+            loading:true,
+        })
+        await this.getContent().then((content)=>{
+            console.log(content);
+            this.setState({
+                content:content.data,
+            });
+        })
+        
+        await this.getSettings().then((settings)=>{
+            console.log(settings);
+            this.setState({
+                settings:settings.settings,
+            })
+        })
+        this.setState({
+            loading:false,
+        })
+    }
     
+    getContent = () =>{
+        return fetch( "/skillUniversityModuleMap/allMapsFromModule" , {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({moduleID: this.props.mid}),
+        }).then(res => {
+            console.log(res);
+            return res.json();
+        })
+    }
+
+    getSettings = async () =>{
+        return fetch( "/skillUniversityModuleMap/settings" , {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        }).then(res => {
+            console.log(res);
+            return res.json();
+        });
+    }
+
+
+    addLink = async (data) =>{
+
+    }
+
+    deleteLink = async (data) =>{
+    }
+
+
+    render(){
+        
+        return(
+            this.state.loading? <div>Loading</div>:
+        
+            <ListMapperView 
+            title={"Skills this module requires"} 
+            requestRefresh={this.requestRefresh} 
+            currItemID={this.props.mid} 
+            addLink={this.addLink} 
+            settings={this.state.settings} 
+            deleteLink={this.deleteLink} 
+            headers={this.state.settings.fieldSettings} 
+            data={this.state.content}>
+            </ListMapperView>
+        )
+    } 
 }
