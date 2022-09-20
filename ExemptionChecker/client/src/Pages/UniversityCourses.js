@@ -210,14 +210,12 @@ export class CourseSkills extends React.Component{
         });
     }
 
-
     addLink = async (data) =>{
 
     }
 
     deleteLink = async (data) =>{
     }
-
 
     render(){
         

@@ -12,6 +12,7 @@ import uploadAvatar from "../Assets/upload-avatar.png";
 import logout from "../Assets/logout.png";
 
 import appLogo from "../Assets/app-logo.png";
+import { CalendarView } from "../Components/common";
 
 const testOptions = [
     {label: "Option 1", value: 1}, 
@@ -62,6 +63,8 @@ export default class DefaultPage extends React.Component {
                     <StdInput hasSaveBtn={true} enabled={true} options={testOptions} type={"multiselect"} label={"Multi-select Box"} onChange={()=>{}}></StdInput>   
 
                 </div>
+
+                <CalendarView></CalendarView>
             </BodyContainer>
         )
     }

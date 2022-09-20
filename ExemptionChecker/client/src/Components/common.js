@@ -3,6 +3,7 @@ import "../styles/Hamburger.scss";
 import footer from "../Assets/footer.png";
 import { Link } from "react-router-dom";
 import { searchSuggestions } from "../Pages/PageLayout";
+import moment from "moment";
 
 export class DivSpacing extends React.Component {
     state = {
@@ -1472,6 +1473,35 @@ export class ListMapperViewItem extends React.Component{
                     }
                 })}
             </div>
+        )
+    }
+}
+
+
+const steps = {
+    0: "month",
+    1: "week",
+    2: "day",
+}
+
+export class CalendarView extends React.Component{
+
+    state={
+        month: moment().month(),
+    }
+    componentDidMount(){
+    }
+
+    render(){
+        return (
+            <MultiStepBox steps={steps} currentStep={0}>
+                <MonthView>
+                </MonthView>
+                <WeekView>
+                </WeekView>
+                <DayView>
+                </DayView>
+            </MultiStepBox>
         )
     }
 }
