@@ -1,8 +1,8 @@
 BEGIN TRANSACTION;
 CREATE TABLE IF NOT EXISTS "PolytechnicCourses" (
 	"cid"	integer NOT NULL,
-	"course code"	varchar(255),
-	"course name"	varchar(255),
+	"courseCode"	varchar(255),
+	"courseName"	varchar(255),
 	PRIMARY KEY("cid" AUTOINCREMENT)
 );
 CREATE TABLE IF NOT EXISTS "Users" (
