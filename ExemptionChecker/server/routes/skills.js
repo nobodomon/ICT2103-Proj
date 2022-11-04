@@ -10,6 +10,8 @@ router.post("/allSkillsFromPolytechnicCourse", skillRoutes.allSkillsFromPolytech
 
 router.post("/allSkillsFromUniversityCourse", skillRoutes.allSkillsFromUniversityCourse);
 
+router.post("/allSKillFromUser", skillRoutes.allSKillFromUser);
+
 router.post("/create", skillRoutes.create);
 
 router.post("/delete", skillRoutes.delete);

@@ -11,6 +11,7 @@ export default class Landing extends React.Component{
     state ={
         polyCourses: [],
         uniCourses: [],
+        skillOption: [],
         loading:true,
     }
 
@@ -22,11 +23,32 @@ export default class Landing extends React.Component{
             dataToPush = {...dataToPush, ...temp};
         });
 
+        var skillOptions = [];
+
+        await this.getAllSkills().then((skills) => {
+            skills.data.map((item) => {
+                skillOptions.push({label: item.skill, value: item.sid});
+            });
+
+
+            this.setState({skillOption: skillOptions});
+        });
+
         await this.getSkills().then((skills) =>{
             this.setState({
                 skills: skills.data
             })
         });
+
+        await this.getUserSkills().then((userSkills) =>{
+            var temp = new Set(this.state.skills.map(skill => skill.sid));
+            var user = userSkills.data;
+            user.map((item)=> Object.assign(item,{editable: true}));
+            var tempList = [...this.state.skills, ...user.filter(skill => !temp.has(skill.sid))];
+            this.setState({
+                skills: tempList
+            })
+        })
 
         await this.getPolytechnicCourses().then((courses) =>{
             var courseList = [];
@@ -69,6 +91,37 @@ export default class Landing extends React.Component{
                 body: JSON.stringify({
                     courseID: this.props.user.data[0].polytechnicCourse
                 }),
+            }
+        ).then((res) => {
+            return res.json()
+        })
+    }
+
+    getUserSkills = async() =>{
+        return await fetch(
+            "/skills/allSKillFromUser",
+            {
+                method:"POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    userID: this.props.user.data[0].uid
+                }),
+            }
+        ).then((res) => {
+            return res.json()
+        })
+    }
+
+    getAllSkills = async() =>{
+        return await fetch(
+            "/skills/allSkills",
+            {
+                method:"POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
             }
         ).then((res) => {
             return res.json()
@@ -138,6 +191,84 @@ export default class Landing extends React.Component{
         })
     }
 
+    handleAddSkill = async (field, value) =>{
+        await this.addSkill(this.props.user.data[0].uid, value).then( async(result) =>{
+            console.log(result);
+            this.getUserInfo().then((result) =>{
+                console.log(result);
+                this.props.updateUser(result);
+            })
+            
+
+            var skillOptions = [];
+
+            await this.getAllSkills().then((skills) => {
+                skills.data.map((item) => {
+                    skillOptions.push({label: item.skill, value: item.sid});
+                });
+
+
+                this.setState({skillOption: skillOptions});
+            });
+
+            await this.getSkills().then((skills) =>{
+                this.setState({
+                    skills: skills.data
+                })
+            });
+
+            await this.getUserSkills().then((userSkills) =>{
+                var temp = new Set(this.state.skills.map(skill => skill.sid));
+                var user = userSkills.data;
+                user.map((item)=> Object.assign(item,{editable: true}));
+                var tempList = [...this.state.skills, ...user.filter(skill => !temp.has(skill.sid))];
+                this.setState({
+                    skills: tempList
+                })
+            })
+            return result.success;
+        })
+    }
+
+    handleDeleteSkill = async (value) =>{
+        await this.deleteSkill(this.props.user.data[0].uid, value).then(async (result) =>{
+            console.log(result);
+            this.getUserInfo().then((result) =>{
+                console.log(result);
+                this.props.updateUser(result);
+            })
+            
+
+            var skillOptions = [];
+
+            await this.getAllSkills().then((skills) => {
+                skills.data.map((item) => {
+                    skillOptions.push({label: item.skill, value: item.sid});
+                });
+
+
+                this.setState({skillOption: skillOptions});
+            });
+
+            await this.getSkills().then((skills) =>{
+                this.setState({
+                    skills: skills.data
+                })
+            });
+
+            await this.getUserSkills().then((userSkills) =>{
+                var temp = new Set(this.state.skills.map(skill => skill.sid));
+                var user = userSkills.data;
+                user.map((item)=> Object.assign(item,{editable: true}));
+                var tempList = [...this.state.skills, ...user.filter(skill => !temp.has(skill.sid))];
+                this.setState({
+                    skills: tempList
+                })
+            })
+            return result.success;
+        })
+    }
+
     update = async()=>{
         console.log(this.state.dataToPush);
         return await fetch(
@@ -148,6 +279,42 @@ export default class Landing extends React.Component{
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(this.state.dataToPush),
+            }
+        ).then((res) => {
+            return res.json()
+        })
+    }
+
+    addSkill = async(uid,sid) =>{
+        return await fetch(
+            "/userSkillMap/create",
+            {
+                method:"POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    userID: uid,
+                    skillID: sid
+                }),
+            }
+        ).then((res) => {
+            return res.json()
+        })
+    }
+
+    deleteSkill = async(uid,sid) =>{
+        return await fetch(
+            "/userSkillMap/delete",
+            {
+                method:"POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    userID: uid,
+                    skillID: sid
+                }),
             }
         ).then((res) => {
             return res.json()
@@ -182,12 +349,27 @@ export default class Landing extends React.Component{
                             options={this.state.uniCourses}
                             label="University Course"
                             enabled={true}
+                            hasSaveBtn ={true}
                             value={this.props.user.data[0].universityCourse}
                             onChange={this.handleOnChange}     
                             fieldLabel={"universityCourse"}
                         >
                         </StdInput>
-                        <SkillContainer skills={this.state.skills}></SkillContainer>
+
+                        
+                        <StdInput 
+                            type="dropdown" 
+                            options={this.state.skillOption}
+                            label="Add Skills"
+                            enabled={true}
+                            hasSaveBtn ={true}
+                            onChange={this.handleAddSkill}     
+                            fieldLabel={"universityCourse"}
+                        >
+                        </StdInput>
+
+
+                        <SkillContainer deleteSkill={this.handleDeleteSkill} skills={this.state.skills}></SkillContainer>
                     </div>
                     <div className="header">
                         <h1>Welcome, {this.props.user.data[0].username}</h1>
@@ -209,7 +391,7 @@ export class SkillContainer extends React.Component{
                 <div className="skill-list">
                     
                 {this.props.skills.map((skill) =>{
-                    return <SkillCard skill={skill}></SkillCard>
+                    return <SkillCard skill={skill} deleteSkill={this.props.deleteSkill}></SkillCard>
                 })} 
                 </div>
             </div>
@@ -220,8 +402,11 @@ export class SkillContainer extends React.Component{
 export class SkillCard extends React.Component{
     render(){
         return(
-            <div className="skill-card">
+            <div className="skill-card" >
                 {this.props.skill.skill}
+                {this.props.skill.editable && 
+                <i className="bi bi-x-circle-fill" onClick={this.props.skill.editable? ()=>{this.props.deleteSkill(this.props.skill.sid)}:()=>{}}></i>
+                }
             </div>
         )
     }

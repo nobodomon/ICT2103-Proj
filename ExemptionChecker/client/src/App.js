@@ -84,11 +84,11 @@ export default function App() {
                 <DrawerItem label="Users" to={"/Users"} logo={dashboard}></DrawerItem>
                 <DrawerItem label="Skills" to={"/Skills"} logo={dashboard}></DrawerItem>
                 <DrawerItem label="Polytechnics" to={"/Polytechnics"} logo={dashboard}></DrawerItem>
-                <DrawerItem label="Polytechnic Courses" to={"/PolytechnicCourses"} logo={dashboard}></DrawerItem>
-                <DrawerItem label="Polytechnic Modules" to={"/PolytechnicModules"} logo={dashboard}></DrawerItem>
+                <DrawerItem label="Poly Courses" to={"/PolytechnicCourses"} logo={dashboard}></DrawerItem>
+                <DrawerItem label="Poly Modules" to={"/PolytechnicModules"} logo={dashboard}></DrawerItem>
                 <DrawerItem label="Universities" to={"/Universities"} logo={dashboard}></DrawerItem>
-                <DrawerItem label="University Courses" to={"/UniversityCourses"} logo={dashboard}></DrawerItem>
-                <DrawerItem label="University Modules" to={"/UniversityModules"} logo={dashboard}></DrawerItem>
+                <DrawerItem label="Uni Courses" to={"/UniversityCourses"} logo={dashboard}></DrawerItem>
+                <DrawerItem label="Uni Modules" to={"/UniversityModules"} logo={dashboard}></DrawerItem>
               </DrawerSection>
             </SlideDrawer>
             <Routes>

@@ -67,6 +67,17 @@
                 font-size:0.8rem;
                 font-weight: 600;
                 color:white;
+
+                display:flex;
+                justify-content: space-between;
+                i{
+                    margin-left: 15px;
+                    margin-right: -5px;
+
+                    &:hover{
+                        cursor: pointer;
+                    }
+                }
             }
         }
     }

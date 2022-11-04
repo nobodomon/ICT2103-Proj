@@ -36,6 +36,18 @@ exports.allSkillsFromUniversityCourse = async (req, res) => {
     });
 }
 
+exports.allSKillFromUser = async (req, res) => {
+    const { userID } = req.body;
+    knex.select('sid', 'skill').from('Skills').join('UserSkillMap', function(){
+        this.on('Skills.sid', '=', 'UserSkillMap.skillID')
+    }).where({userID: userID}).then(data =>{
+        res.json({success:true, data, message: 'Skills fetched!'});
+    }
+    ).catch(err => {
+        res.json({success:false, message: err.message});
+    });
+}
+
 
 exports.create = async (req, res) => {
     const {skill} = req.body;
