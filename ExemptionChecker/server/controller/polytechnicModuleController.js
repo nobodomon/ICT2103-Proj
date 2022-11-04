@@ -11,8 +11,8 @@ exports.allModules = async (req, res) => {
 exports.create = async (req, res) => {
     console.log(req.body);
     knex.insert({
-        "module code": req.body["module code"], 
-        "module name" : req.body["module name"], 
+        "moduleCode": req.body["moduleCode"], 
+        "moduleName" : req.body["module name"], 
     }).into("PolytechnicModules").then(data =>{
         res.json({success:true, data, message: "Module created!"});
     }).catch(err => {
@@ -33,8 +33,8 @@ exports.update = async (req, res) => {
     const {mid} = req.body;
     knex.update({
         mid: req.body["mid"], 
-        "module code": req.body["module code"], 
-        "module name" : req.body["module name"], 
+        "moduleCode": req.body["moduleCode"], 
+        "moduleName" : req.body["moduleName"], 
     }).from("PolytechnicModules").where({mid: mid}).then(data =>{
         knex.select("*").from("PolytechnicModules").then(data =>{ 
             res.json({success:true, data, message: "Polytechnics fetched!"});
@@ -71,8 +71,8 @@ exports.settings = async (req, res) => {
         // Pls match header names with column names (case sensitive!)
         headers: [
             "mid",
-            "module code",
-            "module name",
+            "moduleCode",
+            "moduleName",
         ],
     }
 
@@ -84,12 +84,12 @@ exports.settings = async (req, res) => {
             primaryKey: true,
             displayLabel: "Module ID",
         },
-        "module code": {
+        "moduleCode": {
             type: "text",
             editable: true,
             displayLabel: "Module Code",
         },
-        "module name": {
+        "moduleName": {
             type: "text",
             editable: true,
             displayLabel: "Module Name",

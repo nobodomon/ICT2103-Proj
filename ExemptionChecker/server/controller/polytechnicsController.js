@@ -9,7 +9,7 @@ exports.allPolytechnics = async (req, res) => {
 }
 
 exports.create = async (req, res) => {
-    knex.insert({"polytechnic name": req.body["polytechnic name"]}).into("Polytechnics").then(data =>{
+    knex.insert({"polytechnicName": req.body["polytechnicName"]}).into("Polytechnics").then(data =>{
         res.json({success:true, data, message: "Module created!"});
     }).catch(err => {
         res.json({success:false, message: err.message});
@@ -26,7 +26,7 @@ exports.delete = async (req, res) => {
 }
 
 exports.update = async (req, res) => {
-    knex.update({pid: req.body["pid"], "polytechnic name": req.body["polytechnic name"]}).from("Polytechnics").where({pid: pid}).then(data =>{
+    knex.update({pid: req.body["pid"], "polytechnicName": req.body["polytechnicName"]}).from("Polytechnics").where({pid: pid}).then(data =>{
         knex.select("*").from("Polytechnics").then(data =>{ 
             res.json({success:true, data, message: "Polytechnics fetched!"});
         })
@@ -41,7 +41,7 @@ exports.settings = async (req, res) => {
         // Pls match header names with column names (case sensitive!)
         headers: [
             "pid",
-            "polytechnic name",
+            "polytechnicName",
         ],
     }
 
@@ -53,7 +53,7 @@ exports.settings = async (req, res) => {
             primaryKey: true,
             displayLabel: "Polytechnic ID",
         },
-        "polytechnic name": {
+        "polytechnicName": {
             type: "text",
             editable: true,
             displayLabel: "Polytechnic Name",
