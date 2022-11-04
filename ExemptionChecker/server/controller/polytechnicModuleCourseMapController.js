@@ -16,7 +16,6 @@ exports.allMapsFromCourse = async (req, res) => {
         res.json({success:false, message: err.message});
     });
 }
-
 exports.allMapsFromModule = async (req, res) => {
     const {polytechnicModule} = req.body;
     knex.select('*').from('PolytechnicModuleCourseMap').where({polytechnicModule: polytechnicModule}).then(data =>{

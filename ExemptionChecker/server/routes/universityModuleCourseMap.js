@@ -10,6 +10,8 @@ router.post("/allMapsFromCourse", mapRoutes.allMapsFromCourse);
 
 router.post("/allMapsFromModule", mapRoutes.allMapsFromModule);
 
+router.post("/allModulesForCourse", mapRoutes.allModulesForCourse);
+
 router.post("/create", mapRoutes.create);
 
 router.post("/delete", mapRoutes.delete);

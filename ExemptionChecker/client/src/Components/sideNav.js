@@ -24,14 +24,14 @@ export default class SlideDrawer extends React.Component {
   render(){
     if(this.props.direction === "top"){
       return (
-        <div className={"side-drawer-top col-md-auto col-12 mb-4" + " " + this.state.drawerClass} id="drawerTop">
+        <div className={"side-drawer-top col-md-auto col-12 " + this.state.drawerClass} id="drawerTop">
           {this.props.children}
         </div>
       )
     }
     if(this.props.direction === "bot"){
       return(
-        <div className={"col-12 side-drawer-bot" + " " + this.state.drawerClass} id="drawerTop" style={{"--primarySetting":this.props.settings.primaryColor}}>
+        <div className={"col-12 side-drawer-bot " + this.state.drawerClass} id="drawerTop" style={{"--primarySetting":this.props.settings.primaryColor}}>
           {this.props.children}
         </div>
       )
@@ -48,13 +48,11 @@ export class Backdrop extends React.Component {
 }
 
 export class DrawerItem extends React.Component {
+  state = {
+    currentActive: this.props.currentActive
+  }
   constructor(props){
     super(props);
-    if(this.props.type === "active"){
-      this.state = {
-        classType: "active"
-      }
-    }
     if(this.props.type === "favourite"){
       this.state = {
         classType : "favourite"
@@ -66,12 +64,36 @@ export class DrawerItem extends React.Component {
       }
     }
   }
+
+  componentDidUpdate(prevProps){
+      if(prevProps.currentActive !== this.props.currentActive){
+        this.setState({
+          currentActive: this.props.currentActive
+        })
+
+        if(this.props.currentActive === this.props.label){
+          this.setState({
+            classType: "active"
+          })
+        }else{
+          this.setState({
+            classType: ""
+          })
+        }
+      }
+  }
+
+  handleOnClick=()=>{
+    console.log("clicked")
+    this.props.setActive?.(this.props.label);
+  }
+
   render() {
 
     return (
-      <Link className={"drawerItem"} to={this.props.to} style={{ minWidth: this.props.width, maxWidth: this.props.width }} onClick={this.props.onClick}>
-        {this.props.logo != undefined ?
-          <img className={this.state.classType} src={this.props.logo} width={"56px"} height={"56px"}></img> : <></>}
+      <Link className={"drawerItem"} to={this.props.to} style={{ minWidth: this.props.width, maxWidth: this.props.width }} onClick={this.handleOnClick}>
+        {this.props.logo !== undefined ?
+        <div className={'drawerItem-logo ' + this.state.classType}><img className={"drawerItem-img "} src={this.props.logo} alt={this.props.label}></img> </div>: <></>}
         {this.props.label}
       </Link>
     )
@@ -88,8 +110,8 @@ export class DrawerItemNonLink extends React.Component {
 
     return (
       <div className={"drawerItemText"} style={{ minWidth: this.props.width, maxWidth: this.props.width }} onClick={this.props.onClick}>
-        {this.props.logo != undefined ?
-          <img src={this.props.logo} width={"56px"} height={"56px"}></img> : <></>}
+        {this.props.logo !== undefined ?
+          <img src={this.props.logo} width={"56px"} height={"56px"} alt={this.props.label}></img> : <></>}
         {this.props.label}
       </div>
     )

@@ -1,13 +1,13 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Link , useNavigate} from 'react-router-dom'
-import { Hamburger, IconButton,IconButtonAsLink } from "./common";
+import { Link } from 'react-router-dom'
+import { Hamburger,IconButtonAsLink } from "./common";
 import placeholderUser from "../Assets/placeholderUser.png"
 import { ListTile } from "../Pages/DefaultPage";
 
 export default class Nav extends React.Component {
     render() {
-        const baseNavClasses = "navbar navbar-expand-lg sticky-top d-flex justify-content-center container-fluid" + this.props.classes;
+        const baseNavClasses = "navbar navbar-expand-lg d-flex justify-content-center container-fluid" + this.props.classes;
         return (
             <nav className={baseNavClasses} style={{ height: "56px" }}>
                 <div className="d-flex align-items-center justify-content-between row-cols-md-3 col-12">
@@ -41,8 +41,7 @@ export class UserPanel extends React.Component {
     }
 
     routeChange=(e)=> {
-        let path = e;
-      }
+    }
     
 
     resize() {
@@ -66,9 +65,9 @@ export class UserPanel extends React.Component {
                 {this.state.showUserDetail && 
                 <IconButtonAsLink to={"/Logout"} className={"invert"} onClick={this.routeChange("/Logout")} icon={<i class="bi bi-box-arrow-left"></i>}></IconButtonAsLink>
                 }
-                {this.state.showUserDetail ? <ListTile leading={<img src={placeholderUser} width={"32px"}></img>} title={<span className="m-0">{this.props.user? this.props.user.data[0].username : ""}</span>}>
+                {this.state.showUserDetail ? <ListTile leading={<img src={placeholderUser} width={"32px"} alt={"profilePic"}></img>} title={<span className="m-0">{this.props.user? this.props.user.data[0].username : ""}</span>}>
 
-                </ListTile> : <ListTile leading={<img src={placeholderUser} width={"32px"}></img>}>
+                </ListTile> : <ListTile leading={<img src={placeholderUser} width={"32px"} alt={"profilePic"}></img>}>
 
                 </ListTile>}
             </div>

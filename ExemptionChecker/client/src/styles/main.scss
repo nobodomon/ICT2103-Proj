@@ -7,6 +7,7 @@
 
 $primary : #48a1da;
 $secondary: #4858da;
+$nav-active: #3980AE;
 $active: #8fc140;
 $base: #8D9AE9;
 $specific: #3fa0eb;
@@ -3097,7 +3098,6 @@ nav {
 .listMapper{
     display: flex;
     flex-direction: column;
-    max-height: 350px;
 
     .listMapper-header{
         margin:15px;
@@ -3110,6 +3110,8 @@ nav {
         grid-template-columns: repeat(2, 1fr);
         column-gap: 15px;
         row-gap: 15px;
+        max-height: 350px;
+        overflow: auto;
 
         @media screen and (max-width: $md) {
             grid-template-columns: repeat(1, 1fr);

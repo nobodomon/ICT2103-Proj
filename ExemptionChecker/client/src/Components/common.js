@@ -1,9 +1,10 @@
 import React from "react";
 import "../styles/Hamburger.scss";
-import footer from "../Assets/footer.png";
 import { Link } from "react-router-dom";
 import { searchSuggestions } from "../Pages/PageLayout";
 import moment from "moment";
+
+import footer from "../Assets/footer.png";
 
 export class DivSpacing extends React.Component {
     state = {
@@ -30,53 +31,6 @@ export class SizedBox extends React.Component {
 SizedBox.defaultProps = {
     width: "0px",
     height: "0px"
-}
-
-const clips = [
-    { clipPath: "polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%)" },
-    { clipPath: "circle(100% at 0 0)" },
-    { clipPath: "circle(100% at 100% 0)" },
-    { clipPath: "circle(100% at 0 100%)" },
-    { clipPath: "circle(100% at 100% 100%)" },
-    { clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)" },
-]
-export class AnimatedBackGround extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            animationDelayTL: Math.random() * 10 + 's',
-            animationDurationTL: Math.random() * 10 + 's',
-            animationDelayTR: Math.random() * 10 + 's',
-            animationDurationTR: Math.random() * 10 + 's',
-        }
-        this.reset = this.reset.bind(this);
-    }
-    reset = (pos) => {
-        switch (pos) {
-            case "topleft": {
-                this.setState({
-                    animationDelayTL: Math.random() * 10 + 's',
-                    animationDurationTL: Math.random() * 10 + 's',
-                })
-            }
-                break;
-            case "topright": {
-                this.setState({
-                    animationDelayTR: Math.random() * 10 + 's',
-                    animationDurationTR: Math.random() * 10 + 's',
-                })
-            }
-                break;
-
-        }
-    }
-    render() {
-        return (
-            <div className="animatedBackGround">
-            </div>
-        )
-    }
 }
 
 export class Footer extends React.Component {
@@ -110,7 +64,7 @@ export class Footer extends React.Component {
                     {this.state.showCopyright &&
                         <div className="footer-text no-print">Copyright &copy; 2022 Chimeric Technologies. All Rights Reserved.</div>
                     }
-                    <img className="footer-Logo" src={footer}></img>
+                    <img className="footer-Logo" alt={"footer Logo"} src={footer}></img>
                 </div>
             </div>
         )
@@ -120,7 +74,7 @@ export class Footer extends React.Component {
 export class StdInputDropDownOption extends React.Component {
     render() {
         return (
-            <div className={"dropdownOptions" + " " + this.props.className} type={this.props.type} value={this.props.value} onClick={this.props.onClick}>
+            <div className={"dropdownOptions " + this.props.className} type={this.props.type} value={this.props.value} onClick={this.props.onClick}>
 
                 {this.props.children}
             </div>
@@ -142,237 +96,7 @@ StdInputDropDownOption.defaultProps = {
     value: "",
 }
 
-// List of all potential country phone number code and their flag unicodes
-const telCodes = [
-    { value: "+1", label: "(+1) USA", countryCode: "🇺🇸" },
-    { value: "+7", label: "(+7) Russia", countryCode: "🇷🇺" },
-    { value: "+20", label: "(+20) Egypt", countryCode: "🇪🇬" },
-    { value: "+27", label: "(+27) South Africa", countryCode: "🇿🇦" },
-    { value: "+30", label: "(+30) Greece", countryCode: "🇬🇷" },
-    { value: "+31", label: "(+31) Netherlands", countryCode: "🇳🇱" },
-    { value: "+32", label: "(+32) Belgium", countryCode: "🇧🇪" },
-    { value: "+33", label: "(+33) France", countryCode: "🇫🇷" },
-    { value: "+34", label: "(+34) Spain", countryCode: "🇪🇸" },
-    { value: "+36", label: "(+36) Hungary", countryCode: "🇭🇺" },
-    { value: "+39", label: "(+39) Italy", countryCode: "🇮🇹" },
-    { value: "+40", label: "(+40) Romania", countryCode: "🇷🇴" },
-    { value: "+41", label: "(+41) Switzerland", countryCode: "🇨🇭" },
-    { value: "+43", label: "(+43) Austria", countryCode: "🇦🇹" },
-    { value: "+44", label: "(+44) United Kingdom", countryCode: "🇬🇧" },
-    { value: "+45", label: "(+45) Denmark", countryCode: "🇩🇰" },
-    { value: "+46", label: "(+46) Sweden", countryCode: "🇸🇪" },
-    { value: "+47", label: "(+47) Norway", countryCode: "🇳🇴" },
-    { value: "+48", label: "(+48) Poland", countryCode: "🇵🇱" },
-    { value: "+49", label: "(+49) Germany", countryCode: "🇩🇪" },
-    { value: "+51", label: "(+51) Brazil", countryCode: "🇧🇷" },
-    { value: "+52", label: "(+52) Mexico", countryCode: "🇲🇽" },
-    { value: "+53", label: "(+53) Cuba", countryCode: "🇨🇵" },
-    { value: "+54", label: "(+54) Argentina", countryCode: "🇦🇷" },
-    { value: "+55", label: "(+55) Brazil", countryCode: "🇧🇷" },
-    { value: "+56", label: "(+56) Chile", countryCode: "🇨🇱" },
-    { value: "+57", label: "(+57) Colombia", countryCode: "🇨🇴" },
-    { value: "+58", label: "(+58) Venezuela", countryCode: "🇻🇪" },
-    { value: "+60", label: "(+60) Malaysia", countryCode: "🇲🇾" },
-    { value: "+61", label: "(+61) Australia", countryCode: "🇦🇺" },
-    { value: "+64", label: "(+64) New Zealand", countryCode: "🇳🇿" },
-    { value: "+65", label: "(+65) Singapore", countryCode: "🇸🇬" },
-    { value: "+66", label: "(+66) Thailand", countryCode: "🇹🇭" },
-    { value: "+81", label: "(+81) Japan", countryCode: "🇯🇵" },
-    { value: "+82", label: "(+82) South Korea", countryCode: "🇰🇷" },
-    { value: "+84", label: "(+84) Vietnam", countryCode: "🇻🇳" },
-    { value: "+86", label: "(+86) China", countryCode: "🇨🇳" },
-    { value: "+90", label: "(+90) Turkey", countryCode: "🇹🇷" },
-    { value: "+91", label: "(+91) India", countryCode: "🇮🇳" },
-    { value: "+92", label: "(+92) Pakistan", countryCode: "🇵🇰" },
-    { value: "+93", label: "(+93) Afghanistan", countryCode: "🇦🇫" },
-    { value: "+94", label: "(+94) Sri Lanka", countryCode: "🇱🇰" },
-    { value: "+95", label: "(+95) Myanmar", countryCode: "🇲🇲" },
-    { value: "+98", label: "(+98) Iran", countryCode: "🇮🇷" },
-    { value: "+211", label: "(+211) South Sudan", countryCode: "🇸🇩" },
-    { value: "+212", label: "(+212) Morocco", countryCode: "🇲🇦" },
-    { value: "+213", label: "(+213) Algeria", countryCode: "🇩🇿" },
-    { value: "+216", label: "(+216) Tunisia", countryCode: "🇹🇳" },
-    { value: "+218", label: "(+218) Libya", countryCode: "🇱🇮" },
-    { value: "+220", label: "(+220) Gambia", countryCode: "🇬🇲" },
-    { value: "+221", label: "(+221) Senegal", countryCode: "🇸🇳" },
-    { value: "+222", label: "(+222) Mauritania", countryCode: "🇲🇷" },
-    { value: "+223", label: "(+223) Mali", countryCode: "🇲🇱" },
-    { value: "+224", label: "(+224) Guinea", countryCode: "🇬🇳" },
-    { value: "+225", label: "(+225) Côte d'Ivoire", countryCode: "🇨🇮" },
-    { value: "+226", label: "(+226) Burkina Faso", countryCode: "🇧🇫" },
-    { value: "+227", label: "(+227) Niger", countryCode: "🇳🇪" },
-    { value: "+228", label: "(+228) Togo", countryCode: "🇹🇬" },
-    { value: "+229", label: "(+229) Benin", countryCode: "🇧🇯" },
-    { value: "+230", label: "(+230) Mauritius", countryCode: "🇲🇺" },
-    { value: "+231", label: "(+231) Liberia", countryCode: "🇱🇷" },
-    { value: "+232", label: "(+232) Sierra Leone", countryCode: "🇸🇱" },
-    { value: "+233", label: "(+233) Ghana", countryCode: "🇬🇭" },
-    { value: "+234", label: "(+234) Nigeria", countryCode: "🇳🇦" },
-    { value: "+235", label: "(+235) Chad", countryCode: "🇹🇩" },
-    { value: "+236", label: "(+236) Central African Republic", countryCode: "🇨🇫" },
-    { value: "+237", label: "(+237) Cameroon", countryCode: "🇨🇲" },
-    { value: "+238", label: "(+238) Cape Verde", countryCode: "🇨🇻" },
-    { value: "+239", label: "(+239) Sao Tome and Principe", countryCode: "🇸🇹" },
-    { value: "+240", label: "(+240) Equatorial Guinea", countryCode: "🇬🇶" },
-    { value: "+241", label: "(+241) Gabon", countryCode: "🇬🇫" },
-    { value: "+242", label: "(+242) Congo", countryCode: "🇨🇬" },
-    { value: "+243", label: "(+243) Democratic Republic of the Congo", countryCode: "🇨🇩" },
-    { value: "+244", label: "(+244) Angola", countryCode: "🇦🇴" },
-    { value: "+245", label: "(+245) Guinea-Bissau", countryCode: "🇬🇷" },
-    { value: "+246", label: "(+246) Diego Garcia", countryCode: "🇩🇬" },
-    { value: "+247", label: "(+247) Ascension Island", countryCode: "🇦🇨" },
-    { value: "+248", label: "(+248) Seychelles", countryCode: "🇸🇨" },
-    { value: "+249", label: "(+249) Sudan", countryCode: "🇸🇩" },
-    { value: "+250", label: "(+250) Rwanda", countryCode: "🇷🇼" },
-    { value: "+251", label: "(+251) Ethiopia", countryCode: "🇪🇹" },
-    { value: "+252", label: "(+252) Somali", countryCode: "🇸🇲" },
-    { value: "+253", label: "(+253) Djibouti", countryCode: "🇩🇯" },
-    { value: "+254", label: "(+254) Kenya", countryCode: "🇰🇪" },
-    { value: "+255", label: "(+255) Tanzania", countryCode: "🇹🇿" },
-    { value: "+256", label: "(+256) Uganda", countryCode: "🇺🇬" },
-    { value: "+257", label: "(+257) Burundi", countryCode: "🇧🇮" },
-    { value: "+258", label: "(+258) Mozambique", countryCode: "🇲🇿" },
-    { value: "+260", label: "(+260) Zambia", countryCode: "🇿🇲" },
-    { value: "+261", label: "(+261) Madagascar", countryCode: "🇲🇬" },
-    { value: "+263", label: "(+263) Zimbabwe", countryCode: "🇿🇲" },
-    { value: "+264", label: "(+264) Namibia", countryCode: "🇳🇦" },
-    { value: "+265", label: "(+265) Malawi", countryCode: "🇲🇼" },
-    { value: "+266", label: "(+266) Lesotho", countryCode: "🇱🇸" },
-    { value: "+267", label: "(+267) Botswana", countryCode: "🇧🇼" },
-    { value: "+268", label: "(+268) Swaziland", countryCode: "🇸🇿" },
-    { value: "+269", label: "(+269) Comoros", countryCode: "🇰🇲" },
-    { value: "+290", label: "(+290) Saint Helena", countryCode: "🇸🇭" },
-    { value: "+291", label: "(+291) Eritrea", countryCode: "🇪🇷" },
-    { value: "+297", label: "(+297) Aruba", countryCode: "🇦🇼" },
-    { value: "+298", label: "(+298) Faroe Islands", countryCode: "🇫🇴" },
-    { value: "+299", label: "(+299) Greenland", countryCode: "🇬🇱" },
-    { value: "+350", label: "(+350) Gibraltar", countryCode: "🇬🇬" },
-    { value: "+351", label: "(+351) Portugal", countryCode: "🇵🇹" },
-    { value: "+352", label: "(+352) Luxembourg", countryCode: "🇱🇺" },
-    { value: "+353", label: "(+353) Ireland", countryCode: "🇮🇪" },
-    { value: "+354", label: "(+354) Iceland", countryCode: "🇮🇸" },
-    { value: "+355", label: "(+355) Albania", countryCode: "🇦🇱" },
-    { value: "+356", label: "(+356) Malta", countryCode: "🇲🇹" },
-    { value: "+357", label: "(+357) Cyprus", countryCode: "🇨🇾" },
-    { value: "+358", label: "(+358) Finland", countryCode: "🇫🇮" },
-    { value: "+359", label: "(+359) Bulgaria", countryCode: "🇧🇾" },
-    { value: "+370", label: "(+370) Lithuania", countryCode: "🇱🇹" },
-    { value: "+371", label: "(+371) Latvia", countryCode: "🇱🇻" },
-    { value: "+372", label: "(+372) Estonia", countryCode: "🇪🇪" },
-    { value: "+373", label: "(+373) Moldova", countryCode: "🇲🇩" },
-    { value: "+374", label: "(+374) Armenia", countryCode: "🇦🇲" },
-    { value: "+375", label: "(+375) Belarus", countryCode: "🇧🇾" },
-    { value: "+376", label: "(+376) Andorra", countryCode: "🇦🇩" },
-    { value: "+377", label: "(+377) Monaco", countryCode: "🇲🇨" },
-    { value: "+378", label: "(+378) San Marino", countryCode: "🇸🇲" },
-    { value: "+379", label: "(+379) Vatican City", countryCode: "🇻🇦" },
-    { value: "+380", label: "(+380) Ukraine", countryCode: "🇺🇦" },
-    { value: "+381", label: "(+381) Serbia", countryCode: "🇷🇸" },
-    { value: "+382", label: "(+382) Montenegro", countryCode: "🇲🇪" },
-    { value: "+385", label: "(+385) Croatia", countryCode: "🇭🇷" },
-    { value: "+386", label: "(+386) Slovenia", countryCode: "🇸🇮" },
-    { value: "+387", label: "(+387) Bosnia and Herzegovina", countryCode: "🇧🇦" },
-    { value: "+389", label: "(+389) Macedonia", countryCode: "🇲🇰" },
-    { value: "+420", label: "(+420) Czech Republic", countryCode: "🇨🇿" },
-    { value: "+421", label: "(+421) Slovakia", countryCode: "🇸🇰" },
-    { value: "+423", label: "(+423)Liechtenstein", countryCode: "🇱🇮" },
-    { value: "+500", label: "(+500) Falkland Islands", countryCode: "🇫🇰" },
-    { value: "+501", label: "(+501) Belize", countryCode: "🇲🇿" },
-    { value: "+502", label: "(+502) Guatemala", countryCode: "🇬🇹" },
-    { value: "+503", label: "(+503) El Salvador", countryCode: "🇸🇻" },
-    { value: "+504", label: "(+504) Honduras", countryCode: "🇭🇳" },
-    { value: "+505", label: "(+505) Nicaragua", countryCode: "🇳🇮" },
-    { value: "+506", label: "(+506) Costa Rica", countryCode: "🇨🇷" },
-    { value: "+507", label: "(+507) Panama", countryCode: "🇵🇦" },
-    { value: "+508", label: "(+508) Saint Pierre and Miquelon", countryCode: "🇵🇲" },
-    { value: "+509", label: "(+509) Haiti", countryCode: "🇭🇹" },
-    { value: "+590", label: "(+590) Saint Barthelemy", countryCode: "🇧🇱" },
-    { value: "+591", label: "(+591) Bolivia", countryCode: "🇧🇴" },
-    { value: "+593", label: "(+593) Ecuador", countryCode: "🇪🇨" },
-    { value: "+594", label: "(+594) French Guiana", countryCode: "🇬🇫" },
-    { value: "+595", label: "(+595) Paraguay", countryCode: "🇵🇾" },
-    { value: "+596", label: "(+596) Martinique", countryCode: "🇲🇨" },
-    { value: "+597", label: "(+597) Uruguay", countryCode: "🇺🇾" },
-    { value: "+598", label: "(+598) Suriname", countryCode: "🇸🇲" },
-    { value: "+599", label: "(+599) Greenland", countryCode: "🇬🇩" },
-    { value: "+670", label: "(+670) Timor-Leste", countryCode: "🇹🇲" },
-    { value: "+672", label: "(+672) Antartica", countryCode: "🇦🇶" },
-    { value: "+673", label: "(+673) Brunei", countryCode: "🇧🇳" },
-    { value: "+674", label: "(+674) Nauru", countryCode: "🇳🇷" },
-    { value: "+675", label: "(+675) Papua New Guinea", countryCode: "🇵🇬" },
-    { value: "+676", label: "(+676) Tonga", countryCode: "🇹🇬" },
-    { value: "+677", label: "(+677) Solomon Islands", countryCode: "🇸🇧" },
-    { value: "+678", label: "(+678) Vanuatu", countryCode: "🇻🇺" },
-    { value: "+679", label: "(+679) Fiji", countryCode: "🇫🇯" },
-    { value: "+680", label: "(+680) Palau", countryCode: "🇵🇼" },
-    { value: "+681", label: "(+681) Wallis and Futuna", countryCode: "🇼🇫" },
-    { value: "+682", label: "(+682) Cook Islands", countryCode: "🇨🇰" },
-    { value: "+683", label: "(+683) Niue", countryCode: "🇳🇺" },
-    { value: "+685", label: "(+685) Samoa", countryCode: "🇸🇲" },
-    { value: "+686", label: "(+686) Kiribati", countryCode: "🇰🇮" },
-    { value: "+687", label: "(+687) New Caledonia", countryCode: "🇨🇳" },
-    { value: "+688", label: "(+688) Tuvalu", countryCode: "🇹🇻" },
-    { value: "+689", label: "(+689) French Polynesia", countryCode: "🇵🇫" },
-    { value: "+690", label: "(+690) Tokelau", countryCode: "🇹🇰" },
-    { value: "+691", label: "(+691) Micronesia", countryCode: "🇲🇲" },
-    { value: "+692", label: "(+692) Marshall Islands", countryCode: "🇲🇭" },
-    { value: "+850", label: "(+850) North Korea", countryCode: "🇰🇵" },
-    { value: "+852", label: "(+852) Hong Kong", countryCode: "🇭🇰" },
-    { value: "+853", label: "(+853) Macau", countryCode: "🇲🇴" },
-    { value: "+855", label: "(+855) Cambodia", countryCode: "🇨🇰" },
-    { value: "+856", label: "(+856) Laos", countryCode: "🇱🇦" },
-    { value: "+880", label: "(+880) Bangladesh", countryCode: "🇧🇬" },
-    { value: "+886", label: "(+886) Taiwan", countryCode: "🇹🇼" },
-    { value: "+960", label: "(+960) Maldives", countryCode: "🇲🇻" },
-    { value: "+961", label: "(+961) Lebanon", countryCode: "🇱🇧" },
-    { value: "+962", label: "(+962) Jordan", countryCode: "🇯🇴" },
-    { value: "+963", label: "(+963) Syria", countryCode: "🇸🇾" },
-    { value: "+964", label: "(+964) Iraq", countryCode: "🇮🇶" },
-    { value: "+965", label: "(+965) Kuwait", countryCode: "🇭🇺" },
-    { value: "+966", label: "(+966) Saudi Arabia", countryCode: "🇸🇩" },
-    { value: "+967", label: "(+967) Yemen", countryCode: "🇾🇪" },
-    { value: "+968", label: "(+968) Oman", countryCode: "🇴🇲" },
-    { value: "+970", label: "(+970) Palestinian Territory", countryCode: "🇵🇸" },
-    { value: "+971", label: "(+971) United Arab Emirates", countryCode: "🇦🇪" },
-    { value: "+972", label: "(+972) Israel", countryCode: "🇮🇱" },
-    { value: "+973", label: "(+973) Bahrain", countryCode: "🇧🇭" },
-    { value: "+974", label: "(+974) Qatar", countryCode: "🇶🇦" },
-    { value: "+975", label: "(+975) Bhutan", countryCode: "🇧🇹" },
-    { value: "+976", label: "(+976) Mongolia", countryCode: "🇲🇳" },
-    { value: "+977", label: "(+977) Nepal", countryCode: "🇳🇵" },
-    { value: "+991", label: "(+991) Azerbaijan", countryCode: "🇦🇿" },
-    { value: "+992", label: "(+992) Kyrgyzstan", countryCode: "🇰🇲" },
-    { value: "+993", label: "(+993) Turkmenistan", countryCode: "🇹🇲" },
-    { value: "+994", label: "(+994) Azerbaijan", countryCode: "🇦🇿" },
-    { value: "+995", label: "(+995) Georgia", countryCode: "🇬🇪" },
-    { value: "+996", label: "(+996) Kyrgyzstan", countryCode: "🇰🇲" },
-    { value: "+998", label: "(+998) Uzbekistan", countryCode: "🇺🇿" },
-    { value: "+999", label: "(+999) International", countryCode: "🌐" },
-    { value: "+1-242", label: "(+1-242) Bahamas", countryCode: "🇧🇸" },
-    { value: "+1-246", label: "(+1-246) Barbados", countryCode: "🇧🇧" },
-    { value: "+1-264", label: "(+1-264) Anguilla", countryCode: "🇦🇬" },
-    { value: "+1-268", label: "(+1-268) Antigua and Barbuda", countryCode: "🇦🇮" },
-    { value: "+1-284", label: "(+1-284) British Virgin Islands", countryCode: "🇻🇬" },
-    { value: "+1-340", label: "(+1-340) US Virgin Islands", countryCode: "🇻🇬" },
-    { value: "+1-345", label: "(+1-345) Cayman Islands", countryCode: "🇰🇾" },
-    { value: "+1-441", label: "(+1-441) Bermuda", countryCode: "🇧🇲" },
-    { value: "+1-473", label: "(+1-473) Grenada", countryCode: "🇬🇩" },
-    { value: "+1-649", label: "(+1-649) Turks and Caicos Islands", countryCode: "🇹🇨" },
-    { value: "+1-664", label: "(+1-664) Montserrat", countryCode: "🇲🇸" },
-    { value: "+1-670", label: "(+1-670) Northern Mariana Islands", countryCode: "🇲🇵" },
-    { value: "+1-671", label: "(+1-671) Guam", countryCode: "🇬🇲" },
-    { value: "+1-672", label: "(+1-672) American Samoa", countryCode: "🇺🇸" },
-    { value: "+1-673", label: "(+1-673) Cook Islands", countryCode: "🇨🇰" },
-    { value: "+1-674", label: "(+1-674) Niue", countryCode: "🇳🇵" },
-    { value: "+1-675", label: "(+1-675) Pitcairn Islands", countryCode: "🇵🇳" },
-    { value: "+1-677", label: "(+1-677) Marshall Islands", countryCode: "🇲🇭" },
-    { value: "+1-678", label: "(+1-678) Micronesia", countryCode: "🇫🇲" },
-    { value: "+1-679", label: "(+1-679) Federated States of Micronesia", countryCode: "🇫🇲" },
-    { value: "+1-680", label: "(+1-680) Palau", countryCode: "🇵🇼" },
-    { value: "+1-684", label: "(+1-684) American Samoa", countryCode: "🇦🇸" },
-    { value: "+1-689", label: "(+1-689) Cook Islands", countryCode: "🇨🇰" },
-    { value: "+1-721", label: "(+1-721) Sint Maarten", countryCode: "🇸🇽" },
-]
+
 
 
 export class SearchBar extends React.Component {
@@ -546,6 +270,7 @@ export class SearchBar extends React.Component {
                                                     if (((option.label.toLowerCase().includes(this.state.searchQuery.toLowerCase()) || this.state.searchQuery === "") && option.type !== "specific" && option.type !== "multiple")) {
                                                         return <StdInputDropDownOption key={index} value={option.value} onClick={() => this.searchCallBack({ type: option.type, value: option.value })}>{option.label}</StdInputDropDownOption>
                                                     }
+                                                    return "";
                                                 })}
                                             </div>
                                         }
@@ -572,6 +297,7 @@ export class SearchBar extends React.Component {
                                                 if ((option.label.toLowerCase().includes(this.state.searchQuery.toLowerCase()) || this.state.searchQuery === "") && option.type === "specific") {
                                                     return <StdInputDropDownOption key={index} value={option.value} onClick={() => this.setPrimaryInput(option)}>{option.label}</StdInputDropDownOption>
                                                 }
+                                                return "";
                                             }
                                             )}
                                         </div>
@@ -595,6 +321,7 @@ export class SearchBar extends React.Component {
                                                 if ((option.label.toLowerCase().includes(this.state.searchQuery.toLowerCase()) || this.state.searchQuery === "") && option.type === "multiple") {
                                                     return <StdInputDropDownOption key={index} value={option.value} onClick={() => this.setPrimaryInput(option)}>{option.label}</StdInputDropDownOption>
                                                 }
+                                                return "";
                                             }
                                             )}
                                         </div>
@@ -609,6 +336,7 @@ export class SearchBar extends React.Component {
                                     if (option.label.toLowerCase().includes(this.state.searchQuery.toLowerCase()) || this.state.searchQuery === "") {
                                         return <StdInputDropDownOption className={"col-12 col-md-6 col-lg-3"} key={index} value={option.value} onClick={() => this.searchCallBack({ type: this.state.tagType, value: this.state.selectedTag + "(" + option.value + ")" })}>{option.label}</StdInputDropDownOption>
                                     }
+                                    return "";
                                 }
                                 )}
                             </div>
@@ -1317,13 +1045,13 @@ export class MultiStepBox extends React.Component {
 
     nextStep() {
         this.setState({
-            currentStep: this.state.currentStep + 1,
+            currentStep: this.props.currentStep + 1,
         })
     }
 
     prevStep() {
         this.setState({
-            currentStep: this.state.currentStep - 1,
+            currentStep: this.props.currentStep - 1,
         })
     }
 
@@ -1333,18 +1061,29 @@ export class MultiStepBox extends React.Component {
         })
     }
 
+
+    
+    componentDidUpdate(prevProps, prevState){
+        if(prevProps.currentStep !== this.props.currentStep){
+            this.setState({
+                currentStep: this.props.currentStep
+            })
+        }
+    }  
+
     render() {
         return (
             <div className="Multistep-Container">
                 {this.props.children.map((child, index) => {
-                    if (React.isValidElement(child)) {
+                    if (React.isValidElement(child) && index === this.state.currentStep) {
                         return (
                             <div key={index} className={"step " + (index === this.state.currentStep ? "active" : "")}>
                                 {React.cloneElement(child, { nextStep: this.nextStep, prevStep: this.prevStep, setStep: this.setStep })}
                             </div>
                         )
                     } else {
-                        return child
+                        return <div key={index} className={"step  i " + (index === this.state.currentStep ? "active" : "")} nextStep={this.nextStep} prevStep={this.prevStep} setStep={this.setStep}>
+                        </div>
                     }
                 })}
             </div>
@@ -1363,7 +1102,7 @@ export class Step extends React.Component {
 
     render() {
         return (
-            <div className={"step " + (this.props.currentStep == this.props.step? "active" : "")}>
+            <div className={"step " + (this.props.currentStep === this.props.step? "active" : "")}>
                 {this.props.children}
             </div>
         )
@@ -1415,7 +1154,7 @@ export class ListMapper extends React.Component{
 export class ListMapperItem extends React.Component{
     render(){
         return(
-            this.props.currentMap.some((item) => item[this.props.settings.matchingHeaders[0]] == this.props.item[this.props.settings.matchingHeaders[1]]) ? 
+            this.props.currentMap.some((item) => item[this.props.settings.matchingHeaders[0]] === this.props.item[this.props.settings.matchingHeaders[1]]) ? 
                 <div className="listMapperItem active"  onClick={()=>this.props.deleteLink(this.props.item[this.props.settings.matchingHeaders[1]],this.props.currItem)}>
                 {Object.keys(this.props.headers).map((key, index) => {
                     if(!this.props.headers[key].primaryKey && !this.props.headers[key].foreignKey ){
@@ -1424,6 +1163,7 @@ export class ListMapperItem extends React.Component{
                         this.props.item[key] + " "
                     )
                     }
+                    return "";
                 })}
             </div>
             : 
@@ -1436,6 +1176,7 @@ export class ListMapperItem extends React.Component{
                         this.props.item[key] + " "
                     )
                     }
+                    return "";
                 })}
             </div>
         )
@@ -1471,12 +1212,12 @@ export class ListMapperViewItem extends React.Component{
                         this.props.item[key] + " "
                     )
                     }
+                    return "";
                 })}
             </div>
         )
     }
 }
-
 
 const steps = {
     0: "month",
@@ -1487,15 +1228,297 @@ const steps = {
 export class CalendarView extends React.Component{
 
     state={
-        month: moment().month(),
+        month: moment(new Date()).format("MM"),
     }
+
+    nextMonth = () =>{
+        this.setState({
+            month: moment(this.state.month, "MM").add(1, "month").format("MM")
+        })
+    }
+
+    prevMonth = () =>{
+        this.setState({
+            month: moment(this.state.month, "MM").subtract(1, "month").format("MM")
+        })
+    }
+
     componentDidMount(){
     }
 
     render(){
         return (
             <MultiStepBox steps={steps} currentStep={0}>
+                <MonthView month = {this.state.month} nextMonth={this.nextMonth} prevMonth={this.prevMonth}>
+                </MonthView>
+                <WeekView>
+                </WeekView>
+                <DayView>
+                </DayView>
             </MultiStepBox>
+        )
+    }
+}
+
+export class MonthView extends React.Component{
+    state={
+        calendar:[],
+        currentMonth: moment(),
+    }
+
+    componentDidMount(){
+        const days = this.generateCalendar();
+        this.setState({
+            calendar: days
+        })
+    }
+
+    generateCalendar = () =>{
+        
+        const startDay = this.state.currentMonth.clone().startOf('month').startOf('week');
+        const endDay = this.state.currentMonth.clone().endOf('month').endOf('week');
+
+        var calendar = [];
+        var index = startDay.clone();
+        while (index.isBefore(endDay, 'day')) {
+            calendar.push(
+                new Array(7).fill(0).map(
+                    function(n, i) {
+                        return {date: index.add(1, 'day').date()};
+                    }
+                )
+            );
+        }
+        return calendar;
+    }
+
+    nextMonth = () =>{
+        this.setState({
+            currentMonth: this.state.currentMonth.add(1, "month")
+        })
+        var days = this.generateCalendar();
+        this.setState({
+            calendar: days
+        })
+        
+        this.props.nextMonth();
+    }
+
+    prevMonth = () =>{
+        this.setState({
+            currentMonth: this.state.currentMonth.subtract(1, "month")
+        })
+        var days = this.generateCalendar();
+        this.setState({
+            calendar: days
+        })
+        this.props.prevMonth();
+    }
+
+    render(){
+        return(
+            <div className="monthView">
+                <div className="monthView-header">
+                    <IconButton className={"invert"} icon={<i class="bi bi-chevron-double-left"></i>} onClick={this.prevMonth}></IconButton>
+                    {moment(this.props.month).format("MMMM")}
+                    <IconButton className={"invert"} icon={<i class="bi bi-chevron-double-right"></i>} onClick={this.nextMonth}></IconButton>
+                </div>
+                <div className="monthView-daysHeader">
+                    <div className="monthView-dayHeader">Monday</div>
+                    <div className="monthView-dayHeader">Tuesday</div>
+                    <div className="monthView-dayHeader">Wednesday</div>
+                    <div className="monthView-dayHeader">Thursday</div>
+                    <div className="monthView-dayHeader">Friday</div>
+                    <div className="monthView-dayHeader">Saturday</div>
+                    <div className="monthView-dayHeader">Sunday</div>
+                </div>
+                <div className="monthView-days">
+                    {this.state.calendar.map((week, index) => {
+                        return (
+                            <div className="monthView-week">
+                                {week.map((day, index) => {
+                                    return (
+                                        <div className="monthView-day">
+                                            {day.date}
+                                        </div>
+                                    )
+                                })}
+                                </div>
+                        )})}
+                </div>
+            </div>
+        )
+    }
+}
+
+export class WeekView extends React.Component{
+    state={
+        calendar:[],
+        currentMonth: moment(),
+        timeSlots: [],
+    }
+    componentDidMount(){
+        const days = this.generateCalendar();
+        const timeSlots = [
+            {time: "8:00", events: []},
+            {time: "8:30", events: []},
+            {time: "9:00", events: []},
+            {time: "9:30", events: []},
+            {time: "10:00", events: []},
+            {time: "10:30", events: []},
+            {time: "11:00", events: []},
+            {time: "11:30", events: []},
+            {time: "12:00", events: []},
+            {time: "12:30", events: []},
+            {time: "13:00", events: []},
+            {time: "13:30", events: []},
+            {time: "14:00", events: []},
+            {time: "14:30", events: []},
+            {time: "15:00", events: []},
+            {time: "15:30", events: []},
+            {time: "16:00", events: []},
+            {time: "16:30", events: []},
+            {time: "17:00", events: []},
+            {time: "17:30", events: []},
+            {time: "18:00", events: []},
+            {time: "18:30", events: []},
+            {time: "19:00", events: []},
+            {time: "19:30", events: []},
+            {time: "20:00", events: []},
+            {time: "20:30", events: []},
+        ]
+        this.setState({
+            calendar: days,
+            timeSlots: timeSlots
+        })
+    }
+
+    generateCalendar = () =>{
+        const startDay = this.state.currentMonth.clone().startOf("week").subtract(1,"day");
+
+        var calendar = [];
+        var index = startDay.clone();
+            calendar = 
+                new Array(7).fill(0).map(
+                    function(n, i) {
+                        return {date: index.add(1, 'day').date(), day: index.format("ddd"), month: index.format("MM"), fullDateFormat: index.format("DD-MM-YYYY")};
+                    }
+                );
+        return calendar;
+    }
+
+    nextWeek = () =>{
+        this.setState({
+            currentMonth: this.state.currentMonth.add(1, "week")
+        })
+        var days = this.generateCalendar();
+        this.setState({
+            calendar: days
+        })
+        if(this.props.nextWeek){
+            this.props.nextWeek();
+        }
+    }
+
+    prevWeek = () =>{
+        this.setState({
+            currentMonth: this.state.currentMonth.subtract(1, "week")
+        })
+        var days = this.generateCalendar();
+        this.setState({
+            calendar: days
+        })
+        if(this.props.prevWeek){
+            this.props.prevWeek();
+        }
+        ;
+    }
+
+
+
+
+    render(){
+        return(
+            <div className="weekView">
+                <div className="weekView-header">
+                    <IconButton className={"invert"} icon={<i class="bi bi-chevron-double-left"></i>} onClick={this.prevWeek}></IconButton>
+                    {this.state.currentMonth.clone().startOf('week').format("DD MMMM") + " - " + this.state.currentMonth.clone().endOf('week').format("DD MMMM")}
+                    <IconButton className={"invert"} icon={<i class="bi bi-chevron-double-right"></i>} onClick={this.nextWeek}></IconButton>
+                </div>
+                <div className="weekView-week-container">
+                        <div className="weekView-weekDays" style={{"--rows": this.state.calendar.length + 1}}>
+                            <div className="spacer"></div>
+                            {this.state.calendar.map((day, index) => {
+                                return (
+                                    <div className={"weekView-days " + ((day.date === parseInt(moment(new Date()).format("DD")) && day.month === moment(new Date()).format("MM")) ? "active" : "")}>
+                                        <span className="date">{day.date}</span>
+                                        <span className="day">{day.day}</span>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    <div className="weekView-timeHeader" style={{"--columns" : this.state.timeSlots.length}}>
+                        {this.state.timeSlots.map((timeSlot, index) => {
+                            return (
+                                <div className="timeSlot">{timeSlot.time}</div>
+                            )
+                        })}
+                        <div className="weekView-days">
+                        {this.state.calendar.map((day, index) => {
+                            console.log(this.props.items);
+                            let item = "";
+                            if(this.props.items.hasOwnProperty(day.fullDateFormat)){
+                                item = this.props.items[day.fullDateFormat];
+                                return(
+                                    <div className="weekView-day" style={{"--columns" : this.state.timeSlots.length}}>
+                                        {this.state.timeSlots.map((timeSlot, index) => {
+                                            return (
+                                                <div className="weekView-timeSlot">
+                                                    <div className="event">{item[timeSlot.time]}</div>
+                                                </div>
+                                            )
+                                        })}
+                                    </div>
+                                )
+                            }else{
+                                
+                                return(
+                                    <div className="weekView-day" style={{"--columns" : this.state.timeSlots.length}}>
+                                        {this.state.timeSlots.map((timeSlot, index) => {
+                                            return (
+                                                <div className="weekView-timeSlot">
+                                                    <div className="event">-</div>
+                                                </div>
+                                            )
+                                        })}
+                                    </div>
+                                )
+                            }
+                            
+                        })}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+}
+
+export class DayView extends React.Component{
+    render(){
+        return(
+            <div className="monthView">
+                <div className="monthView-header">
+                    <div className="monthView-header-item">Month</div>
+                    <div className="monthView-header-item">Week</div>
+                    <div className="monthView-header-item">Day</div>
+                </div>
+                <div className="monthView-body">
+                    <div className="monthView-body-item">Month</div>
+                    <div className="monthView-body-item">Week</div>
+                    <div className="monthView-body-item">Day</div>
+                </div>
+            </div>
         )
     }
 }

@@ -1,10 +1,8 @@
-import e from "cors";
 import React from "react";
-import { ActionsButton, DivSpacing, Hamburger, IconButton, IconButtonWithText, SearchBar, SearchTags, SizedBox, StdButton, TagsBox } from "../Components/common";
+import { ActionsButton, DivSpacing, IconButton, IconButtonWithText, SearchBar, SearchTags, SizedBox, StdButton, TagsBox } from "../Components/common";
 import { StdInput } from "../Components/input";
-import SlideDrawer, { BlankDrawerItem, DrawerItemNonLink } from "../Components/sideNav";
+import SlideDrawer, { DrawerItemNonLink } from "../Components/sideNav";
 import { Cell, ListTable, HeaderRow, ExpandableRow } from "../Components/tableComponents";
-import { DetailsTableHeader } from "./Details";
 
 export const searchSuggestions = [
 ]
@@ -97,12 +95,12 @@ export default class DatapageLayout extends React.Component {
     }
 
     render() {
-        if(this.state.content == ""){
+        if(this.state.content === ""){
             return <div></div>
         }
         return (
             <div className="d-flex flex-column container-fluid listPageContainer">
-                {this.props.error != "" && 
+                {this.props.error !== "" && 
                     <div className="listPageContainer-error">
                         {this.props.error}
                         <IconButton icon = {<i className="bi bi-x-circle-fill"></i>}></IconButton>
@@ -121,8 +119,8 @@ export default class DatapageLayout extends React.Component {
                     <div className="d-flex justify-content-center align-items-center">
                         <ListTable settings={this.settings}>
                             <HeaderRow>
-                                {this.props.headers.map((key, index) => {
-                                    return <Cell width={"100%"} key={index}>{key}</Cell>
+                                {Object.keys(this.props.headers).map((key, index) => {
+                                    return <Cell width={"100%"} key={index}>{this.props.headers[key].displayHeader}</Cell>
                                 })}
                             </HeaderRow>
                             {this.props.data && 
@@ -147,7 +145,6 @@ export default class DatapageLayout extends React.Component {
         )
     }
 }
-
 export class TableHeader extends React.Component {
     constructor(props) {
         super(props);
@@ -203,7 +200,7 @@ export class TableHeader extends React.Component {
 
         return (
             <div className="tableHeader">
-                <div className={"tableHeaderActions" + " " + (this.props.component === "" ? "borderRadius" : "topBorderRadius")}>
+                <div className={"tableHeaderActions " + (this.props.component === "" ? "borderRadius" : "topBorderRadius")}>
                     <div className="d-flex justify-content-end align-items-center">
                         {this.props.showBottomMenu ? <div /> :
                             <div className="tableTitleContainer">
@@ -339,7 +336,9 @@ class AddEntry extends React.Component{
             body: JSON.stringify(courseToAdd),
         }).then((res => {
             return res.json();
-        }));
+        })).catch((err) => {
+            console.log(err);
+        })
     }
 
     handleCourseCreation = async () => {

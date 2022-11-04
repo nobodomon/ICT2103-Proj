@@ -69,11 +69,17 @@ exports.settings = async (req, res) => {
     const columnSettings = {
         // Configures the headers of the table
         // Pls match header names with column names (case sensitive!)
-        headers: [
-            "mid",
-            "moduleCode",
-            "moduleName",
-        ],
+        headers: {
+            "mid":{
+                displayHeader: "Module ID",
+            },
+            "moduleCode":{
+                displayHeader: "Module Code",
+            },
+            "moduleName":{
+                displayHeader: "Module Name",
+            },
+        }
     }
 
     const fieldSettings = {

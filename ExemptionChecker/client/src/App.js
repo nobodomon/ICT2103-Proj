@@ -1,4 +1,5 @@
 import './App.css';
+import './styles/appCommon.scss';
 import Nav, {  } from './Components/nav'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import React from 'react';
@@ -22,6 +23,7 @@ import PolytechnicModules from './Pages/PolytechnicModules';
 import Universities from './Pages/Universities';
 import UniversityCourses from './Pages/UniversityCourses';
 import UniversityModules from './Pages/UniversityModules';
+import Landing from './Pages/user/landing';
 
 /* function getToken() {  
   const tokenString = sessionStorage.getItem('token');
@@ -37,6 +39,9 @@ export default function App() {
     setDrawerOpen(!drawerOpen)
   }
 
+  const updateUser = (user) => {
+    setToken(user);
+  }
 
   let backdrop;
   if (drawerOpen) {
@@ -87,7 +92,7 @@ export default function App() {
               </DrawerSection>
             </SlideDrawer>
             <Routes>
-              <Route exact path="/" element={<DefaultPage />}>
+              <Route exact path="/" element={<Landing user={token} updateUser={updateUser}/>}>
               </Route>
               <Route path="/Home" element={<Home />}>
               </Route>

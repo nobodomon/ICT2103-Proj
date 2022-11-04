@@ -26,6 +26,23 @@ exports.allMapsFromModule = async (req, res) => {
     });
 }
 
+
+exports.allModulesForCourse = async (req, res) => {
+    const {universityCourse} = req.body;
+    knex.select("*")
+        .from('UniversityModuleCourseMap')
+        .join('UniversityModules',function(){
+            this.on('UniversityModuleCourseMap.universityModule','=','UniversityModules.mid')
+        })
+        .where({universityCourse: universityCourse})
+        .then(data =>{
+        res.json({success:true, data, message: 'Map fetched!'});
+    }).catch(err => {
+        res.json({success:false, message: err.message});
+    });
+}
+
+
 exports.create = async (req, res) => {
     const {universityCourse, universityModule} = req.body;
     knex('UniversityModuleCourseMap').insert({universityCourse: universityCourse, universityModule: universityModule}).then(data =>{

@@ -32,33 +32,18 @@ exports.delete = async (req, res) => {
 }
 
 exports.update = async (req, res) => {
-    const {uid, username, password, role, polytechnicCourse,polytechnicAdmissionYear,universityCourse,universityAdmissionYear} = req.body;
-    if(polytechnicCourse == null && polytechnicAdmissionYear != null){
+    const {uid, username, password, role, polytechnicCourse,universityCourse} = req.body;
+    if(polytechnicCourse == null){
         return res.json({success:false, message: "Polytechnic course cannot be empty!"});
-    } 
-
-    
-
-    universityCourses = await knex.select("*").from("UniversityCourses").then(uniCourseData =>{
-        var tempCourseList = [];
-        console.log(uniCourseData);
-        for(unicourse in uniCourseData){
-            tempCourseList.push({label: uniCourseData[unicourse]["courseCode"] + " - " +  uniCourseData[unicourse]["course name"], value:  uniCourseData[unicourse]["cid"]});
-        }
-        console.log(tempCourseList)
-        return tempCourseList;
-    });
+    }
 
 
     knex.update({
-        uid: uid, 
         username:username, 
         password: password, 
         role: role, 
         polytechnicCourse: polytechnicCourse, 
-        polytechnicAdmissionYear: polytechnicAdmissionYear,
         universityCourse: universityCourse,
-        universityAdmissionYear: universityAdmissionYear
         }).from("Users").where({uid: uid}).then(data =>{
         knex.select("*").from("Users").then(data =>{ 
             return res.json({success:true, data, message: "Users fetched!"});
@@ -76,6 +61,15 @@ exports.login = async (req, res) => {
         }else{
             res.json({success:true, data, message: "Login successful!"});
         }
+    }).catch(err => {
+        res.json({success:false, message: err.message});
+    });
+}
+
+exports.getUserByID = async (req, res) => {
+    const {uid} = req.body;
+    knex.select("*").from("Users").where({uid: uid}).then(data =>{
+        res.json({success:true, data, message: "User fetched!"});
     }).catch(err => {
         res.json({success:false, message: err.message});
     });
@@ -107,12 +101,20 @@ exports.settings = async (req, res) => {
     const columnSettings = {
         // Configures the headers of the table
         // Pls match header names with column names (case sensitive!)
-        headers: [
-            "uid",
-            "username",
-            "role",
-            "password"
-        ]
+        headers: {
+            "uid" : {
+                displayHeader: "User ID",
+            },
+            "username" : {
+                displayHeader: "Username",
+            },
+            "password" : {
+                displayHeader: "Password",
+            },
+            "role" : {
+                displayHeader: "Role",
+            },
+        }
     }
 
     const fieldSettings = {

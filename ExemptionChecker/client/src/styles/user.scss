@@ -1,0 +1,192 @@
+@import "main.scss";
+
+.landing-container{
+    display:grid;
+    gap:15px;
+    grid-template-columns: 30% 70%;
+    grid-template-areas:
+    "profile header"
+    "profile content";
+
+    @media screen and (max-width: 768px) {
+        grid-template-columns: 100%;
+        grid-template-areas:
+        "header"
+        "profile"
+        "content";  
+    }
+}
+
+.profile{
+    grid-area:profile;
+    background-color: white;
+    box-shadow:  0 0 10px 0 rgba(0,0,0,0.2);
+    display:flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    padding:15px;
+    gap:15px;
+    .profile-image{
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        display:flex;
+        justify-content: center;
+        img{
+            max-width: 150px;
+        }
+    }
+
+    .d-name{
+        font-size:1rem;
+        font-weight: 600;
+        text-align: left;
+    }
+
+    .skill-container{
+        display:flex;
+        flex-direction: column;
+        gap:10px;
+
+        .skill-container-header{
+            font-size:1rem;
+            font-weight: bold;
+        }
+
+        .skill-list{
+            display:flex;
+            gap:10px;
+
+            .skill-card{
+                background-color: $primary;
+                padding:5px 10px;
+                border-radius: 5px;
+                font-size:0.8rem;
+                font-weight: 600;
+                color:white;
+            }
+        }
+    }
+}
+
+.header{
+    grid-area:header;
+    background-color: white;
+    box-shadow:  0 0 10px 0 rgba(0,0,0,0.2);
+}
+
+.content{
+    grid-area:content;
+    background-color: white;
+    box-shadow:  0 0 10px 0 rgba(0,0,0,0.2);
+}
+
+.university-modules{
+    display:flex;
+    flex-direction: column;
+    gap:15px;
+    padding:15px;
+
+    .university-modules-header{
+        font-size:1rem;
+        font-weight: bold;
+    }
+
+    .module-list{
+        display:flex;
+        flex-direction: column;
+        gap:10px;
+
+
+        .module-container{
+            display:flex;
+            box-shadow: inset 0 0 10px 0 rgba(0,0,0,0.2);
+            background-color: white;
+
+            .confidence{
+                position:relative;
+                display:flex;
+                align-items: center;
+                height: 100%;
+                svg {
+                    max-height:100px;
+                    max-width: 100px;
+                  }
+                  
+                  path {
+                    stroke-linecap: round;
+                    stroke-width: 5;
+                  }
+                  
+                  path.grey {
+                    stroke: lightgrey;
+                  }
+                  
+                  path.purple {
+                    stroke: $primary;
+                    stroke-dasharray: calc(40 * 3.142 * 1.85);
+                    stroke-dashoffset: 100;
+                    animation: fillProg 0.5s ease-in-out both;
+                    /* adjust last number for variance */
+                  }
+
+                  @keyframes fillProg {
+                    from {
+                        stroke-dashoffset: 0;
+                    }
+                    to{
+                        stroke-dashoffset: calc(calc(100 - var(--confidenceVal)) / 100 * 232.508                        );
+                    }
+                  }
+
+                .confidence-value{
+                    font-size:1rem;
+                    font-weight: 600;
+                    color:$primary;
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    display:flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+        }
+
+        .module-card{
+            padding:15px;
+            font-size: 1rem;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            gap:10px;
+            flex-grow: 1;
+        }
+
+        .skill-section{
+            display:flex;
+            flex-direction: column;
+            gap:10px;
+
+            .skill-section-header{
+                font-size:1rem;
+                font-weight: bold;
+            }
+
+            .skill-list{
+                display:flex;
+                gap:10px;
+
+                .skill-card{
+                    background-color: $primary;
+                    padding:5px 10px;
+                    border-radius: 5px;
+                    font-size:0.8rem;
+                    font-weight: 600;
+                    color:white;
+                }
+            }
+        }
+    }
+}

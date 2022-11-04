@@ -21,8 +21,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "npm i --legacy-peer-deps&&react-scripts start",
-    "startWithoutNPM": "react-scripts start",
+    "start": "npm i --legacy-peer-deps&&set HTTPS=true&&set SSL_CRT_FILE=./reactcert/cert.pem&&set SSL_KEY_FILE=./reactcert/key.pem&&react-scripts start",
+    "startWithoutNPM": "set HTTPS=true&&set SSL_CRT_FILE=./reactcert/cert.pem&&set SSL_KEY_FILE=./reactcert/key.pem&&react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

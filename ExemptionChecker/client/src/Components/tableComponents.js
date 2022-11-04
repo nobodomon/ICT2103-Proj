@@ -1,8 +1,5 @@
 import React from "react";
-import { StdButton, StdInputDropDownOption } from "./common";
 import { StdInput } from "./input";
-
-import placeHolderUser from "../Assets/placeholderUser.png";
 
 export class ExpandableRow extends React.Component {
   constructor(props) {
@@ -12,6 +9,7 @@ export class ExpandableRow extends React.Component {
       rowClasses: "tableRow ",
       expandedClass: "expandedRowPane",
       editMode: true,
+      columns: React.Children.toArray(this.props.children).length,
     };
     this.expand = this.expand.bind(this);
   }
@@ -50,21 +48,22 @@ export class ExpandableRow extends React.Component {
         onMouseUp={this.handleButtonRelease}
         onMouseLeave={this.handleButtonRelease}
       >
-        <div className={this.state.rowClasses} onClick={this.expand}>
-          {this.props.headers.map((cell, secIndex) => {
+        <div className={this.state.rowClasses} onClick={this.expand}  style={{"--Columns": Object.keys(this.props.headers).length}}>
+          {/* {this.props.headers.map((cell, secIndex) => {
             return (
               <Cell width={"100%"} key={secIndex}>
                 {this.props.values[cell]}
               </Cell>
             );
           })}
+           */}
+          {Object.keys(this.props.headers).map((key, index) => {
+            return <Cell width={"100%"} key={index}>{this.props.values[key]}</Cell>
+          })}
         </div>
         {this.state.expanded ? (
           <div className={this.state.expandedClass}>
             <div className="row justify-content-center align-items-start expandedRow">
-              <div className="d-flex col-12 col-lg-3 justify-content-center align-items-center">
-                <img src={placeHolderUser} width="128px"></img>
-              </div>
 
               <div className="col-12 col-lg-9 expansionColumn">
                 <div className="expansionColumn-fieldcontainer">
@@ -104,20 +103,24 @@ export class Row extends React.Component {
     super(props);
     this.state = {
       rowClasses: "tableRow ",
+      columns: React.Children.toArray(this.props.children).length,
     };
   }
   render() {
     return (
       <div>
-        <div className={this.state.rowClasses}>{this.props.children}</div>
+        <div className={this.state.rowClasses} style={{"--Columns": this.state.columns}}>{this.props.children}</div>
       </div>
     );
   }
 }
 
 export class HeaderRow extends React.Component {
+  state={
+    columns: React.Children.toArray(this.props.children).length,
+  }
   render() {
-    return <div className="tableRow headerRow">{this.props.children}</div>;
+    return <div className="tableRow headerRow" style={{"--Columns": this.state.columns}}>{this.props.children}</div>;
   }
 }
 

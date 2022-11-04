@@ -39,10 +39,14 @@ exports.settings = async (req, res) => {
     const columnSettings = {
         // Configures the headers of the table
         // Pls match header names with column names (case sensitive!)
-        headers: [
-            "pid",
-            "polytechnicName",
-        ],
+        headers: {
+            "pid":{
+                displayHeader: "Polytechnic ID",
+            },
+            "polytechnicName":{
+                displayHeader: "Polytechnic Name",
+            },
+        }
     }
 
     const fieldSettings = {

@@ -14,6 +14,8 @@ router.post("/update", authRoutes.update);
 
 router.post("/login", authRoutes.login);
 
+router.post("/getUserByID", authRoutes.getUserByID);
+
 router.post("/settings", authRoutes.settings);
 
 module.exports = router;
