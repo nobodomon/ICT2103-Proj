@@ -204,7 +204,7 @@ knex.schema
       return knex.schema
         .createTable("Polytechnics", (table) => {
           table.increments("pid").primary();
-          table.string("polytechnic name");
+          table.string("polytechnicName");
         })
         .then(() => {
           console.log("Table 'Polytechnics' created");
@@ -232,8 +232,8 @@ knex.schema
       return knex.schema
         .createTable("PolytechnicCourses", (table) => {
           table.increments("cid").primary();
-          table.string("course code");
-          table.string("course name");
+          table.string("courseCode");
+          table.string("courseName");
           table.integer("polytechnic");
           table
             .foreign("polytechnic")
@@ -264,8 +264,8 @@ knex.schema
       return knex.schema
         .createTable("PolytechnicModules", (table) => {
           table.increments("mid").primary();
-          table.string("module code");
-          table.string("module name");
+          table.string("moduleCode");
+          table.string("moduleName");
         })
         .then(() => {
           console.log("Table 'PolytechnicModules' created");
@@ -289,7 +289,7 @@ knex.schema
       return knex.schema
         .createTable("Universities", (table) => {
           table.increments("uid").primary();
-          table.string("university name");
+          table.string("universityName");
         })
         .then(() => {
           console.log("Table 'Universities' created");
@@ -313,8 +313,8 @@ knex.schema
       return knex.schema
         .createTable("UniversityCourses", (table) => {
           table.increments("cid").primary();
-          table.string("course code");
-          table.string("course name");
+          table.string("courseCode");
+          table.string("courseName");
           table.integer("university");
           table
             .foreign("university")
@@ -345,8 +345,8 @@ knex.schema
       return knex.schema
         .createTable("UniversityModules", (table) => {
           table.increments("mid").primary();
-          table.string("module code");
-          table.string("module name");
+          table.string("moduleCode");
+          table.string("moduleName");
         })
         .then(() => {
           console.log("Table 'UniversityModules' created");
