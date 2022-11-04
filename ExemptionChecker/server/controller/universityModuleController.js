@@ -16,8 +16,8 @@ exports.create = async (req, res) => {
   console.log(req.body);
   knex
     .insert({
-      "module code": req.body["module code"],
-      "module name": req.body["module name"],
+      "moduleCode": req.body["moduleCode"],
+      "moduleName": req.body["moduleName"],
     })
     .into("UniversityModules")
     .then((data) => {
@@ -50,8 +50,8 @@ exports.update = async (req, res) => {
   knex
     .update({
       mid: req.body["mid"],
-      "module code": req.body["module code"],
-      "module name": req.body["module name"],
+      "moduleCode": req.body["moduleCode"],
+      "moduleName": req.body["moduleName"],
     })
     .from("UniversityModules")
     .where({ mid: mid })
@@ -76,7 +76,7 @@ exports.settings = async (req, res) => {
   const columnSettings = {
     // Configures the headers of the table
     // Pls match header names with column names (case sensitive!)
-    headers: ["mid", "module code", "module name"],
+    headers: ["mid", "moduleCode", "moduleName"],
   };
 
   const fieldSettings = {
@@ -87,12 +87,12 @@ exports.settings = async (req, res) => {
       primaryKey: true,
       displayLabel: "Module ID",
     },
-    "module code": {
+    "moduleCode": {
       type: "text",
       editable: true,
       displayLabel: "Module Code",
     },
-    "module name": {
+    "moduleName": {
       type: "text",
       editable: true,
       displayLabel: "Module Name",

@@ -43,7 +43,7 @@ exports.update = async (req, res) => {
         var tempCourseList = [];
         console.log(uniCourseData);
         for(unicourse in uniCourseData){
-            tempCourseList.push({label: uniCourseData[unicourse]["course code"] + " - " +  uniCourseData[unicourse]["course name"], value:  uniCourseData[unicourse]["cid"]});
+            tempCourseList.push({label: uniCourseData[unicourse]["courseCode"] + " - " +  uniCourseData[unicourse]["course name"], value:  uniCourseData[unicourse]["cid"]});
         }
         console.log(tempCourseList)
         return tempCourseList;
@@ -87,7 +87,7 @@ exports.settings = async (req, res) => {
         var tempCourseList = [];
         console.log(polyCourseData);
         for(polycourse in polyCourseData){
-            tempCourseList.push({label: polyCourseData[polycourse]["course code"] + " - " +  polyCourseData[polycourse]["course name"], value:  polyCourseData[polycourse]["cid"]});
+            tempCourseList.push({label: polyCourseData[polycourse]["courseCode"] + " - " +  polyCourseData[polycourse]["course name"], value:  polyCourseData[polycourse]["cid"]});
         }
         console.log(tempCourseList)
         return tempCourseList;
@@ -97,7 +97,7 @@ exports.settings = async (req, res) => {
         var tempCourseList = [];
         console.log(uniCourseData);
         for(unicourse in uniCourseData){
-            tempCourseList.push({label: uniCourseData[unicourse]["course code"] + " - " +  uniCourseData[unicourse]["course name"], value:  uniCourseData[unicourse]["cid"]});
+            tempCourseList.push({label: uniCourseData[unicourse]["courseCode"] + " - " +  uniCourseData[unicourse]["course name"], value:  uniCourseData[unicourse]["cid"]});
         }
         console.log(tempCourseList)
         return tempCourseList;

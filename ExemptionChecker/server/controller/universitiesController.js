@@ -10,7 +10,7 @@ exports.allUniversities = async (req, res) => {
 
 exports.create = async (req, res) => {
     console.log(req.body);
-    knex.insert({"university name": req.body["university name"]}).into("Universities").then(universitdataData =>{
+    knex.insert({"universityName": req.body["universityName"]}).into("Universities").then(universitdataData =>{
         res.json({success:true, data, message: "University created!"});
     }).catch(err => {
         res.json({success:false, message: err.message});
@@ -28,7 +28,7 @@ exports.delete = async (req, res) => {
 
 exports.update = async (req, res) => {
 
-    knex.update({uid: req.body["uid"], "university name": req.body["university name"]}).from("Universities").where({uid: uid}).then(data =>{
+    knex.update({uid: req.body["uid"], "universityName": req.body["universityName"]}).from("Universities").where({uid: uid}).then(data =>{
         knex.select("*").from("Universities").then(data =>{ 
             res.json({success:true, data, message: "Universities fetched!"});
         })
@@ -44,7 +44,7 @@ exports.settings = async (req, res) => {
         // Pls match header names with column names (case sensitive!)
         headers: [
             "uid",
-            "university name",
+            "universityName",
         ],
         
     };
@@ -56,10 +56,10 @@ exports.settings = async (req, res) => {
             primaryKey: true,
             displayLabel: "university ID",
         },
-        "university name": {
+        "universityName": {
             type: "text",
             editable: true,
-            displayLabel: "university Name",
+            displayLabel: "universityName",
         },
     }
 

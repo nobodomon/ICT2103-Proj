@@ -13,7 +13,7 @@ exports.allCourses = async (req, res) => {
 }
 
 exports.create = async (req, res) => {
-    knex.insert({"university": req.body["university"], "course name": req.body["course name"],"course code": req.body["course code"]}).into("UniversityCourses").then(data =>{
+    knex.insert({"university": req.body["university"], "courseName": req.body["courseName"],"courseCode": req.body["courseCode"]}).into("UniversityCourses").then(data =>{
         res.json({success:true, data, message: "Course created!"});
     }).catch(err => {
         res.json({success:false, message: err.message});
@@ -31,7 +31,7 @@ exports.delete = async (req, res) => {
 
 exports.update = async (req, res) => {
     console.log(req.body);
-    knex.update({cid: req.body["cid"], "university": req.body["University"], "course name": req.body["course name"], "course code": req.body["course code"]}).from("UniversityCourses").where({cid:  req.body["cid"]}).then(data =>{
+    knex.update({cid: req.body["cid"], "university": req.body["University"], "courseName": req.body["courseName"], "courseCode": req.body["courseCode"]}).from("UniversityCourses").where({cid:  req.body["cid"]}).then(data =>{
         knex.select("*").from("UniversityCourses").then(data =>{ 
             res.json({success:true, data, message: "Courses fetched!"});
         })
@@ -45,7 +45,7 @@ exports.settings = async (req, res) => {
         var tempUniversityList = [];
         console.log(universityData);
         for(university in universityData){
-            tempUniversityList.push({label: universityData[university]["university name"], value:  universityData[university]["uid"]});
+            tempUniversityList.push({label: universityData[university]["universityName"], value:  universityData[university]["uid"]});
         }
         console.log(tempUniversityList)
         return tempUniversityList;
@@ -57,9 +57,9 @@ exports.settings = async (req, res) => {
         // Pls match header names with column names (case sensitive!)
         headers: [
             "cid",
-            "university name",
-            "course code",
-            "course name",
+            "universityName",
+            "courseCode",
+            "courseName",
         ],
     }
 
@@ -78,12 +78,12 @@ exports.settings = async (req, res) => {
             options: universities,
             foreignKey: true,
         },
-        "course code": {
+        "courseCode": {
             type: "text",
             editable: true,
             displayLabel: "Course Code",
         },
-        "course name": {
+        "courseName": {
             type: "text",
             editable: true,
             displayLabel: "Course Name",
