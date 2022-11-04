@@ -1,32 +1,45 @@
+PRAGMA foreign_keys=OFF;
 BEGIN TRANSACTION;
-CREATE TABLE IF NOT EXISTS "Users" (
-	"uid"	integer,
-	"username"	text UNIQUE,
-	"password"	text,
-	"role"	text,
-	"polytechnicCourse"	integer,
-	FOREIGN KEY("polytechnicCourse") REFERENCES "PolytechnicCourses"("cid"),
-	PRIMARY KEY("uid" AUTOINCREMENT)
-);
-CREATE TABLE IF NOT EXISTS "Polytechnics" (
-	"pid"	integer NOT NULL,
-	"polytechnic name"	varchar(255),
-	PRIMARY KEY("pid" AUTOINCREMENT)
-);
-CREATE TABLE IF NOT EXISTS "PolytechnicCourses" (
-	"cid"	integer NOT NULL,
-	"course code"	varchar(255),
-	"course name"	varchar(255),
-	"polytechnic"	integer,
-	FOREIGN KEY("polytechnic") REFERENCES "Polytechnics"("pid"),
-	PRIMARY KEY("cid" AUTOINCREMENT)
-);
-CREATE TABLE IF NOT EXISTS "PolytechnicModules" (
-	"mid"	integer NOT NULL,
-	"module code"	varchar(255),
-	"module name"	varchar(255),
-	"polytechnicCourse"	integer,
-	FOREIGN KEY("polytechnicCourse") REFERENCES "PolytechnicCourses"("cid"),
-	PRIMARY KEY("mid" AUTOINCREMENT)
-);
+CREATE TABLE `Universities` (`uid` integer not null primary key autoincrement, `university name` varchar(255));
+INSERT INTO Universities VALUES(5,'Singapore Institute of Technology');
+CREATE TABLE `Polytechnics` (`pid` integer not null primary key autoincrement, `polytechnic name` varchar(255));
+INSERT INTO Polytechnics VALUES(1,'Nanyang Polytechnic');
+CREATE TABLE `PolytechnicCourses` (`cid` integer not null primary key autoincrement, `course code` varchar(255), `course name` varchar(255), `polytechnic` integer, foreign key(`polytechnic`) references `Polytechnics`(`pid`) on delete CASCADE on update CASCADE);
+INSERT INTO PolytechnicCourses VALUES(4,'C56','Cyber Security & Digital Forensics AY22/23',1);
+INSERT INTO PolytechnicCourses VALUES(5,'C85','Information Technology AY22/23',1);
+CREATE TABLE `Users` (`uid` integer not null primary key autoincrement, `username` varchar(255), `password` varchar(255), `role` varchar(255), `polytechnicCourse` integer, `universityCourse` integer, foreign key(`polytechnicCourse`) references `PolytechnicCourses`(`cid`) on delete CASCADE on update CASCADE, foreign key(`universityCourse`) references `UniversityCourses`(`cid`) on delete CASCADE on update CASCADE);
+INSERT INTO Users VALUES(1,'nobodomon','03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4','user',5,1);
+CREATE TABLE `PolytechnicModules` (`mid` integer not null primary key autoincrement, `module code` varchar(255), `module name` varchar(255));
+INSERT INTO PolytechnicModules VALUES(1,'IT1210','Communication Skills 2');
+INSERT INTO PolytechnicModules VALUES(2,'IT1205','Operating Systems');
+CREATE TABLE `PolytechnicModuleCourseMap` (`polytechnicModule` integer, `polytechnicCourse` integer, foreign key(`polytechnicModule`) references `PolytechnicModules`(`mid`) on delete CASCADE on update CASCADE, foreign key(`polytechnicCourse`) references `PolytechnicCourses`(`cid`) on delete CASCADE on update CASCADE, primary key (`polytechnicModule`, `polytechnicCourse`));
+INSERT INTO PolytechnicModuleCourseMap VALUES(1,5);
+INSERT INTO PolytechnicModuleCourseMap VALUES(2,4);
+CREATE TABLE `Skills` (`sid` integer not null primary key autoincrement, `skill` varchar(255));
+INSERT INTO Skills VALUES(1,'C++');
+INSERT INTO Skills VALUES(2,'Java');
+INSERT INTO Skills VALUES(3,'C#');
+CREATE TABLE `UniversityCourses` (`cid` integer not null primary key autoincrement, `course code` varchar(255), `course name` varchar(255), `university` integer, foreign key(`university`) references `Universities`(`uid`) on delete CASCADE on update CASCADE);
+INSERT INTO UniversityCourses VALUES(1,'BEng ICT','BEng (Hons) ICT majoring SE AY20/21',5);
+CREATE TABLE `UniversityModuleCourseMap` (`universityModule` integer, `universityCourse` integer, foreign key(`universityModule`) references `UniversityModules`(`mid`) on delete CASCADE on update CASCADE, foreign key(`universityCourse`) references `UniversityCourses`(`cid`) on delete CASCADE on update CASCADE, primary key (`universityModule`, `universityCourse`));
+INSERT INTO UniversityModuleCourseMap VALUES(1,1);
+CREATE TABLE `UniversityModules` (`mid` integer not null primary key autoincrement, `module code` varchar(255), `module name` varchar(255));
+INSERT INTO UniversityModules VALUES(1,'ICT2104','Embedded Systems Programming');
+CREATE TABLE `SkillPolytechnicModuleMap` (`skillID` integer, `moduleID` integer, foreign key(`skillID`) references `Skills`(`sid`) on delete CASCADE on update CASCADE, foreign key(`moduleID`) references `PolytechnicModules`(`mid`) on delete CASCADE on update CASCADE, primary key (`skillID`, `moduleID`));
+INSERT INTO SkillPolytechnicModuleMap VALUES(1,1);
+INSERT INTO SkillPolytechnicModuleMap VALUES(3,2);
+INSERT INTO SkillPolytechnicModuleMap VALUES(2,2);
+CREATE TABLE `SkillUniversityModuleMap` (`skillID` integer, `moduleID` integer, foreign key(`skillID`) references `Skills`(`sid`) on delete CASCADE on update CASCADE, foreign key(`moduleID`) references `UniversityModules`(`mid`) on delete CASCADE on update CASCADE, primary key (`skillID`, `moduleID`));
+CREATE TABLE `UserSkillMap` (`userID` integer, `skillID` integer, foreign key(`userID`) references `Users`(`uid`) on delete CASCADE on update CASCADE, foreign key(`skillID`) references `Skills`(`sid`) on delete CASCADE on update CASCADE, primary key (`userID`, `skillID`));
+INSERT INTO UserSkillMap VALUES(1,3);
+DELETE FROM sqlite_sequence;
+INSERT INTO sqlite_sequence VALUES('Universities',5);
+INSERT INTO sqlite_sequence VALUES('Polytechnics',1);
+INSERT INTO sqlite_sequence VALUES('PolytechnicCourses',5);
+INSERT INTO sqlite_sequence VALUES('Users',1);
+INSERT INTO sqlite_sequence VALUES('PolytechnicModules',2);
+INSERT INTO sqlite_sequence VALUES('Skills',3);
+INSERT INTO sqlite_sequence VALUES('UniversityCourses',1);
+INSERT INTO sqlite_sequence VALUES('UniversityModules',1);
+CREATE UNIQUE INDEX `users_username_unique` on `Users` (`username`);
 COMMIT;
