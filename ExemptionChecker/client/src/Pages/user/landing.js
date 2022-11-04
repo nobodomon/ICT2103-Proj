@@ -190,7 +190,7 @@ export default class Landing extends React.Component{
                         <SkillContainer skills={this.state.skills}></SkillContainer>
                     </div>
                     <div className="header">
-                        <h1>Welcome {this.props.user.data[0].username}</h1>
+                        <h1>Welcome, {this.props.user.data[0].username}</h1>
                     </div>
                     <div className="content">
                         <UniversityModules skills={this.state.skills} user={this.props.user}></UniversityModules>
@@ -352,20 +352,35 @@ export class ModuleCard extends React.Component{
                         </div>
                     </div>
                 </div>
-
-                <div className="confidence">
-                    <svg viewbox="0 0 100 100">
-                        <path class="grey" d="M40,90
-                                A40,40 0 1,1 60,90"
-                                style={{fill:"none"}}/>
-                        <path class="purple" d="M40,90
-                                A40,40 0 1,1 60,90"
-                            style={{fill:"none", "--confidenceVal": this.state.confidence}}/>
-                    </svg>
-                    <span className="confidence-value">
-                    {this.state.confidence + "%"}</span>
-                </div>
+                
+                <ConfidenceGraph confidence={this.state.confidence}></ConfidenceGraph>
             </div>
+        )
+    }
+}
+
+export class ConfidenceGraph extends React.Component{
+    render(){
+        return(
+            this.props.confidence ? 
+                
+
+            <div className="confidence">
+            <svg viewbox="0 0 100 100">
+                <path class="grey" d="M40,90
+                        A40,40 0 1,1 60,90"
+                        style={{fill:"none"}}/>
+                <path class="purple" d="M40,90
+                        A40,40 0 1,1 60,90"
+                    style={{fill:"none", "--confidenceVal": this.props.confidence}}/>
+            </svg>
+            <span className="confidence-value">
+            {this.props.confidence + "%"}</span>
+        </div>:
+        <div className="confidence">
+            <div class="spinner-border text-primary" role="status">
+            </div>
+        </div>
         )
     }
 }
