@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node server/index.js",
+    "start": "npm i&&babel-node server/index.js",
+    "startWithoutNPM": "babel-node server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "parcel-start": "parcel index.html"
   },
@@ -34,6 +35,7 @@
     "helmet": "^5.0.2",
     "https-browserify": "^1.0.0",
     "knex": "^2.3.0",
+    "moment": "^2.29.4",
     "os": "^0.1.2",
     "os-browserify": "^0.3.0",
     "parcel": "^2.5.0",

@@ -1495,12 +1495,6 @@ export class CalendarView extends React.Component{
     render(){
         return (
             <MultiStepBox steps={steps} currentStep={0}>
-                <MonthView>
-                </MonthView>
-                <WeekView>
-                </WeekView>
-                <DayView>
-                </DayView>
             </MultiStepBox>
         )
     }

@@ -64,7 +64,6 @@ export default class DefaultPage extends React.Component {
 
                 </div>
 
-                <CalendarView></CalendarView>
             </BodyContainer>
         )
     }
