@@ -1,5 +1,6 @@
 import React from "react";
 import { ActionsButton, DivSpacing, IconButton, IconButtonWithText, SearchBar, SearchTags, SizedBox, StdButton, TagsBox } from "../Components/common";
+import {Loading} from "../Components/appCommon";
 import { StdInput } from "../Components/input";
 import SlideDrawer, { DrawerItemNonLink } from "../Components/sideNav";
 import { Cell, ListTable, HeaderRow, ExpandableRow } from "../Components/tableComponents";
@@ -14,16 +15,17 @@ const settings = {
 }
 
 export default class DatapageLayout extends React.Component {
+    state = {
+        drawerOpen: false,
+        expanded: false,
+        showBottomMenu: false,
+        expansionContent: "",
+        expansionComponent: "",
+        popUpContent: "",
+        data: this.props.data
+    }
     constructor(props) {
         super(props)
-        this.state = {
-            drawerOpen: false,
-            expanded: false,
-            showBottomMenu: false,
-            expansionContent: "",
-            expansionComponent: "",
-            popUpContent: "",
-        }
 
         this.drawerToggleClickHandler = this.drawerToggleClickHandler.bind(this);
         this.setExpansionContent = this.setExpansionContent.bind(this);
@@ -35,6 +37,9 @@ export default class DatapageLayout extends React.Component {
         document.title = this.props.settings.title;
         window.addEventListener("resize", this.resize.bind(this));
         this.resize();
+        this.setState({
+            data: this.props.data
+        })
     }
 
     expand() {
@@ -88,6 +93,34 @@ export default class DatapageLayout extends React.Component {
         })
     }
 
+    handleSearchCallBack =(tags) =>{
+        
+        if(tags.length === 0){
+            return this.setState({
+                data: this.props.data
+            })
+        }
+        let filteredData = [];
+        this.props.data.forEach((item)=>{
+            Object.keys(item).forEach((key)=>{
+                tags.forEach((tag) => {
+                    let tagvalue = tag.value.substring(1,tag.value.length -1);
+                    let found = String(item[key]).toLowerCase().includes(tagvalue.toLowerCase());
+                    if(found){
+                        if(filteredData.find((filteredItem)=>filteredItem === item)){
+                            return;
+                        }else{
+                            filteredData.push(item);
+                        }
+                    }
+                })
+            })
+        })
+        this.setState({
+            data: filteredData
+        })
+    }
+
     handleClose() {
         this.setState({
             popUpContent: ""
@@ -113,7 +146,19 @@ export default class DatapageLayout extends React.Component {
                             { label: "Delete " + this.props.settings.title, onClick: () => { this.setExpansionContent("del") } },
                             { label: "Generate Spreadsheet", onClick: () => { this.setExpansionContent("cs") } },
                         ]
-                    } requestRefresh={this.props.requestRefresh} fieldSettings={this.props.fieldSettings} settings={this.props.settings} showBottomMenu={this.state.showBottomMenu} handles={this.setExpansionContent} persist={this.state.showBottomMenu} expanded={this.state.expanded} component={this.state.expansionContent} handleClose={this.expand}></TableHeader>
+                    } 
+                    requestRefresh={this.props.requestRefresh} 
+                    fieldSettings={this.props.fieldSettings} 
+                    settings={this.props.settings} 
+                    showBottomMenu={this.state.showBottomMenu} 
+                    handles={this.setExpansionContent} 
+                    persist={this.state.showBottomMenu} 
+                    expanded={this.state.expanded} 
+                    component={this.state.expansionContent} 
+                    handleClose={this.expand}
+                    handleSearchCallBack = {this.handleSearchCallBack}
+                    tagUpdate = {this.handleSearchCallBack}
+                    ></TableHeader>
                     <TableFooter settings={this.props.settings} toggle={this.drawerToggleClickHandler} showBottomMenu={this.state.showBottomMenu}></TableFooter>
                     <DivSpacing spacing={1}></DivSpacing>
                     <div className="d-flex justify-content-center align-items-center">
@@ -123,9 +168,9 @@ export default class DatapageLayout extends React.Component {
                                     return <Cell width={"100%"} key={index}>{this.props.headers[key].displayHeader}</Cell>
                                 })}
                             </HeaderRow>
-                            {this.props.data && 
+                            {this.state.data && 
                             
-                            this.props.data.map((row, index) => {      
+                            this.state.data.map((row, index) => {      
                                 return <ExpandableRow updateHandle={this.props.updateHandle} values={row} fieldSettings={this.props.fieldSettings} key={index} settings={settings} headers={this.props.headers} setExpansionContent={this.setExpansionContent} handleSeeMore={this.handleSeeMore} handleClose={this.handleClose} popUpContent={this.state.popUpContent}>
                                     {this.props.children? this.props.children[index]: ""}
                                 </ExpandableRow>
@@ -161,10 +206,14 @@ export class TableHeader extends React.Component {
     }
 
 
-    onCancelClick(tagToRemove) {
-        this.setState({
-            currentTags: this.state.currentTags.filter((tag) => tag !== tagToRemove),
+    onCancelClick = (tagToRemove) =>{
+        let newTags = this.state.currentTags.filter((tag)=>{
+            return tag !== tagToRemove;
         })
+        this.setState({
+            currentTags: newTags,
+        })
+        this.props.tagUpdate(newTags);
     }
 
     componentDidUpdate(prevProps) {
@@ -179,7 +228,7 @@ export class TableHeader extends React.Component {
         this.setState({
             currentTags: [],
         })
-        console.log(this.state.currentTags)
+        this.props.tagUpdate([]);
     }
 
     toggleSearchBar() {
@@ -190,9 +239,13 @@ export class TableHeader extends React.Component {
 
     searchCallBack(tag) {
         console.log(tag);
+        var curTags = this.state.currentTags;
+        curTags.push(tag);
         this.setState({
-            currentTags: [...this.state.currentTags, tag],
+            currentTags: curTags,
         })
+
+        this.props.handleSearchCallBack(this.state.currentTags);
     }
 
     render() {

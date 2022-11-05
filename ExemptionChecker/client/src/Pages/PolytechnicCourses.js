@@ -111,6 +111,7 @@ export default class Courses extends React.Component {
         }else{
             
         return(
+            
             <DatapageLayout 
                 settings={this.settings}
                 fieldSettings={this.state.settings.fieldSettings} 
