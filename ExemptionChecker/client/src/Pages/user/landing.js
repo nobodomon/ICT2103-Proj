@@ -4,7 +4,6 @@ import "../../styles/user.scss";
 
 import placeholderImg from "../../Assets/placeholderUser.png";
 import { StdInput } from "../../Components/input";
-import { MultiStepBox } from "../../Components/common";
 
 
 export default class Landing extends React.Component{
@@ -416,15 +415,8 @@ export class SkillCard extends React.Component{
 export class UniversityModules extends React.Component{
     state={
         modules: [],
-        loading: true,
-        currentStep: 0
+        loading: true
     }
-
-    steps = [
-        {0: "YEAR 1"},
-        {1: "YEAR 2"},
-        {2: "YEAR 3"},
-    ]
     componentDidMount = async() =>{
         await this.getModules().then((result) =>{
             console.log(result);
@@ -459,41 +451,10 @@ export class UniversityModules extends React.Component{
         return(
             <div className="university-modules">
                 <span className="university-modules-header">University Modules</span>
-                <div className="university-year-tabs">
-                    <div className={"tab " + (this.state.currentStep === 0 ? "active": "")} onClick={()=>{this.setState({
-                        currentStep: 0
-                    })}}>
-                        Year 1
-                    </div>
-                    <div className={"tab " + (this.state.currentStep === 1 ? "active": "")} onClick={()=>{this.setState({
-                        currentStep: 1
-                    })}}>
-                        Year 2
-                    </div>
-                    <div  className={"tab " + (this.state.currentStep == 2 ? "active": "")} onClick={()=>{this.setState({
-                        currentStep: 2
-                    })}}>
-                        Year 3
-                    </div>
-                </div>
                 <div className="module-list">
-                    <MultiStepBox steps = {this.steps} currentStep = {this.state.currentStep}>
-                        <div className="module-year-list">
-                            {this.state.modules.filter((module) => module.yearOffered === "YEAR 1").map((module) =>{
-                                return <ModuleCard skills={this.props.skills} module={module}></ModuleCard>
-                            })}
-                        </div>
-                        <div className="module-year-list">
-                            {this.state.modules.filter((module) => module.yearOffered === "YEAR 2").map((module) =>{
-                                return <ModuleCard skills={this.props.skills} module={module}></ModuleCard>
-                            })}
-                        </div>
-                        <div className="module-year-list">
-                            {this.state.modules.filter((module) => module.yearOffered === "YEAR 3").map((module) =>{
-                                return <ModuleCard skills={this.props.skills} module={module}></ModuleCard>
-                            })}
-                        </div>
-                    </MultiStepBox>
+                    {this.state.modules.map((module) =>{
+                        return <ModuleCard skills={this.props.skills} module={module}></ModuleCard>
+                    })}
                 </div>
             </div>
         )
@@ -521,21 +482,11 @@ export class ModuleCard extends React.Component{
             })
         })
 
-
         
         var tempSkills = [];
         this.props.skills.map((skill) =>{
             tempSkills.push(skill.sid);
         })
-
-        
-        if(this.state.skillsRequired.length == 0 && tempSkills.length == 0){
-            this.setState({
-                loading: false,
-                confidence: 0,
-            })
-            return;
-        }
 
         const intersect = tempSkills.filter(x => tempSkillsRequired.includes(x));
 
@@ -587,7 +538,7 @@ export class ModuleCard extends React.Component{
                     </div>
                 </div>
                 
-                <ConfidenceGraph confidence={this.state.confidence} loading={this.state.loading}></ConfidenceGraph>
+                <ConfidenceGraph confidence={this.state.confidence}></ConfidenceGraph>
             </div>
         )
     }
@@ -596,7 +547,7 @@ export class ModuleCard extends React.Component{
 export class ConfidenceGraph extends React.Component{
     render(){
         return(
-            !this.props.loading ? 
+            this.props.confidence ? 
                 
 
             <div className="confidence">

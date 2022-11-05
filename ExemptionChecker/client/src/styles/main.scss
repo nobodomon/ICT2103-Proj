@@ -1455,10 +1455,11 @@ nav {
                 z-index: 1;
 
                 &>.dropdownOptions {
-                    padding:7.5px 15px;
+                    height: 34px;
                     display: flex;
                     scroll-snap-align: start;
                     align-items: center;
+                    padding-left: 15px;
                     cursor: pointer;
 
                     &>.countryCode {
@@ -1496,10 +1497,6 @@ nav {
                 overflow: auto;
                 z-index: 1;
                 transition: 0.3s;
-                display:flex;
-                flex-direction: column;
-                justify-content: flex-start;
-                align-items: flex-start;
 
             }
         }
