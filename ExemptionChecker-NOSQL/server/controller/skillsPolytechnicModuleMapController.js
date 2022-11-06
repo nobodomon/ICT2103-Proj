@@ -24,12 +24,14 @@ exports.allMapsFromSkill = async (req, res) => {
 
 exports.allMapsFromModule = async (req, res) => {
     const {moduleID} = req.body;
-    await skillPolytechnicModuleMap.aggregate([{
+    await skillPolytechnicModuleMap.aggregate([
+        {
         $lookup: {
             from: "Skills",
             localField: "skillID",
             foreignField: "_id",
         },
+    },{
         $match: {
             moduleID: moduleID
         }
@@ -48,7 +50,7 @@ exports.create = async (req, res) => {
     // if the skill and module exist then insert the map
     await skillPolytechnicModuleMap.find({skillID: skillID, moduleID: moduleID}).toArray((err, data) => {
         if(data.length == 0){
-            knex('SkillPolytechnicModuleMap').insert({skillID: skillID, moduleID: moduleID}).then(data =>{
+            skillPolytechnicModuleMap.insertOne({skillID: skillID, moduleID: moduleID}).then((data) => {
                 res.json({success:true, data, message: 'Map created!'});
             }).catch(err => {
                 res.json({success:false, message: err.message});

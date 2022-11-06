@@ -19,7 +19,8 @@ exports.allMapsFromSkill = async (req, res) => {
             localField: "skillID",
             foreignField: "_id",
             as: "skill"
-        },
+        }
+    },{
         $match: {
             skillID: skillID
         }
@@ -40,7 +41,8 @@ exports.allMapsFromModule = async (req, res) => {
             localField: "moduleID",
             foreignField: "_id",
             as: "module"
-        },
+        }
+    },{
         $match: {
             moduleID: moduleID
         }

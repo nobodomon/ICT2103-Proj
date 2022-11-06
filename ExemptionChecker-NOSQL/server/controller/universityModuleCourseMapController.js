@@ -48,10 +48,10 @@ exports.create = async (req, res) => {
     const {universityCourse, universityModule} = req.body;
     universityModuleCourseMap.find({universityCourse: universityCourse, universityModule: universityModule}).toArray().then(data =>{
         if(data.length == 0){
-            knex('UniversityModuleCourseMap').insert({universityCourse: universityCourse, universityModule: universityModule}).then(data =>{
-                res.json({success:true, data, message: 'Map created!'});
+            universityModuleCourseMap.insertOne({universityCourse: universityCourse, universityModule: universityModule}).then(data =>{
+                res.json({success: true, data, message: 'Map created!'});
             }).catch(err => {
-                res.json({success:false, message: err.message});
+                res.json({success: false, message: err.message});
             });
         }else{
             res.json({success:false, message: 'Map already exists!'});
@@ -79,6 +79,7 @@ exports.settings = async (req, res) => {
             'universityCourse',
             'universityModule'
         ]
+        
     }
     res.json({success:true, settings, message: 'Settings fetched!'});
 }

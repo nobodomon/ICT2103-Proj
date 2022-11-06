@@ -461,7 +461,7 @@ export class SkillUniversityModuleMapper extends React.Component{
         return(
             this.state.loading? <div>Loading</div>:
         
-            <ListMapper title={"University Modules that requires this skill"} requestRefresh={this.requestRefresh} currItemID={this.props.sid} addLink={this.addLink} settings={this.state.settings} deleteLink={this.deleteLink} headers={this.state.contentSettings.settings.fieldSettings} data={this.state.content.data} currentMap={this.state.currentMap.data}>
+            <ListMapper title={"University Modules that requires this skill"} requestRefresh={this.requestRefresh} currItemID={this.props.sid} addLink={this.addLink} settings={this.state.settings} deleteLink={this.deleteLink} headers={this.state.contentSettings.settings.listMapSettings} data={this.state.content.data} currentMap={this.state.currentMap.data}>
                 
             </ListMapper>
         )

@@ -96,9 +96,29 @@ exports.settings = async (req, res) => {
     }
   };
 
+  const listMapSettings = {
+    "_id": {
+      type: "number",
+      editable: false,
+      primaryKey: true,
+      displayLabel: "Module ID",
+    },
+    "moduleCode": {
+      type: "text",
+      editable: true,
+      displayLabel: "Module Code",
+    },
+    "moduleName": {
+      type: "text",
+      editable: true,
+      displayLabel: "Module Name",
+    },
+  }
+
   const settings = {
     columnSettings: columnSettings,
     fieldSettings: fieldSettings,
+    listMapSettings: listMapSettings,
   };
 
   res.json({ success: true, settings: settings, message: "Settings fetched!" });
