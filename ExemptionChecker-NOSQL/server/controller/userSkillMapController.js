@@ -16,6 +16,7 @@ exports.allMapsFromUser = async (req, res) => {
     userSkillMap.find({
         userID: userID
     }).toArray((err, data) => {
+        console.log(data);
         if(err){
             return res.json({success: false, message: err.message});
         }

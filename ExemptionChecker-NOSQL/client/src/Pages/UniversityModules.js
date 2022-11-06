@@ -123,12 +123,12 @@ export default class UniversityModules extends React.Component {
                     return(
                         <div>
                         <ModuleToCourseMapper
-                            key={index}  
-                            mid={item.mid}>
+                            key={"m-"+index}  
+                            mid={item._id}>
                         </ModuleToCourseMapper>
                         <ModuleSkills
-                            key={index}
-                            mid={item.mid}>
+                            key={"s-"+index}
+                            mid={item._id}>
                         </ModuleSkills>
                     </div>
 

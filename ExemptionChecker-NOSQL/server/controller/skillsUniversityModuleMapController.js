@@ -1,5 +1,6 @@
 const db = require("../database.js");
 const SkillUniversityModuleMap = db.collection("SkillUniversityModuleMap");
+const mongodb = require("mongodb");
 
 exports.allMaps = async (req, res) => {
     SkillUniversityModuleMap.find({}).toArray((err, data) => {
@@ -21,6 +22,16 @@ exports.allMapsFromSkill = async (req, res) => {
             as: "skill"
         }
     },{
+        $replaceRoot:{
+            newRoot: {
+                $mergeObjects: [ { $arrayElemAt: [ "$skill", 0 ] }, "$$ROOT" ]
+            }
+        }
+    },{
+        $project: {
+            skill: 0,
+        }
+    },{
         $match: {
             skillID: skillID
         }
@@ -36,17 +47,34 @@ exports.allMapsFromModule = async (req, res) => {
     const {moduleID} = req.body;
 
     SkillUniversityModuleMap.aggregate([{
+        $project : {
+            "skillObjID": {
+                "$toObjectId": "$skillID"
+            },
+            "moduleID": 1,
+            "skillID": 1,
+        }
+    },{
         $lookup: {
-            from: "UniversityModule",
-            localField: "moduleID",
+            from: "Skills",
+            localField: "skillObjID",
             foreignField: "_id",
-            as: "module"
+            as: "skill"
+        }
+    },{
+        $unwind: "$skill"
+    },{
+        $project: {
+            "_id": 1,
+            skillID: 1,
+            moduleID: 1,
+            "skill": "$skill.skill",
         }
     },{
         $match: {
             moduleID: moduleID
         }
-    }]).toArray((err, data) => {
+    },]).toArray((err, data) => {
         if(err){
             return res.json({success: false, message: err.message});
         }
@@ -56,6 +84,7 @@ exports.allMapsFromModule = async (req, res) => {
 
 exports.create = async (req, res) => {
     const { skillID, moduleID } = req.body;
+    console.log(req.body);
     SkillUniversityModuleMap.insertOne({ skillID: skillID, moduleID: moduleID }).then((data) => {
         res.json({ success: true, data, message: "Map created!" });
     }).catch(err => {

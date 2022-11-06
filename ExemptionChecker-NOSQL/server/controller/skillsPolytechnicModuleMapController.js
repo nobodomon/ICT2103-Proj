@@ -24,22 +24,39 @@ exports.allMapsFromSkill = async (req, res) => {
 
 exports.allMapsFromModule = async (req, res) => {
     const {moduleID} = req.body;
-    await skillPolytechnicModuleMap.aggregate([
-        {
+    await skillPolytechnicModuleMap.aggregate([{
+        $project : {
+            "skillObjID": {
+                "$toObjectId": "$skillID"
+            },
+            "moduleID": 1,
+            "skillID": 1,
+        }
+    },{
         $lookup: {
             from: "Skills",
-            localField: "skillID",
+            localField: "skillObjID",
             foreignField: "_id",
-        },
+            as: "skill"
+        }
+    },{
+        $unwind: "$skill"
+    },{
+        $project: {
+            "_id": 1,
+            skillID: 1,
+            moduleID: 1,
+            "skill": "$skill.skill",
+        }
     },{
         $match: {
             moduleID: moduleID
         }
-    }]).toArray((err, data) => {
+    },]).toArray((err, data) => {
         if(err){
-            return res.json({success:false, message: err.message});
+            return res.json({success: false, message: err.message});
         }
-        res.json({success:true, data, message: 'Map fetched!'});
+        res.json({success: true, data, message: "Maps fetched!"});
     })
 }
 
@@ -63,9 +80,7 @@ exports.create = async (req, res) => {
 
 exports.delete = async (req, res) => {
     const {skillID, moduleID} = req.body;
-    await skillPolytechnicModuleMap.deleteOne({skillID: skillID, moduleID: moduleID}, (err, data) => {
-        
-    }).then(data =>{
+    await skillPolytechnicModuleMap.deleteOne({skillID: skillID, moduleID: moduleID}).then(data =>{
         res.json({success:true, data, message: 'Map deleted!'});
     }).catch(err => {
         res.json({success:false, message: err.message});

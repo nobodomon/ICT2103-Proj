@@ -28,15 +28,36 @@ exports.allMapsFromModule = async (req, res) => {
 exports.allModulesForCourse = async (req, res) => {
     const {universityCourse} = req.body;
 
-    universityModuleCourseMap.aggregate([{
+    universityModuleCourseMap.aggregate([
+    {
+        $match: {universityCourse: universityCourse}
+    },{
+        $project:{
+            "universityModuleObjID": {
+                "$toObjectId": "$universityModule"
+            },
+            "universityCourse": 1,
+            "universityModule": 1,
+        }
+    },{
         $lookup: {
-            from: 'UniversityModule',
-            localField: 'universityModule',
+            from: 'UniversityModules',
+            localField: 'universityModuleObjID',
             foreignField: '_id',
             as: 'universityModule'
         },
-        $match : {
-            universityCourse: universityCourse
+    },{
+        $unwind: "$universityModule"
+    },{
+        $project: {
+            _id: "$universityModule._id",
+            universityModule: 1,
+            universityCourse: 1,
+            moduleCode: "$universityModule.moduleCode",
+            moduleName: "$universityModule.moduleName",
+            yearOffered: "$universityModule.yearOffered",
+            period: "$universityModule.period",
+            credits: "$universityModule.credits",
         }
     }]).toArray().then(data =>{
         res.json({success: true, data, message: 'Maps fetched!'});

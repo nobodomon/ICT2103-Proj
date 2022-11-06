@@ -57,9 +57,9 @@ export class AppPageContainer extends React.Component{
       return(
         <AppPageContainer nopad={true}>
           <div className="loading-graphic">  
-            <div class="spinner-border text-dark" role="status">
+            <div className="spinner-border text-dark" role="status">
             </div>
-            <span class="sr-only">{this.state.text}</span>
+            <span className="sr-only">{this.state.text}</span>
           </div>
         </AppPageContainer>
       )

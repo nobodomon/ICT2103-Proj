@@ -26,26 +26,36 @@ export default class Landing extends React.Component{
         });
 
         var skillOptions = [];
-
+        // load the skills dropdown
         await this.getAllSkills().then((skills) => {
-            skills.data.map((item) => {
-                skillOptions.push({label: item.skill, value: item._id});
-            });
+            
+            
+            if(skills.success){
+                console.log(skills);
+                skills.data.map((item) => {
+                    skillOptions.push({label: item.skill, value: item._id});
+                });
+                this.setState({skillOption: skillOptions});
+            }else{
+                console.log(skills);
+            }
 
 
-            this.setState({skillOption: skillOptions});
         });
-
+        // load skills provided from polytechnic course
         await this.getSkills().then((skills) =>{
             console.log("getting all skills");
+            console.log(skills);
             this.setState({
                 skills: skills.data
             })
         });
-
+        // load skills provided from user
         await this.getUserSkills().then((userSkills) =>{
             console.log("getting user skills");
+            console.log(userSkills);
             var temp = new Set(this.state.skills.map(skill => skill._id));
+            console.log(temp);
             var user = userSkills.data;
             user.map((item)=> Object.assign(item,{editable: true}));
             var tempList = [...this.state.skills, ...user.filter(skill => !temp.has(skill._id))];
@@ -53,7 +63,7 @@ export default class Landing extends React.Component{
                 skills: tempList
             })
         })
-
+        // load the polytechnic courses
         await this.getPolytechnicCourses().then((courses) =>{
             
             console.log("getting all polytechnic courses");
@@ -67,7 +77,7 @@ export default class Landing extends React.Component{
                 polyCourses: courseList
             })
         });
-
+        // load the university courses
         await this.getUniversityCourses().then((courses) =>{
             console.log("getting all university courses");
             var courseList = [];
@@ -88,20 +98,20 @@ export default class Landing extends React.Component{
     }
 
     getSkills = async() => {
-        return await fetch(
-            "/skills/allSkillsFromPolytechnicCourse",
-            {
-                method:"POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    courseID: this.props.user.data[0].polytechnicCourse
-                }),
-            }
-        ).then((res) => {
-            return res.json()
-        })
+            return await fetch(
+                "/skills/allSkillsFromPolytechnicCourse",
+                {
+                    method:"POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        polytechnicCourse: this.props.user.data[0].polytechnicCourse
+                    }),
+                }
+            ).then((res) => {
+                return res.json()
+            })
     }
 
     getUserSkills = async() =>{
@@ -172,7 +182,7 @@ export default class Landing extends React.Component{
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    uid: this.props.user.data[0]._id
+                    _id: this.props.user.data[0]._id
                 }),
             }
             
@@ -188,9 +198,9 @@ export default class Landing extends React.Component{
             dataToPush: temp
         })
 
-        await this.update().then((result) =>{
+        await this.update().then(async (result) =>{
             console.log(result);
-            this.getUserInfo().then((result) =>{
+            await this.getUserInfo().then((result) =>{
                 console.log(result);
                 this.props.updateUser(result);
             })
@@ -520,7 +530,7 @@ export class ModuleCard extends React.Component{
 
             result.data.map((skill) =>
             
-                tempSkillsRequired.push(skill._id)
+                tempSkillsRequired.push(skill.skillID)
             );
             this.setState({
                 skillsRequired: result.data

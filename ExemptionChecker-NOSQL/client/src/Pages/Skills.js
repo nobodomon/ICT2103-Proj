@@ -124,10 +124,10 @@ export default class Skills extends React.Component {
                     return <div>
                         <SkillPolytechnicModuleMapper 
                             key={index + "polytechnic"}  
-                            sid={item.sid}/>
+                            sid={item._id}/>
                         <SkillUniversityModuleMapper
                             key={index + "university"}
-                            sid={item.sid}/>
+                            sid={item._id}/>
                         </div>
                 })}
             </DatapageLayout>

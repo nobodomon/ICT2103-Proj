@@ -35,6 +35,7 @@ exports.delete = async (req, res) => {
 }
 
 exports.update = async (req, res) => {
+    const collection = db.collection("users");
     const {_id, username, password, role, polytechnicCourse,universityCourse} = req.body;
     if(polytechnicCourse == null){
         return res.json({success:false, message: "Polytechnic course cannot be empty!"});
@@ -43,12 +44,12 @@ exports.update = async (req, res) => {
     await collection.updateOne({_id:  mongodb.ObjectId(_id)}, {$set: 
         {
             username: username,
-            password: SHA256(password).toString(), 
+            password: password, 
             role: role, polytechnicCourse: 
             polytechnicCourse, 
             universityCourse: 
             universityCourse}}, async (err, result) => {
-            await collection.find({username:username}).toArray((err, data) => {
+            await collection.find({_id: mongodb.ObjectId(_id)}).toArray((err, data) => {
                 res.json({success:true, data, message: "User updated!"});
             });
     });
