@@ -1,83 +1,55 @@
-const knex = require("../database.js");
+const db = require("../database.js");
+const universityModules = db.collection("UniversityModules");
+const mongodb = require("mongodb");
 
 exports.allModules = async (req, res) => {
-  knex
-    .select("*")
-    .from("UniversityModules")
-    .then((data) => {
-      res.json({ success: true, data, message: "University modules fetched!" });
-    })
-    .catch((err) => {
-      res.json({ success: false, message: err.message });
-    });
+  universityModules.find({}).toArray().then((data) => {
+    res.json({ success: true, data, message: "University modules fetched!" });
+  })
 };
 
 exports.create = async (req, res) => {
-  console.log(req.body);
-  knex
-    .insert({
-      "moduleCode": req.body["moduleCode"],
-      "moduleName": req.body["moduleName"],
-    })
-    .into("UniversityModules")
-    .then((data) => {
-      res.json({ success: true, data, message: "Module created!" });
-    })
-    .catch((err) => {
-      res.json({ success: false, message: err.message });
-    });
+  const {moduleCode, moduleName,yearOffered, period, credits} = req.body;
+  universityModules.insertOne({
+    moduleCode: moduleCode, 
+    moduleName: moduleName,
+    yearOffered: yearOffered,
+    period: period,
+    credits: credits
+  }).then(data =>{
+    res.json({success:true, data, message: "University module created!"});
+  })
 };
 
 exports.delete = async (req, res) => {
-  const { mid } = req.body;
-  knex
-    .delete()
-    .from("UniversityModules")
-    .where({ mid: mid })
-    .then((universityModuleData) => {
-      res.json({
-        success: true,
-        universityModuleData,
-        message: "University module deleted!",
-      });
-    })
-    .catch((err) => {
-      res.json({ success: false, message: err.message });
-    });
+  const {_id} = req.body;
+
+  universityModules.deleteOne({_id: mongodb.ObjectId(_id)}).then(data =>{
+    res.json({success:true, data, message: "University module deleted!"});
+  })
 };
 
 exports.update = async (req, res) => {
-  knex
-    .update({
-      mid: req.body["mid"],
-      "moduleCode": req.body["moduleCode"],
-      "moduleName": req.body["moduleName"],
-    })
-    .from("UniversityModules")
-    .where({ mid: mid })
-    .then((data) => {
-      knex
-        .select("*")
-        .from("UniversityModules")
-        .then((data) => {
-          res.json({
-            success: true,
-            data,
-            message: "University modules fetched!",
-          });
-        });
-    })
-    .catch((err) => {
-      res.json({ success: false, message: err.message });
-    });
+  const {_id, moduleCode, moduleName} = req.body;
+  universityModules.updateOne({_id: mongodb.ObjectId(_id)}, 
+  {$set: {
+    moduleCode: moduleCode, 
+    moduleName: moduleName,
+    yearOffered: yearOffered,
+    period: period,
+    credits: credits
+  }}).then(data =>{
+    res.json({success:true, data, message: "University module updated!"});
+  })
 };
+
 exports.settings = async (req, res) => {
 
   const columnSettings = {
     // Configures the headers of the table
     // Pls match header names with column names (case sensitive!)
     headers: {
-      "mid": {
+      "_id": {
         displayHeader: "Module ID",
       },
       "moduleCode": {
@@ -91,7 +63,7 @@ exports.settings = async (req, res) => {
 
   const fieldSettings = {
     // Configures the fields of the table
-    mid: {
+    "_id": {
       type: "number",
       editable: false,
       primaryKey: true,
@@ -107,6 +79,21 @@ exports.settings = async (req, res) => {
       editable: true,
       displayLabel: "Module Name",
     },
+    "yearOffered":{
+      type: "text",
+      editable: true,
+      displayLabel: "Year Offered",
+    },
+    "period":{
+      type: "number",
+      editable: true,
+      displayLabel: "Period",
+    },
+    "credits":{
+      type: "text",
+      editable: true,
+      displayLabel: "Credits",
+    }
   };
 
   const settings = {

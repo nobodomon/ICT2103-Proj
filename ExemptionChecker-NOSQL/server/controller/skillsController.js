@@ -1,57 +1,85 @@
-const knex = require('../database.js');
+const db = require('../database.js');
+const skills = db.collection("Skills");
+const mongodb = require('mongodb');
 
 exports.allSkills = async (req, res) => {
-    knex.select('*').from('Skills').then(data =>{
-        res.json({success:true, data, message: 'Skills fetched!'});
-    }).catch(err => {
-        res.json({success:false, message: err.message});
-    });
+    skills.find({}).toArray((err, data) => {
+        res.json({success: true, data, message: "Skills fetched!"});
+    })
 }
 
 exports.allSkillsFromPolytechnicCourse = async (req, res) => {
     const { courseID } = req.body;
-    knex.select('sid', 'skill', 'polytechnicCourse').from('Skills').join('SkillPolytechnicModuleMap', function(){
-        this.on('Skills.sid', '=', 'SkillPolytechnicModuleMap.skillID')
-    }).join("PolytechnicModuleCourseMap", function(){
-        this.on("SkillPolytechnicModuleMap.moduleID", "=", "PolytechnicModuleCourseMap.polytechnicModule")
-    }).where({polytechnicCourse: courseID}).then(data =>{
-        res.json({success:true, data, message: 'Skills fetched!'});
-    }
-    ).catch(err => {
-        res.json({success:false, message: err.message});
-    });
+
+    skills.aggregate([{ 
+        $lookup: { 
+            from: "SkillPolytechnicModuleMap", 
+            localField: "_id", 
+            foreignField: "skillID", 
+            as: "SkillPolytechnicModuleMap" 
+        },
+        $lookup: {
+            from:"PolytechnicModuleCourseMap",
+            localField: "SkillPolytechnicModuleMap.moduleID",
+            foreignField: "moduleID",
+            as: "PolytechnicModuleCourseMap"
+        },
+        $match: { "PolytechnicModuleCourseMap.courseID": courseID }
+        }]).toArray((err, data) => {
+            res.json({success: true, data, message: "Skills fetched!"});
+    })
+    // knex.select('sid', 'skill', 'polytechnicCourse').from('Skills')
+    //.join('SkillPolytechnicModuleMap', function(){
+    //     this.on('Skills.sid', '=', 'SkillPolytechnicModuleMap.skillID')
+    // }).join("PolytechnicModuleCourseMap", function(){
+    //     this.on("SkillPolytechnicModuleMap.moduleID", "=", "PolytechnicModuleCourseMap.polytechnicModule")
+    // }).where({polytechnicCourse: courseID}).then(data =>{
+    //     res.json({success:true, data, message: 'Skills fetched!'});
+    // }
+    // ).catch(err => {
+    //     res.json({success:false, message: err.message});
+    // });
 }
 
 exports.allSkillsFromUniversityCourse = async (req, res) => {
     const { courseID } = req.body;
-    knex.select('sid', 'skill', 'universityCourse').from('Skills').join('SkillUniversityModuleMap', function(){
-        this.on('Skills.sid', '=', 'SkillUniversityModuleMap.skillID')
-    }).join("UniversityModuleCourseMap", function(){
-        this.on("SkillUniversityModuleMap.moduleID", "=", "UniversityModuleCourseMap.universityModule")
-    }).where({universityCourse: courseID}).then(data =>{
-        res.json({success:true, data, message: 'Skills fetched!'});
-    }
-    ).catch(err => {
-        res.json({success:false, message: err.message});
-    });
+
+    skills.aggregate([{
+        $lookup: {
+            from: "SkillUniversityModuleMap",
+            localField: "_id",
+            foreignField: "skillID",
+            as: "SkillUniversityModuleMap"
+        },
+        
+        $lookup: {
+            from: "UniversityModuleCourseMap",
+            localField: "SkillUniversityModuleMap.moduleID",
+            foreignField: "moduleID",
+            as: "UniversityModuleCourseMap"
+        },
+        $match: { "UniversityModuleCourseMap.courseID": courseID }
+        }]).toArray((err, data) => {
+            res.json({success: true, data, message: "Skills fetched!"});
+    })
 }
 
 exports.allSKillFromUser = async (req, res) => {
     const { userID } = req.body;
-    knex.select('sid', 'skill').from('Skills').join('UserSkillMap', function(){
-        this.on('Skills.sid', '=', 'UserSkillMap.skillID')
-    }).where({userID: userID}).then(data =>{
-        res.json({success:true, data, message: 'Skills fetched!'});
-    }
-    ).catch(err => {
-        res.json({success:false, message: err.message});
-    });
+    // knex.select('sid', 'skill').from('Skills').join('UserSkillMap', function(){
+    //     this.on('Skills.sid', '=', 'UserSkillMap.skillID')
+    // }).where({userID: userID}).then(data =>{
+    //     res.json({success:true, data, message: 'Skills fetched!'});
+    // }
+    // ).catch(err => {
+    //     res.json({success:false, message: err.message});
+    // });
 }
 
 
 exports.create = async (req, res) => {
     const {skill} = req.body;
-    knex('Skills').insert({skill: skill}).then(data =>{
+    skills.insertOne({skill: skill}).then(data =>{
         res.json({success:true, data, message: 'Skill created!'});
     }).catch(err => {
         res.json({success:false, message: err.message});
@@ -59,18 +87,17 @@ exports.create = async (req, res) => {
 }
 
 exports.update = async (req, res) => {
-    const {sid, skill} = req.body;
-    knex('Skills').where({sid : sid}).update({skill: skill}).then(data =>{
+    const {_id, skill} = req.body;
+    skills.updateOne({_id: mongodb.ObjectId(_id)}, {$set: {skill: skill}}).then(data =>{
         res.json({success:true, data, message: 'Skill updated!'});
-    }
-    ).catch(err => {
+    }).catch(err => {
         res.json({success:false, message: err.message});
     });
 }
 
 exports.delete = async (req, res) => {
-    const {sid,skill} = req.body;
-    knex('Skills').where({sid : sid}).del().then(data =>{
+    const {_id,skill} = req.body;
+    skills.deleteOne({_id: mongodb.ObjectId(_id)}).then(data =>{
         res.json({success:true, data, message: 'Skill deleted!'});
     }).catch(err => {
         res.json({success:false, message: err.message});
@@ -83,7 +110,7 @@ exports.settings = async (req, res) => {
         // Configures the headers of the table
         // Pls match header names with column names (case sensitive!)
         headers: {
-            "sid":{
+            "_id":{
                 displayHeader: "Skill ID",
             },
             "skill":{
@@ -95,7 +122,7 @@ exports.settings = async (req, res) => {
     const fieldSettings = {
         // Configures the fields of the table
         // Pls match field names with column names (case sensitive!)
-        "sid": {
+        "_id": {
             type: "number",
             editable: false,
             primaryKey: true,
@@ -111,7 +138,7 @@ exports.settings = async (req, res) => {
     const listViewSettings = {
         "PolytechnicCourseSkills":{
             fieldSettings:{
-                "sid":{
+                "_id":{
                     displayLabel: "Skill ID",
                     foreignKey:true,
                 },
@@ -122,7 +149,7 @@ exports.settings = async (req, res) => {
         },
         "UniversityCourseSkills": {
             fieldSettings:{
-                "sid":{
+                "_id":{
                     displayLabel: "Skill ID",
                     foreignKey:true,
                 },

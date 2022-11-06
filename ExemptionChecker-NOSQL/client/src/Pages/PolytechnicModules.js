@@ -125,7 +125,7 @@ export default class PolytechnicModules extends React.Component {
                     <div>
                         <ModuleToCourseMapper 
                             key={index + " course"}  
-                            mid={item.mid}>
+                            mid={item._id}>
                         </ModuleToCourseMapper>
                         <ModuleSkills
                             key={index + " skills"}

@@ -1,16 +1,17 @@
-const knex = require("../database.js");
+const db = require("../database.js");
+const universities = db.collection("Universities");
+const mongodb = require('mongodb');
 
 exports.allUniversities = async (req, res) => {
-    knex.select("*").from("Universities").then(data =>{
-        res.json({success:true, data, message: "Universities fetched!"});
-    }).catch(err => {
-        res.json({success:false, message: err.message});
-    });
+    universities.find({}).toArray((err, data) => {
+        res.json({success: true, data, message: "Universities fetched!"});
+    })
 }
 
 exports.create = async (req, res) => {
-    console.log(req.body);
-    knex.insert({"universityName": req.body["universityName"]}).into("Universities").then(universitdataData =>{
+    const {_id, universityName} = req.body;
+    
+    universities.insertOne({_id: _id, universityName: universityName}).then(data =>{
         res.json({success:true, data, message: "University created!"});
     }).catch(err => {
         res.json({success:false, message: err.message});
@@ -18,20 +19,19 @@ exports.create = async (req, res) => {
 }
 
 exports.delete = async (req, res) => {
-    const {uid} = req.body;
-    knex.delete().from("Universities").where({uid: uid}).then(data =>{
-        res.json({success: true, data, message: "University deleted!"});
+    const {_id} = req.body;
+
+    universities.deleteOne({_id: _id}).then(data =>{
+        res.json({success:true, data, message: "University deleted!"});
     }).catch(err => {
         res.json({success:false, message: err.message});
     });
 }
 
 exports.update = async (req, res) => {
-
-    knex.update({uid: req.body["uid"], "universityName": req.body["universityName"]}).from("Universities").where({uid: uid}).then(data =>{
-        knex.select("*").from("Universities").then(data =>{ 
-            res.json({success:true, data, message: "Universities fetched!"});
-        })
+    const {_id, universityName} = req.body;
+    universities.updateOne({_id: _id}, {$set: {universityName: universityName}}).then(data =>{
+        res.json({success:true, data, message: "University updated!"});
     }).catch(err => {
         res.json({success:false, message: err.message});
     });
@@ -43,7 +43,7 @@ exports.settings = async (req, res) => {
         // Configures the headers of the table
         // Pls match header names with column names (case sensitive!)
         headers: {
-            "uid":{
+            "_id":{
                 displayHeader: "University ID",
             },
             "universityName":{
@@ -54,7 +54,7 @@ exports.settings = async (req, res) => {
     };
     const fieldSettings = {
         // Configures the fields of the table
-        "uid": {
+        "_id": {
             type: "number",
             editable: false,
             primaryKey: true,

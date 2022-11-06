@@ -122,9 +122,9 @@ export default class Courses extends React.Component {
                 error = {this.state.error}>                
                 {this.state.content.data.map((item, index) => {
                     return <div>
-                        <CourseSkills
+                        {/* <CourseSkills
                             key={index + "course"}
-                            cid={item.cid}/>
+                            cid={item.cid}/> */}
                         </div>
                 })}
             </DatapageLayout>

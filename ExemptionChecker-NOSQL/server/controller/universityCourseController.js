@@ -1,62 +1,59 @@
-const knex = require("../database.js");
+const db = require("../database.js");
+const universityCourses = db.collection("UniversityCourses");
+const mongodb = require("mongodb");
 
 exports.allCourses = async (req, res) => {
-    knex.select("*").from("UniversityCourses").join("Universities", function()
-        {
-            this.on("UniversityCourses.university", "=", "Universities.uid")
-        }).then(data =>{
-        console.log(data);
-        res.json({success:true, data, message: "Courses fetched!"});
-    }).catch(err => {
-        res.json({success:false, message: err.message});
+    universityCourses.find({}).toArray((err, data) => {
+        res.json({ success: true, data, message: "Courses fetched!" });
     });
 }
 
 exports.create = async (req, res) => {
-    knex.insert({"university": req.body["university"], "courseName": req.body["courseName"],"courseCode": req.body["courseCode"]}).into("UniversityCourses").then(data =>{
-        res.json({success:true, data, message: "Course created!"});
+    const {university, courseName, courseCode} = req.body;
+    universityCourses
+    .insertOne({
+        "university": university, 
+        "courseName": courseName, 
+        "courseCode": courseCode}).then(data =>{ 
+        res.json({success: true, data, message: "Course created!"});
     }).catch(err => {
-        res.json({success:false, message: err.message});
-    });
+        res.json({success: false, message: err.message});
+    })
 }
 
 exports.delete = async (req, res) => {
-    const {cid} = req.body;
-    knex.delete().from("UniversityCourses").where({cid: cid}).then(courseData =>{
-        res.json(courseData)
+    const {_id} = req.body;
+    universityCourses.deleteOne({_id: mongodb.ObjectID(_id)}).then(data => {
+        res.json({success: true, data, message: "Course deleted!"});
     }).catch(err => {
-        res.json({success:false, message: err.message});
-    });
+        res.json({success: false, message: err.message});
+    })
 }
 
 exports.update = async (req, res) => {
-    console.log(req.body);
-    knex.update({cid: req.body["cid"], "university": req.body["University"], "courseName": req.body["courseName"], "courseCode": req.body["courseCode"]}).from("UniversityCourses").where({cid:  req.body["cid"]}).then(data =>{
-        knex.select("*").from("UniversityCourses").then(data =>{ 
-            res.json({success:true, data, message: "Courses fetched!"});
-        })
+    const {_id, university, courseName, courseCode} = req.body;
+    universityCourses.updateOne({_id: mongodb.ObjectID(_id)}, {$set: {university: university, courseName: courseName, courseCode: courseCode}}).then(data =>{
+        res.json({success: true, data, message: "Course updated!"});
     }).catch(err => {
-        res.json({success:false, message: err.message});
-    });
+        res.json({success: false, message: err.message});
+    })
 }
 
 exports.settings = async (req, res) => {
-    universities = await knex.select("*").from("Universities").then(universityData =>{
-        var tempUniversityList = [];
-        console.log(universityData);
-        for(university in universityData){
-            tempUniversityList.push({label: universityData[university]["universityName"], value:  universityData[university]["uid"]});
-        }
-        console.log(tempUniversityList)
-        return tempUniversityList;
-    });
+    const university = db.collection("Universities");
+    var universities = [];
+    await university.find({}).toArray().then(data =>{
+        data.forEach(element => {
+            universities.push({label: element.universityName, value: String(element._id)});
+        });
+    })
 
     
     const columnSettings = {
         // Configures the headers of the table
         // Pls match header names with column names (case sensitive!)
         headers: {
-            "cid":{
+            "_id":{
                 displayHeader: "Course ID",
             },
             "university":{
@@ -73,8 +70,8 @@ exports.settings = async (req, res) => {
 
     const fieldSettings = {
         // Configures the fields of the table
-        "cid": {
-            type: "number",
+        "_id": {
+            type: "text",
             editable: false,
             primaryKey: true,
             displayLabel: "Course ID",

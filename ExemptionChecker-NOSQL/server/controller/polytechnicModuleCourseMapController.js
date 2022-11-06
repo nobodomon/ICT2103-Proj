@@ -1,7 +1,9 @@
-const knex = require('../database.js');
+const db = require('../database.js');
+const mongodb = require("mongodb");
+const polytechnicModuleCourseMap = db.collection("PolytechnicModuleCourseMap");
 
 exports.allMaps = async (req, res) => {
-    knex.select('*').from('PolytechnicModuleCourseMap').then(data =>{
+    polytechnicModuleCourseMap.find({}).toArray().then(data =>{
         res.json({success:true, data, message: 'Map fetched!'});
     }).catch(err => {
         res.json({success:false, message: err.message});
@@ -10,36 +12,34 @@ exports.allMaps = async (req, res) => {
 
 exports.allMapsFromCourse = async (req, res) => {
     const {polytechnicCourse} = req.body;
-    knex.select('*').from('PolytechnicModuleCourseMap').where({polytechnicCourse: polytechnicCourse}).then(data =>{
-        res.json({success:true, data, message: 'Map fetched!'});
-    }).catch(err => {
-        res.json({success:false, message: err.message});
-    });
+    polytechnicModuleCourseMap.find({polytechnicCourse: polytechnicCourse}).toArray().then(data =>{
+        res.json({success: true, data, message: "Maps fetched!"});
+    })
 }
 exports.allMapsFromModule = async (req, res) => {
     const {polytechnicModule} = req.body;
-    knex.select('*').from('PolytechnicModuleCourseMap').where({polytechnicModule: polytechnicModule}).then(data =>{
-        res.json({success:true, data, message: 'Map fetched!'});
-    }).catch(err => {
-        res.json({success:false, message: err.message});
-    });
+    polytechnicModuleCourseMap.find({polytechnicModule: polytechnicModule}).toArray().then(data =>{
+        res.json({success: true, data, message: "Maps fetched!"});
+    })
 }
 
 exports.create = async (req, res) => {
     const {polytechnicCourse, polytechnicModule} = req.body;
-    knex('PolytechnicModuleCourseMap').insert({polytechnicCourse: polytechnicCourse, polytechnicModule: polytechnicModule}).then(data =>{
-        res.json({success:true, data, message: 'Map created!'});
-    }).catch(err => {
-        res.json({success:false, message: err.message});
-    });
+    // Check if the course and module exist if not insert them
+    polytechnicModuleCourseMap.find({polytechnicCourse: polytechnicCourse, polytechnicModule: polytechnicModule}).toArray().then(data =>{
+        if(data.length == 0){
+            polytechnicModuleCourseMap.insertOne({
+                "polytechnicCourse": polytechnicCourse,
+                "polytechnicModule": polytechnicModule,
+            })
+        }
+    })
 }
 
 exports.delete = async (req, res) => {
     const {polytechnicCourse, polytechnicModule} = req.body;
-    knex('PolytechnicModuleCourseMap').where({polytechnicCourse : polytechnicCourse, polytechnicModule: polytechnicModule}).del().then(data =>{
-        res.json({success:true, data, message: 'Map deleted!'});
-    }).catch(err => {
-        res.json({success:false, message: err.message});
+    polytechnicModuleCourseMap.deleteOne({polytechnicCourse: polytechnicCourse, polytechnicModule: polytechnicModule}).then(data =>{
+        res.json({success: true, data, message: "Map deleted!"});
     });
 }
 
@@ -47,7 +47,7 @@ exports.settings = async (req, res) => {
     const settings = {
         matchingHeaders : [
             'polytechnicCourse',
-            'cid',
+            '_id',
         ],
 
         tableHeaders: [

@@ -51,7 +51,7 @@ exports.settings = async (req, res) => {
     var polytechnicCourseList = await polytechnicCourse.find({}).toArray();
 
     polytechnicCourseList.map((item) => {
-        polytechnicCourses.push({label: item.courseCode + " - " + item.courseName, value: item._id});
+        polytechnicCourses.push({label: item.courseCode + " - " + item.courseName, value: String(item._id)});
     });
 
     const columnSettings = {

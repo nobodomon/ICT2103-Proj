@@ -1,48 +1,71 @@
-const knex = require("../database.js");
+const db = require("../database.js");
+const SkillUniversityModuleMap = db.collection("SkillUniversityModuleMap");
 
 exports.allMaps = async (req, res) => {
-    knex.select("*").from("SkillUniversityModuleMap").then((data) => {
-        res.json({ success: true, data, message: "Map fetched!" });
-    }).catch((err) => {
-        res.json({ success: false, message: err.message });
-    });
+    SkillUniversityModuleMap.find({}).toArray((err, data) => {
+        if(err){
+            return res.json({success: false, message: err.message}); 
+        }
+        res.json({success: true, data, message: "Maps fetched!"});
+    })
 }
 
 exports.allMapsFromSkill = async (req, res) => {
-    const { skillID } = req.body;
-    knex.select("*").from("SkillUniversityModuleMap").where({ skillID: skillID }).then((data) => {
-        res.json({ success: true, data, message: "Map fetched!" });
-    }).catch((err) => {
-        res.json({ success: false, message: err.message });
-    });
+    const {skillID} = req.body;
+
+    SkillUniversityModuleMap.aggregate([{
+        $lookup: {
+            from: "Skill",
+            localField: "skillID",
+            foreignField: "_id",
+            as: "skill"
+        },
+        $match: {
+            skillID: skillID
+        }
+    }]).toArray((err, data) => {
+        if(err){
+            return res.json({success: false, message: err.message});
+        }
+        res.json({success: true, data, message: "Maps fetched!"});
+    })
 }
 
 exports.allMapsFromModule = async (req, res) => {
-    console.log(req.body);
-    const { moduleID } = req.body;
-    knex.select("*").from("SkillUniversityModuleMap").join("Skills", function(){
-        this.on("Skills.sid", "=", "SkillUniversityModuleMap.skillID")
-    }).where({ moduleID: moduleID }).then((data) => {
-        res.json({ success: true, data, message: "Map fetched!" });
-    }).catch((err) => {
-        res.json({ success: false, message: err.message });
-    });
+    const {moduleID} = req.body;
+
+    SkillUniversityModuleMap.aggregate([{
+        $lookup: {
+            from: "UniversityModule",
+            localField: "moduleID",
+            foreignField: "_id",
+            as: "module"
+        },
+        $match: {
+            moduleID: moduleID
+        }
+    }]).toArray((err, data) => {
+        if(err){
+            return res.json({success: false, message: err.message});
+        }
+        res.json({success: true, data, message: "Maps fetched!"});
+    })
 }
 
 exports.create = async (req, res) => {
     const { skillID, moduleID } = req.body;
-    knex("SkillUniversityModuleMap").insert({ skillID: skillID, moduleID: moduleID }).then((data) => {
+    SkillUniversityModuleMap.insertOne({ skillID: skillID, moduleID: moduleID }).then((data) => {
         res.json({ success: true, data, message: "Map created!" });
-    }).catch((err) => {
+    }).catch(err => {
         res.json({ success: false, message: err.message });
     });
 }
 
 exports.delete = async (req, res) => {
     const { skillID, moduleID } = req.body;
-    knex("SkillUniversityModuleMap").where({ skillID: skillID, moduleID: moduleID }).del().then((data) => {
+    SkillUniversityModuleMap.deleteOne({ skillID: skillID, moduleID: moduleID }).then((data) => {
         res.json({ success: true, data, message: "Map deleted!" });
-    }).catch((err) => {
+    }).catch(err => {
         res.json({ success: false, message: err.message });
     });
 }
@@ -51,7 +74,7 @@ exports.settings = async (req, res) => {
     const settings = {
         matchingHeaders: [
             "moduleID",
-            "mid",
+            "_id",
         ],
         tableHeaders: [
             "moduleID",
@@ -73,7 +96,7 @@ exports.settings = async (req, res) => {
                 displayLabel: "Skills",
             },
 
-            "sid":{
+            "_id":{
                 displayLabel: "Skill ID",
                 foreignKey:true,
             }

@@ -61,7 +61,7 @@ exports.settings = async (req, res) => {
     const fieldSettings = {
         // Configures the fields of the table
         "_id": {
-            type: "number",
+            type: "text",
             editable: false,
             primaryKey: true,
             displayLabel: "Course ID",

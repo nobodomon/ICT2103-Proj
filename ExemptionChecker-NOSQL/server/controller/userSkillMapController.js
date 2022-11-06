@@ -1,47 +1,56 @@
-const knex = require('../database.js');
+const db = require('../database.js');
+
+const userSkillMap = db.collection('UserSkillMap');
 
 exports.allMaps = async (req, res) => {
-    knex.select('*').from('UserSkillMap').then(data =>{
-        res.json({success:true, data, message: 'Map fetched!'});
-    }).catch(err => {
-        res.json({success:false, message: err.message});
-    });
+    userSkillMap.find({}).toArray((err, data) => {
+        if(err){
+            return res.json({success: false, message: err.message});
+        }
+        res.json({success: true, data, message: 'Maps fetched!'});
+    })
 }
 
 exports.allMapsFromUser = async (req, res) => {
     const {userID} = req.body;
-    knex.select('*').from('UserSkillMap').where({userID: userID}).then(data =>{
-        res.json({success:true, data, message: 'Map fetched!'});
-    }).catch(err => {
-        res.json({success:false, message: err.message});
-    });
+    userSkillMap.find({
+        userID: userID
+    }).toArray((err, data) => {
+        if(err){
+            return res.json({success: false, message: err.message});
+        }
+        res.json({success: true, data, message: 'Maps fetched!'});
+    })
 }
 
 exports.allMapsFromSkill = async (req, res) => {
     const {skillID} = req.body;
-    knex.select('*').from('UserSkillMap').where({skillID: skillID}).then(data =>{
-        res.json({success:true, data, message: 'Map fetched!'});
-    }).catch(err => {
-        res.json({success:false, message: err.message});
-    });
+    userSkillMap.find({
+        skillID: skillID
+    }).toArray((err, data) => {
+        if(err){
+            return res.json({success: false, message: err.message});
+        }
+        res.json({success: true, data, message: 'Maps fetched!'});
+    })
 }
 
 exports.create = async (req, res) => {
     const {userID, skillID} = req.body;
-    knex('UserSkillMap').insert({userID: userID, skillID: skillID}).then(data =>{
-        res.json({success:true, data, message: 'Map created!'});
+    userSkillMap.insertOne({userID: userID, skillID: skillID}).then((data) => {
+        res.json({success: true, data, message: 'Map created!'});
     }).catch(err => {
-        res.json({success:false, message: err.message});
-    });
+        res.json({success: false, message: err.message});
+    })
 }
 
 exports.delete = async (req, res) => {
     const {userID, skillID} = req.body;
-    knex('UserSkillMap').where({userID : userID, skillID: skillID}).del().then(data =>{
-        res.json({success:true, data, message: 'Map deleted!'});
+    userSkillMap.deleteOne({userID: userID, skillID: skillID}).then((data) => {
+        res.json({success: true, data, message: 'Map deleted!'});
     }).catch(err => {
-        res.json({success:false, message: err.message});
-    });
+        res.json({success: false, message: err.message});
+    })
 }
 
 exports.settings = async (req, res) => {
@@ -51,7 +60,7 @@ exports.settings = async (req, res) => {
                 //fk skillID from userskillMap
                 'skillID',
                 //pk sid from users
-                'sid',
+                '_id',
             ],
     
             tableHeaders: [
