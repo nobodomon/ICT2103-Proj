@@ -248,7 +248,7 @@ export default class Landing extends React.Component{
     }
 
     handleDeleteSkill = async (value) =>{
-        await this.deleteSkill(this.props.user.data[0].uid, value).then(async (result) =>{
+        await this.deleteSkill(this.props.user.data[0]._id, value).then(async (result) =>{
             console.log(result);
             this.getUserInfo().then((result) =>{
                 console.log(result);
@@ -422,7 +422,7 @@ export class SkillCard extends React.Component{
             <div className="skill-card" >
                 {this.props.skill.skill}
                 {this.props.skill.editable && 
-                <i className="bi bi-x-circle-fill" onClick={this.props.skill.editable? ()=>{this.props.deleteSkill(this.props.skill.sid)}:()=>{}}></i>
+                <i className="bi bi-x-circle-fill" onClick={this.props.skill.editable? ()=>{this.props.deleteSkill(this.props.skill._id)}:()=>{}}></i>
                 }
             </div>
         )

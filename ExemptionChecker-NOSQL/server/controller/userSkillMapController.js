@@ -38,10 +38,24 @@ exports.allMapsFromSkill = async (req, res) => {
 
 exports.create = async (req, res) => {
     const {userID, skillID} = req.body;
-    userSkillMap.insertOne({userID: userID, skillID: skillID}).then((data) => {
-        res.json({success: true, data, message: 'Map created!'});
-    }).catch(err => {
-        res.json({success: false, message: err.message});
+    userSkillMap.find({
+        userID: userID,
+        skillID: skillID
+    }).toArray((err, data) => {
+        if(err){
+            return res.json({success: false, message: err.message});
+        }
+        if(data.length > 0){
+            return res.json({success: false, message: 'You already have this skill!'});
+        }
+        userSkillMap.insertOne({
+            userID: userID,
+            skillID: skillID
+        }).then((data) => {
+            res.json({success: true, data, message: 'Map created!'});
+        }).catch(err => {
+            res.json({success: false, message: err.message});
+        })
     })
 }
 

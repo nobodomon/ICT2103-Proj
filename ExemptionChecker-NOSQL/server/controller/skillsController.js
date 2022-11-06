@@ -72,10 +72,6 @@ exports.allSkillsFromUniversityCourse = async (req, res) => {
             foreignField: "skillID",
             as: "SkillUniversityModuleMap"
         },
-    },{$replaceRoot:{
-        newRoot: {
-            $mergeObjects: [ { $arrayElemAt: [ "$SkillUniversityModuleMap", 0 ] }, "$$ROOT" ]
-        }}
     },{
         $lookup: {
             from:"UniversityModuleCourseMap",
@@ -107,19 +103,39 @@ exports.allSkillsFromUniversityCourse = async (req, res) => {
 exports.allSKillFromUser = async (req, res) => {
     const { userID } = req.body;
 
-    skills.aggregate([{
+    skills.aggregate([
+    {
+        $project:{
+            _id: 1,
+            skill: 1,
+            "string_id":{
+                $toString: "$_id"
+            }
+        }
+    },{
         $lookup: {
             from: "UserSkillMap",
-            localField: "userID",
+            localField: "string_id",
             foreignField: "skillID",
             as: "UserSkillMap"
         },
     },{
-        $match: { "UserSkillMap.userID": userID }
-    }]).toArray().then(data => {
+        $unwind: "$UserSkillMap"
+    },{
+        $project:{
+            _id: 1,
+            skill: 1,
+            userID: "$UserSkillMap.userID",
+    }
+    },{
+        $match:{
+        userID: userID
+    }
+    }]).toArray((err, data) => {
+        if(err){
+            return res.json({success: false, message: err.message});
+        }
         res.json({success: true, data, message: "Skills fetched!"});
-    }).catch(err => {
-        res.json({success: false, message: err.message});
     })
 }
     // knex.select('sid', 'skill').from('Skills').join('UserSkillMap', function(){

@@ -85,11 +85,25 @@ exports.allMapsFromModule = async (req, res) => {
 exports.create = async (req, res) => {
     const { skillID, moduleID } = req.body;
     console.log(req.body);
-    SkillUniversityModuleMap.insertOne({ skillID: skillID, moduleID: moduleID }).then((data) => {
-        res.json({ success: true, data, message: "Map created!" });
-    }).catch(err => {
-        res.json({ success: false, message: err.message });
-    });
+    SkillUniversityModuleMap.find({
+        skillID: skillID,
+        moduleID: moduleID
+    }).toArray((err, data) => {
+        if(err){
+            return res.json({success: false, message: err.message});
+        }
+        if(data.length > 0){
+            return res.json({success: false, message: "This skill is already mapped to this module!"});
+        }
+        SkillUniversityModuleMap.insertOne({
+            skillID: skillID,
+            moduleID: moduleID
+        }).then((data) => {
+            res.json({success: true, data, message: "Map created!"});
+        }).catch(err => {
+            res.json({success: false, message: err.message});
+        })
+    })
 }
 
 exports.delete = async (req, res) => {
