@@ -166,7 +166,7 @@ export default class Landing extends React.Component{
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    uid: this.props.user.data[0].uid
+                    uid: this.props.user.data[0]._id
                 }),
             }
             

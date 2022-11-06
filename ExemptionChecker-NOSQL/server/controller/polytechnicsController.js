@@ -1,37 +1,31 @@
-const knex = require("../database.js");
+const db = require("../database.js");
+const polytechnics = db.collection("Polytechnics");
+const mongodb = require("mongodb");
 
 exports.allPolytechnics = async (req, res) => {
-    knex.select("*").from("Polytechnics").then(data =>{
+    polytechnics.find({}).toArray((err, data) => {
         res.json({success:true, data, message: "Polytechnics fetched!"});
-    }).catch(err => {
-        res.json({success:false, message: err.message});
     });
 }
 
 exports.create = async (req, res) => {
-    knex.insert({"polytechnicName": req.body["polytechnicName"]}).into("Polytechnics").then(data =>{
-        res.json({success:true, data, message: "Module created!"});
-    }).catch(err => {
-        res.json({success:false, message: err.message});
-    });
+    const {polytechnicName} = req.body;
+    polytechnics.insertOne({polytechnicName: polytechnicName}, async (err, data) => {
+        res.json({success:true, data, message: "Polytechnic created!"});
+    })
 }
 
 exports.delete = async (req, res) => {
-    const {pid} = req.body;
-    knex.delete().from("Polytechnics").where({pid: pid}).then(data =>{
-        res.json({success: true, data, message: "Polytechnic deleted!"});
-    }).catch(err => {
-        res.json({success:false, message: err.message});
+    const {_id} = req.body;
+    polytechnics.deleteOne({_id: new mongodb.ObjectID(_id)}, async (err, result) => {
+        res.json({success:true, message: "Polytechnic deleted!"});
     });
 }
 
 exports.update = async (req, res) => {
-    knex.update({pid: req.body["pid"], "polytechnicName": req.body["polytechnicName"]}).from("Polytechnics").where({pid: pid}).then(data =>{
-        knex.select("*").from("Polytechnics").then(data =>{ 
-            res.json({success:true, data, message: "Polytechnics fetched!"});
-        })
-    }).catch(err => {
-        res.json({success:false, message: err.message});
+    const {_id, polytechnicName} = req.body;
+    polytechnics.updateOne({_id: new mongodb.ObjectID(_id)}, {$set: {polytechnicName: polytechnicName}}, async (err, result) => {
+        res.json({success:true, message: "Polytechnic updated!"});
     });
 }
 
@@ -40,7 +34,7 @@ exports.settings = async (req, res) => {
         // Configures the headers of the table
         // Pls match header names with column names (case sensitive!)
         headers: {
-            "pid":{
+            "_id":{
                 displayHeader: "Polytechnic ID",
             },
             "polytechnicName":{
@@ -51,8 +45,8 @@ exports.settings = async (req, res) => {
 
     const fieldSettings = {
         // Configures the fields of the table
-        "pid": {
-            type: "number",
+        "_id": {
+            type: "text",
             editable: false,
             primaryKey: true,
             displayLabel: "Polytechnic ID",

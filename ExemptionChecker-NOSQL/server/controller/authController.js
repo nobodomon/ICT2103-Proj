@@ -1,108 +1,112 @@
 const { SHA256 } = require("crypto-js");
-const knex = require("../database.js");
+const { collection } = require("../database.js");
+const db = require("../database.js");
+const mongodb = require("mongodb");
 
 exports.allUsers = async (req, res) => {
-    knex.select("*").from("Users").then(data =>{
+    const collection = db.collection("users");
+
+    collection.find({}).toArray((err, data) => {
         res.json({success:true, data, message: "Users fetched!"});
-    }).catch(err => {
-        res.json({success:false, message: err.message});
     });
 }
 
 exports.create = async (req, res) => {
     const {username, password} = req.body;
-    knex.insert({username: username, password: SHA256(password), role: "user"}).into("Users").then(data =>{
-        knex.select("*").from("Users").where({username:username}).then(data =>{
-        res.json({success:true, data, message: "User created!"});
-        }).catch(err => {
-            res.json({success:false, message: err.message});
-        })
-    }).catch(err => {
-        res.json({success:false, message: err.message});
+
+    const collection = db.collection("users");
+
+    await collection.insertOne({username: username, password: SHA256(password).toString(), role: "user"}, async (err, result) => {
+        await collection.find({username:username}).toArray((err, data) => {
+            console.log(data);
+            res.json({success:true, data, message: "User created!"});
+        });
     });
 }
 
 exports.delete = async (req, res) => {
-    const {username} = req.body;
-    knex.delete().from("Users").where({username: username}).then(data =>{
-        res.json({success:true, data, message: "User deleted!"});
-    }).catch(err => {
-        res.json({success:false, message: err.message});
+    const {_id} = req.body;
+
+    const collection = db.collection("users");
+
+    await collection.deleteOne({_id: mongodb.ObjectId(_id)}, async (err, result) => {
+        res.json({success:true, message: "User deleted!"});
     });
 }
 
 exports.update = async (req, res) => {
-    const {uid, username, password, role, polytechnicCourse,universityCourse} = req.body;
+    const {_id, username, password, role, polytechnicCourse,universityCourse} = req.body;
     if(polytechnicCourse == null){
         return res.json({success:false, message: "Polytechnic course cannot be empty!"});
     }
 
-
-    knex.update({
-        username:username, 
-        password: password, 
-        role: role, 
-        polytechnicCourse: polytechnicCourse, 
-        universityCourse: universityCourse,
-        }).from("Users").where({uid: uid}).then(data =>{
-        knex.select("*").from("Users").then(data =>{ 
-            return res.json({success:true, data, message: "Users fetched!"});
-        })
-    }).catch(err => {
-        return res.json({success:false, message: err.message});
+    await collection.updateOne({_id:  mongodb.ObjectId(_id)}, {$set: 
+        {
+            username: username,
+            password: SHA256(password).toString(), 
+            role: role, polytechnicCourse: 
+            polytechnicCourse, 
+            universityCourse: 
+            universityCourse}}, async (err, result) => {
+            await collection.find({username:username}).toArray((err, data) => {
+                res.json({success:true, data, message: "User updated!"});
+            });
     });
 }
 
 exports.login = async (req, res) => {
     const {username, password} = req.body;
-    knex.select("*").from("Users").where({username: username, password: SHA256(password)}).then(data =>{
+
+    const collection = db.collection("users");
+
+    await collection.find({username:username, password: SHA256(password).toString()}).toArray((err, data) => {
         if(data.length == 0){
-            res.json({success:false, message: "Username or password is incorrect!"});
-        }else{
-            res.json({success:true, data, message: "Login successful!"});
+            return res.json({success:false, message: "Invalid username or password!"});
         }
-    }).catch(err => {
-        res.json({success:false, message: err.message});
+        console.log(data);
+        res.json({success:true, data, message: "Login successful!"});
     });
 }
 
 exports.getUserByID = async (req, res) => {
-    const {uid} = req.body;
-    knex.select("*").from("Users").where({uid: uid}).then(data =>{
+    const {_id} = req.body;
+
+    const collection = db.collection("users");
+
+    await collection.find({_id:  mongodb.ObjectId(_id)}).toArray((err, data) => {
         res.json({success:true, data, message: "User fetched!"});
-    }).catch(err => {
-        res.json({success:false, message: err.message});
-    });
+    })
 }
 
 exports.settings = async (req, res) => {
     const {uid} = req.body;
-    polytechnicCourses = await knex.select("*").from("PolytechnicCourses").then(polyCourseData =>{
-        var tempCourseList = [];
-        console.log(polyCourseData);
-        for(polycourse in polyCourseData){
-            tempCourseList.push({label: polyCourseData[polycourse]["courseCode"] + " - " +  polyCourseData[polycourse]["course name"], value:  polyCourseData[polycourse]["cid"]});
-        }
-        console.log(tempCourseList)
-        return tempCourseList;
+    const polytechnicCourse = db.collection("polytechnicCourses");
+    const universityCourse = db.collection("universityCourses");
+
+
+    var polytechnicCourses = [];
+
+    var polytechnicCourseList = await polytechnicCourse.find({}).toArray();
+
+    polytechnicCourseList.map((item) => {
+        polytechnicCourses.push({label: item.courseCode + " - " + item.courseName, value: item._id});
     });
 
-    universityCourses = await knex.select("*").from("UniversityCourses").then(uniCourseData =>{
-        var tempCourseList = [];
-        console.log(uniCourseData);
-        for(unicourse in uniCourseData){
-            tempCourseList.push({label: uniCourseData[unicourse]["courseCode"] + " - " +  uniCourseData[unicourse]["course name"], value:  uniCourseData[unicourse]["cid"]});
-        }
-        console.log(tempCourseList)
-        return tempCourseList;
+    universityCourses = [];
+
+    var universityCourseList = await universityCourse.find({}).toArray();
+
+    universityCourseList.map((item) => {
+        universityCourses.push({label: item.courseCode + " - " + item.courseName, value: item._id});
     });
 
+    
 
     const columnSettings = {
         // Configures the headers of the table
         // Pls match header names with column names (case sensitive!)
         headers: {
-            "uid" : {
+            "_id" : {
                 displayHeader: "User ID",
             },
             "username" : {
@@ -119,8 +123,8 @@ exports.settings = async (req, res) => {
 
     const fieldSettings = {
         // Configures the datatype of the fields and their editablility
-        "uid":{
-            type: "number",
+        "_id":{
+            type: "text",
             editable:false,
             displayLabel: "User ID",
             primaryKey: true

@@ -1,76 +1,64 @@
-const knex = require("../database.js");
+const db = require("../database.js");
+const polytechnicModules = db.collection("PolytechnicModules");
+
+const mongodb = require("mongodb");
 
 exports.allModules = async (req, res) => {
-    knex.select("*").from("PolytechnicModules").then(data =>{
-        res.json({success:true, data, message: "Polytechnics fetched!"});
-    }).catch(err => {
-        res.json({success:false, message: err.message});
-    });
+    polytechnicModules.find({}).toArray().then(data =>{
+        res.json({success:true, data, message: "Modules fetched!"});
+    })
 }
 
 exports.create = async (req, res) => {
-    console.log(req.body);
-    knex.insert({
-        "moduleCode": req.body["moduleCode"], 
-        "moduleName" : req.body["module name"], 
-    }).into("PolytechnicModules").then(data =>{
-        res.json({success:true, data, message: "Module created!"});
-    }).catch(err => {
-        res.json({success:false, message: err.message});
-    });
+    const {moduleCode, moduleName} = req.body;
+    polytechnicModules.insertOne({
+        "moduleCode": moduleCode,
+        "moduleName": moduleName,
+    }).then(data =>{
+        res.json({success: true, data, message: "Polytechnic created!"});
+    })
 }
 
 exports.delete = async (req, res) => {
-    const {mid} = req.body;
-    knex.delete().from("PolytechnicModules").where({mid: mid}).then(polytechnicModuleData =>{
-        res.json({success: true, polytechnicModuleData, message: "Polytechnic deleted!"});
-    }).catch(err => {
-        res.json({success:false, message: err.message});
-    });
+    const {_id} = req.body;
+    polytechnicModules.deleteOne({_id: mongodb.ObjectID(_id)}).then(data =>{
+        res.json({success:true, data, message: "Polytechnic deleted!"});
+    })
 }
 
 exports.update = async (req, res) => {
-    const {mid} = req.body;
-    knex.update({
-        mid: req.body["mid"], 
-        "moduleCode": req.body["moduleCode"], 
-        "moduleName" : req.body["moduleName"], 
-    }).from("PolytechnicModules").where({mid: mid}).then(data =>{
-        knex.select("*").from("PolytechnicModules").then(data =>{ 
-            res.json({success:true, data, message: "Polytechnics fetched!"});
-        })
-    }).catch(err => {
-        res.json({success:false, message: err.message});
-    });
+    const {_id, moduleCode, moduleName} = req.body;
+    polytechnicModules.updateOne({_id: mongodb.ObjectId(_id)}, {$set: {moduleCode: moduleCode, moduleName: moduleName}}).then(data =>{
+        res.json({success:true, data, message: "Module updated!"});
+    })
 }
 
 exports.getModule = async (req, res) => {
-    const {mid} = req.body;
-    knex.select("*").from("PolytechnicModules").where({mid: mid}).then(data =>{
+    const {_id} = req.body;
+
+    polytechnicModules.find({_id: mongodb.ObjectID(_id)}).toArray().then(data =>{
         res.json({success:true, data, message: "Module fetched!"});
-    }).catch(err => {
-        res.json({success:false, message: err.message});
-    });
+    })
 }
 
 exports.settings = async (req, res) => {
     
-    
-    polytechnicCourses = await knex.select("*").from("PolytechnicCourses").then(polyCourseData =>{
-        var tempCourseList = [];
-        console.log(polyCourseData);
-        for(polycourse in polyCourseData){
-            tempCourseList.push({label: polyCourseData[polycourse]["course code"] + " - " +  polyCourseData[polycourse]["course name"], value:  polyCourseData[polycourse]["cid"]});
-        }
-        console.log(tempCourseList)
-        return tempCourseList;
+
+    const polytechnicCourse = db.collection("polytechnicCourses");
+
+    var polytechnicCourses = [];
+
+    var polytechnicCourseList = await polytechnicCourse.find({}).toArray();
+
+    polytechnicCourseList.map((item) => {
+        polytechnicCourses.push({label: item.courseCode + " - " + item.courseName, value: item._id});
     });
 
     const columnSettings = {
         // Configures the headers of the table
         // Pls match header names with column names (case sensitive!)
         headers: {
-            "mid":{
+            "_id":{
                 displayHeader: "Module ID",
             },
             "moduleCode":{
@@ -84,8 +72,8 @@ exports.settings = async (req, res) => {
 
     const fieldSettings = {
         // Configures the fields of the table
-        "mid": {
-            type: "number",
+        "_id": {
+            type: "text",
             editable: false,
             primaryKey: true,
             displayLabel: "Module ID",
