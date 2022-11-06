@@ -1,0 +1,253 @@
+@import "main.scss";
+
+.landing-container{
+    display:grid;
+    gap:15px;
+    grid-template-columns: 30% 70%;
+    grid-template-rows: 56px 1fr;
+    grid-template-areas:
+    "profile header"
+    "profile content";
+
+    @media screen and (max-width: 768px) {
+        grid-template-columns: 100%;
+        grid-template-areas:
+        "header"
+        "profile"
+        "content";  
+    }
+}
+
+.profile{
+    grid-area:profile;
+    background-color: white;
+    box-shadow:  0 0 10px 0 rgba(0,0,0,0.2);
+    border-radius: $borderRadius;
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding:15px;
+    gap:15px;
+    .profile-image{
+        width:100%;
+        object-fit:cover;
+        display:flex;
+        justify-content: center;
+        img{
+            max-width: 150px;
+            max-height: 150px;
+        }
+    }
+
+    .d-name{
+        font-size:1rem;
+        font-weight: 600;
+        text-align: left;
+    }
+
+    .skill-container{
+        display:flex;
+        flex-direction: column;
+        gap:10px;
+
+        .skill-container-header{
+            font-size:1rem;
+            font-weight: bold;
+        }
+
+        .skill-list{
+            display:flex;
+            gap:10px;
+
+            .skill-card{
+                background-color: $primary;
+                padding:5px 10px;
+                border-radius: 5px;
+                font-size:0.8rem;
+                font-weight: 600;
+                color:white;
+
+                display:flex;
+                justify-content: space-between;
+                i{
+                    margin-left: 15px;
+                    margin-right: -5px;
+
+                    &:hover{
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.header{
+    grid-area:header;
+    background-color: white;
+    box-shadow:  0 0 10px 0 rgba(0,0,0,0.2);
+    max-height: 56px;
+    border-radius: $borderRadius;
+    padding:15px;
+    display:flex;
+    align-items: center;    
+    justify-content: space-between;
+    background-color: $primary;
+    color:white;
+}
+
+.content{
+    grid-area:content;
+    border-radius: $borderRadius;
+    background-color: white;
+    box-shadow:  0 0 10px 0 rgba(0,0,0,0.2);
+}
+
+.university-modules{
+    display:flex;
+    flex-direction: column;
+    gap:15px;
+    padding:15px;
+    
+    .university-modules-header{
+        font-size:1rem;
+        font-weight: bold;
+    }
+
+    .university-year-tabs{
+        display:grid;
+        grid-template-columns: repeat(3, minmax(0,1fr));
+        .tab{
+            display:flex;
+            align-items: center;
+            justify-content: center;
+            padding:15px;
+            position: relative;
+            &:hover{
+                cursor: pointer;
+            }
+
+            &.active{
+                font-weight: bold;
+                color:$primary;
+                &:after{
+                    position:absolute;
+                    width: 100%;
+                    height: 5px;
+                    bottom:0;
+                    left: 0;
+                    background-color: $primary;
+                    content:"";
+                    border-radius: 2.5px;
+                }
+            }
+        }
+    }
+
+    .module-list{
+        display:flex;
+        flex-direction: column;
+        gap:10px;
+
+        .module-year-list{
+            display:flex;
+            flex-direction: column;
+            width:100%;
+            gap:10px;
+        }
+
+        .module-container{
+            display:flex;
+            box-shadow: inset 0 0 10px 0 rgba(0,0,0,0.2);
+            background-color: white;
+            align-items: center;
+
+            .confidence{
+                position:relative;
+                display:flex;
+                align-items: center;
+                justify-content: center;
+                height: 100%;
+                svg {
+                    max-height:100px;
+                    max-width: 100px;
+                    transform:scale(0.8);
+                  }
+                  
+                  path {
+                    stroke-linecap: round;
+                    stroke-width: 5;
+                  }
+                  
+                  path.grey {
+                    stroke: lightgrey;
+                  }
+                  
+                  path.purple {
+                    stroke: $primary;
+                    stroke-dasharray: calc(40 * 3.142 * 1.85);
+                    stroke-dashoffset: 232.508;
+                    animation: fillProg 0.5s linear both;
+                    /* adjust last number for variance */
+                  }
+
+                  @keyframes fillProg {
+                    from {
+                        stroke-dashoffset: calc(40 * 3.142 * 1.85);
+                    }
+                    to{
+                        stroke-dashoffset: calc(calc(100 - var(--confidenceVal)) / 100 * 232.508);
+                    }
+                  }
+
+                .confidence-value{
+                    font-size:1rem;
+                    font-weight: 600;
+                    color:$primary;
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    display:flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+        }
+
+        .module-card{
+            padding:15px;
+            font-size: 1rem;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            gap:10px;
+            flex-grow: 1;
+        }
+
+        .skill-section{
+            display:flex;
+            flex-direction: column;
+            gap:10px;
+
+            .skill-section-header{
+                font-size:1rem;
+                font-weight: bold;
+            }
+
+            .skill-list{
+                display:flex;
+                gap:10px;
+
+                .skill-card{
+                    background-color: $primary;
+                    padding:5px 10px;
+                    border-radius: 5px;
+                    font-size:0.8rem;
+                    font-weight: 600;
+                    color:white;
+                }
+            }
+        }
+    }
+}
