@@ -127,7 +127,7 @@ export default class Users extends React.Component {
                     return <div>
                         <UserSkillMapper
                             key={index + "user"}
-                            uid={item.uid}/>
+                            uid={this.props.user.data[0]._id}/>
                         <CourseSkills
                             key={index + "course"}
                             cid={item.universityCourse}/>

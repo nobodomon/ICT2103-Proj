@@ -81,8 +81,8 @@ exports.getUserByID = async (req, res) => {
 
 exports.settings = async (req, res) => {
     const {uid} = req.body;
-    const polytechnicCourse = db.collection("polytechnicCourses");
-    const universityCourse = db.collection("universityCourses");
+    const polytechnicCourse = db.collection("PolytechnicCourses");
+    const universityCourse = db.collection("UniversityCourses");
 
 
     var polytechnicCourses = [];
@@ -90,7 +90,7 @@ exports.settings = async (req, res) => {
     var polytechnicCourseList = await polytechnicCourse.find({}).toArray();
 
     polytechnicCourseList.map((item) => {
-        polytechnicCourses.push({label: item.courseCode + " - " + item.courseName, value: String(item._id)});
+        polytechnicCourses.push({label: item.courseCode + " - " + item.courseName, value: item._id});
     });
 
     universityCourses = [];
@@ -98,7 +98,7 @@ exports.settings = async (req, res) => {
     var universityCourseList = await universityCourse.find({}).toArray();
 
     universityCourseList.map((item) => {
-        universityCourses.push({label: item.courseCode + " - " + item.courseName, value: String(item._id)});
+        universityCourses.push({label: item.courseCode + " - " + item.courseName, value: item._id});
     });
 
     

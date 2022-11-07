@@ -13,9 +13,35 @@ exports.allMaps = async (req, res) => {
 
 exports.allMapsFromUser = async (req, res) => {
     const {userID} = req.body;
-    userSkillMap.find({
-        userID: userID
-    }).toArray((err, data) => {
+    userSkillMap.aggregate([{
+        $project:{
+            "skillObjID": {
+                "$toObjectId": "$skillID"
+            },
+            "userID": 1,
+            "skillID": 1,
+        }
+    },{
+        $lookup: {
+            from: "Skills",
+            localField: "skillObjID",
+            foreignField: "_id",
+            as: "skill"
+        }
+    },{
+        $unwind:"$skill"
+    },{
+        $project:{
+            "_id":1,
+            skillID:1,
+            userID:1,
+            "skill":"$skill.skill"
+        }
+    },{
+        $match: {
+            userID: userID
+        }
+    }]).toArray((err, data) => {
         console.log(data);
         if(err){
             return res.json({success: false, message: err.message});

@@ -23,8 +23,13 @@ exports.create = async (req, res) => {
 
 exports.delete = async (req, res) => {
     const {_id} = req.body;
+    const universityModuleCourseMap = db.collection("UniversityModuleCourseMap");
     universityCourses.deleteOne({_id: mongodb.ObjectID(_id)}).then(data => {
-        res.json({success: true, data, message: "Course deleted!"});
+        universityModuleCourseMap.deleteMany({universityCourse: _id}).then(data => {
+            res.json({success: true, data, message: "Course deleted!"});
+        }).catch(err => {
+            res.json({success: false, message: err.message});
+        })
     }).catch(err => {
         res.json({success: false, message: err.message});
     })

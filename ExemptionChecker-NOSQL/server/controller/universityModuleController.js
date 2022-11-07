@@ -64,7 +64,7 @@ exports.settings = async (req, res) => {
   const fieldSettings = {
     // Configures the fields of the table
     "_id": {
-      type: "number",
+      type: "text",
       editable: false,
       primaryKey: true,
       displayLabel: "Module ID",
@@ -80,9 +80,15 @@ exports.settings = async (req, res) => {
       displayLabel: "Module Name",
     },
     "yearOffered":{
-      type: "text",
+      type: "dropdown",
       editable: true,
       displayLabel: "Year Offered",
+      options: [
+        {value: "YEAR 1", label: "YEAR 1"},
+        {value: "YEAR 2", label: "YEAR 2"},
+        {value: "YEAR 3", label: "YEAR 3"},
+        {value: "YEAR 4", label: "YEAR 4"},
+      ]
     },
     "period":{
       type: "number",

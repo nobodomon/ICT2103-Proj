@@ -169,8 +169,23 @@ exports.update = async (req, res) => {
 
 exports.delete = async (req, res) => {
     const {_id,skill} = req.body;
+    const skillUniversityModuleMap = db.collection("SkillUniversityModuleMap");
+    const skillPolytechnicModuleMap = db.collection("SkillPolytechnicModuleMap");
+    const userSkillMap = db.collection("UserSkillMap");
     skills.deleteOne({_id: mongodb.ObjectId(_id)}).then(data =>{
-        res.json({success:true, data, message: 'Skill deleted!'});
+        skillUniversityModuleMap.deleteMany({skillID: _id}).then(data =>{
+            skillPolytechnicModuleMap.deleteMany({skillID: _id}).then(data =>{
+                userSkillMap.deleteMany({skillID: _id}).then(data =>{
+                    res.json({success:true, data, message: 'Skill deleted!'});
+                }).catch(err => {
+                    res.json({success:false, message: err.message});
+                });
+            }).catch(err => {
+                res.json({success:false, message: err.message});
+            });
+        }).catch(err => {
+            res.json({success:false, message: err.message});
+        });
     }).catch(err => {
         res.json({success:false, message: err.message});
     });
@@ -195,7 +210,7 @@ exports.settings = async (req, res) => {
         // Configures the fields of the table
         // Pls match field names with column names (case sensitive!)
         "_id": {
-            type: "number",
+            type: "text",
             editable: false,
             primaryKey: true,
             displayLabel: "Skill ID"
