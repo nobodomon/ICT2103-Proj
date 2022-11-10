@@ -44,7 +44,7 @@ exports.getModule = async (req, res) => {
 exports.settings = async (req, res) => {
     
 
-    const polytechnicCourse = db.collection("polytechnicCourses");
+    const polytechnicCourse = db.collection("PolytechnicCourses");
 
     var polytechnicCourses = [];
 

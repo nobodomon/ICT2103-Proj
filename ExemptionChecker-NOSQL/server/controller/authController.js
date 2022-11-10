@@ -4,7 +4,7 @@ const db = require("../database.js");
 const mongodb = require("mongodb");
 
 exports.allUsers = async (req, res) => {
-    const collection = db.collection("users");
+    const collection = db.collection("Users");
 
     collection.find({}).toArray((err, data) => {
         res.json({success:true, data, message: "Users fetched!"});
@@ -14,7 +14,7 @@ exports.allUsers = async (req, res) => {
 exports.create = async (req, res) => {
     const {username, password} = req.body;
 
-    const collection = db.collection("users");
+    const collection = db.collection("Users");
 
     await collection.insertOne({username: username, password: SHA256(password).toString(), role: "user"}, async (err, result) => {
         await collection.find({username:username}).toArray((err, data) => {
@@ -27,7 +27,7 @@ exports.create = async (req, res) => {
 exports.delete = async (req, res) => {
     const {_id} = req.body;
 
-    const collection = db.collection("users");
+    const collection = db.collection("Users");
 
     await collection.deleteOne({_id: mongodb.ObjectId(_id)}, async (err, result) => {
         res.json({success:true, message: "User deleted!"});
@@ -35,7 +35,7 @@ exports.delete = async (req, res) => {
 }
 
 exports.update = async (req, res) => {
-    const collection = db.collection("users");
+    const collection = db.collection("Users");
     const {_id, username, password, role, polytechnicCourse,universityCourse} = req.body;
     if(polytechnicCourse == null){
         return res.json({success:false, message: "Polytechnic course cannot be empty!"});
@@ -58,7 +58,7 @@ exports.update = async (req, res) => {
 exports.login = async (req, res) => {
     const {username, password} = req.body;
 
-    const collection = db.collection("users");
+    const collection = db.collection("Users");
 
     await collection.find({username:username, password: SHA256(password).toString()}).toArray((err, data) => {
         if(data.length == 0){
@@ -72,7 +72,7 @@ exports.login = async (req, res) => {
 exports.getUserByID = async (req, res) => {
     const {_id} = req.body;
 
-    const collection = db.collection("users");
+    const collection = db.collection("Users");
 
     await collection.find({_id:  mongodb.ObjectId(_id)}).toArray((err, data) => {
         res.json({success:true, data, message: "User fetched!"});
