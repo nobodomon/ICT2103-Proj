@@ -238,7 +238,7 @@
             .skill-list{
                 display:flex;
                 gap:10px;
-
+                flex-wrap: wrap;
                 .skill-card{
                     background-color: $primary;
                     padding:5px 10px;
@@ -246,6 +246,7 @@
                     font-size:0.8rem;
                     font-weight: 600;
                     color:white;
+                    word-break: keep-all;
                 }
             }
         }
