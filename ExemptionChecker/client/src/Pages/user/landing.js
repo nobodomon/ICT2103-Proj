@@ -366,6 +366,7 @@ export default class Landing extends React.Component{
                             hasSaveBtn ={true}
                             onChange={this.handleAddSkill}     
                             fieldLabel={"universityCourse"}
+                            maxItems={5}
                         >
                         </StdInput>
 
