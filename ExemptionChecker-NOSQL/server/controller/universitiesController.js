@@ -9,9 +9,9 @@ exports.allUniversities = async (req, res) => {
 }
 
 exports.create = async (req, res) => {
-    const {_id, universityName} = req.body;
+    const {universityName} = req.body;
     
-    universities.insertOne({_id: _id, universityName: universityName}).then(data =>{
+    universities.insertOne({universityName: universityName}).then(data =>{
         res.json({success:true, data, message: "University created!"});
     }).catch(err => {
         res.json({success:false, message: err.message});
@@ -21,7 +21,7 @@ exports.create = async (req, res) => {
 exports.delete = async (req, res) => {
     const {_id} = req.body;
 
-    universities.deleteOne({_id: _id}).then(data =>{
+    universities.deleteOne({_id: mongodb.ObjectId(_id)}).then(data =>{
         res.json({success:true, data, message: "University deleted!"});
     }).catch(err => {
         res.json({success:false, message: err.message});
@@ -30,7 +30,7 @@ exports.delete = async (req, res) => {
 
 exports.update = async (req, res) => {
     const {_id, universityName} = req.body;
-    universities.updateOne({_id: _id}, {$set: {universityName: universityName}}).then(data =>{
+    universities.updateOne({_id:  mongodb.ObjectId(_id)}, {$set: {universityName: universityName}}).then(data =>{
         res.json({success:true, data, message: "University updated!"});
     }).catch(err => {
         res.json({success:false, message: err.message});
