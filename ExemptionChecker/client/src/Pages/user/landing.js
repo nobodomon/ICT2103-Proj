@@ -547,8 +547,13 @@ export class ModuleCard extends React.Component{
         console.log(intersect);
         
 
+        var confidence = (intersect.length / tempSkillsRequired.length) * 100;
+        if(confidence > 100){
+            confidence = 100;
+        }
+
         this.setState({
-            confidence: parseFloat(intersect.length / tempSkillsRequired.length * 100).toFixed(0),
+            confidence: parseFloat(confidence).toFixed(0),
             loading: false
         })
     }
