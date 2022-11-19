@@ -42,7 +42,6 @@ exports.allMapsFromUser = async (req, res) => {
             userID: userID
         }
     }]).toArray((err, data) => {
-        console.log(data);
         if(err){
             return res.json({success: false, message: err.message});
         }

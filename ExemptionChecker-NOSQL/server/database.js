@@ -23,7 +23,6 @@ async function main(){
     await client.connect();
     console.log("Connected successfully to server");
     const db = client.db(dbName);
-    console.log(db);
 }
 
 main()

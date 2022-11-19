@@ -13,7 +13,6 @@ exports.allSkills = async (req, res) => {
 
 exports.allSkillsFromPolytechnicCourse = async (req, res) => {
     const { polytechnicCourse } = req.body;
-
     skills.aggregate([{
         $project : {
             _id: 1,
@@ -52,6 +51,10 @@ exports.allSkillsFromPolytechnicCourse = async (req, res) => {
             skill: 1,
             moduleID: 1,
             polytechnicCourse: "$PolytechnicModuleCourseMap.polytechnicCourse",
+        }
+    },{
+        $match:{
+            polytechnicCourse: polytechnicCourse
         }
     }
     ]).toArray((err, data) => {

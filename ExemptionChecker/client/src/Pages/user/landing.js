@@ -548,7 +548,7 @@ export class ModuleCard extends React.Component{
         
 
         this.setState({
-            confidence: intersect.length / tempSkillsRequired.length * 100,
+            confidence: parseFloat(intersect.length / tempSkillsRequired.length * 100).toFixed(0),
             loading: false
         })
     }

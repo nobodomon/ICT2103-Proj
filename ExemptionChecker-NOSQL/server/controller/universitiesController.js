@@ -20,7 +20,6 @@ exports.create = async (req, res) => {
 
 exports.delete = async (req, res) => {
     const {_id} = req.body;
-
     universities.deleteOne({_id: mongodb.ObjectId(_id)}).then(data =>{
         res.json({success:true, data, message: "University deleted!"});
     }).catch(err => {
