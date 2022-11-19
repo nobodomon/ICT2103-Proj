@@ -377,6 +377,7 @@ export class StdInput extends React.Component {
               updateValue={this.updateValue}
               value={this.state.newValue}
               options={this.props.options}
+              maxItems={this.props.maxItems}
             ></StdDropDownBox>
           )}
 
@@ -1002,7 +1003,7 @@ class StdDropDownBox extends React.Component {
           value={this.state.newValue}
         ></input>
         <div className="dropdownWrapper">
-          <div className="dropdown">
+          <div className="dropdown" style={{"--maxItems":this.props.maxItems}}>
           {this.props.options.map((option,index) => {
             return <div className="dropdownOptions" key={index} onClick ={()=>this.dropdownSelect(option)}>{option.label}</div>;
           })}
