@@ -1,0 +1,877 @@
+[{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c354"
+  },
+  "moduleCode": "IT1325",
+  "moduleName": "Computing Mathematics"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c355"
+  },
+  "moduleCode": "IT1506",
+  "moduleName": "Data Structures & Programming Techniques"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c356"
+  },
+  "moduleCode": "IT1507",
+  "moduleName": "Web Applications Development"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c357"
+  },
+  "moduleCode": "BM0030",
+  "moduleName": "Business Communication 1"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c358"
+  },
+  "moduleCode": "BM0031",
+  "moduleName": "Principles of Accounting"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c359"
+  },
+  "moduleCode": "BM0032",
+  "moduleName": "Essentials of Marketing"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c35a"
+  },
+  "moduleCode": "IT1608",
+  "moduleName": "Networking Essential"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c35b"
+  },
+  "moduleCode": "IT1324",
+  "moduleName": "Law & Ethics of IT"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c35c"
+  },
+  "moduleCode": "IT1333",
+  "moduleName": "Business Statistics"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c35d"
+  },
+  "moduleCode": "BM0035",
+  "moduleName": "Principles of Economics"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c35e"
+  },
+  "moduleCode": "ITP182",
+  "moduleName": "Object-Oriented Programming & Project"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c35f"
+  },
+  "moduleCode": "IT2201",
+  "moduleName": "Database Management Systems"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c360"
+  },
+  "moduleCode": "BM0501",
+  "moduleName": "Business Communication 2"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c361"
+  },
+  "moduleCode": "BM0518",
+  "moduleName": "Business Environment"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c362"
+  },
+  "moduleCode": "BM0519",
+  "moduleName": "Financial Management"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c363"
+  },
+  "moduleCode": "BM0036",
+  "moduleName": "Management Principle"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c364"
+  },
+  "moduleCode": "BM0522",
+  "moduleName": "International Business"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c365"
+  },
+  "moduleCode": "IT2535",
+  "moduleName": "Software Engineering Practices"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c366"
+  },
+  "moduleCode": "IT2605",
+  "moduleName": "Applications of Web Services"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c367"
+  },
+  "moduleCode": "ITP281",
+  "moduleName": "e-Business & Project"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c368"
+  },
+  "moduleCode": "ITP282",
+  "moduleName": "Enterprise Applications Development & Project"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c369"
+  },
+  "moduleCode": "IT2118",
+  "moduleName": "InfoSecurity Technology"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c36a"
+  },
+  "moduleCode": "ITP381",
+  "moduleName": "Business Informatics Project"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c36b"
+  },
+  "moduleCode": "IT3763",
+  "moduleName": "Internship Programme"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c36c"
+  },
+  "moduleCode": "IT3331",
+  "moduleName": "Final Year Project"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c36d"
+  },
+  "moduleCode": "BM0515",
+  "moduleName": "Entrepreneurship"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c36e"
+  },
+  "moduleCode": "BM0505",
+  "moduleName": "Market Research"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c36f"
+  },
+  "moduleCode": "IT3651",
+  "moduleName": "Service Science and Innovation"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c370"
+  },
+  "moduleCode": "BM0523",
+  "moduleName": "Services Marketing Management"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c371"
+  },
+  "moduleCode": "IT2656",
+  "moduleName": "Mobile Services and Applications"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c372"
+  },
+  "moduleCode": "IT3556",
+  "moduleName": "Business Intelligence and Analytics"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c373"
+  },
+  "moduleCode": "IT3557",
+  "moduleName": "Cloud Computing for Business Applications"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c374"
+  },
+  "moduleCode": "IT1111",
+  "moduleName": "Programming Essentials"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c375"
+  },
+  "moduleCode": "IT1323",
+  "moduleName": "Psychology & Sociology"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c376"
+  },
+  "moduleCode": "IT1331",
+  "moduleName": "Object-Oriented Programming"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c377"
+  },
+  "moduleCode": "IT1334",
+  "moduleName": "Consumer Behaviour"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c378"
+  },
+  "moduleCode": "IT1110",
+  "moduleName": "Communication Skills 1"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c379"
+  },
+  "moduleCode": "ITP131",
+  "moduleName": "Principles of Web Usability Design & Project"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c37a"
+  },
+  "moduleCode": "ITP132",
+  "moduleName": "Social Media Applications & Project"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c37b"
+  },
+  "moduleCode": "IT2322",
+  "moduleName": "Quantitative Methods"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c37c"
+  },
+  "moduleCode": "IT1533",
+  "moduleName": "Network Technology"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c37d"
+  },
+  "moduleCode": "IT1210",
+  "moduleName": "Communication Skills 2"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c37e"
+  },
+  "moduleCode": "IT2331",
+  "moduleName": "Industry Analysis"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c37f"
+  },
+  "moduleCode": "IT2333",
+  "moduleName": "Advanced Database Systems"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c380"
+  },
+  "moduleCode": "IT2335",
+  "moduleName": "Predictive Modelling"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c381"
+  },
+  "moduleCode": "ITP231",
+  "moduleName": "Mobile Application Development & Project"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c382"
+  },
+  "moduleCode": "ITP232",
+  "moduleName": "Business Analytics & Visualisation Project"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c383"
+  },
+  "moduleCode": "IT3322",
+  "moduleName": "Data Privacy & Security"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c384"
+  },
+  "moduleCode": "ITP331",
+  "moduleName": "Enterprise Business Analytics Project"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c385"
+  },
+  "moduleCode": "IT3351",
+  "moduleName": "Analytics for Financial Services"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c386"
+  },
+  "moduleCode": "IT3353",
+  "moduleName": "Analytics for Retail & Hospitality"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c387"
+  },
+  "moduleCode": "IT3359",
+  "moduleName": "Big Data Analytics"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c388"
+  },
+  "moduleCode": "IT3355",
+  "moduleName": "Social Media Analytics"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c389"
+  },
+  "moduleCode": "IT3135",
+  "moduleName": "Digital Marketing & Analytics"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c38a"
+  },
+  "moduleCode": "IT3358",
+  "moduleName": "Geospatial Analytics"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c38b"
+  },
+  "moduleCode": "IT1528",
+  "moduleName": "Cyber Security Technology, Law & Ethics"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c38c"
+  },
+  "moduleCode": "IT1534",
+  "moduleName": "Cryptography & Applications"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c38d"
+  },
+  "moduleCode": "IT1101",
+  "moduleName": "Computing Mathematics 1"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c38e"
+  },
+  "moduleCode": "IT1201",
+  "moduleName": "Computing Mathematics 2"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c38f"
+  },
+  "moduleCode": "ITP111",
+  "moduleName": "Web Applications Development & Project"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c390"
+  },
+  "moduleCode": "IT2522",
+  "moduleName": "Risk & Incident Management"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c391"
+  },
+  "moduleCode": "IT2533",
+  "moduleName": "Servers & Services Security Management"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c392"
+  },
+  "moduleCode": "IT2534",
+  "moduleName": "InfoSecurity Standards, Policies and Audit"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c393"
+  },
+  "moduleCode": "IT2537",
+  "moduleName": "Cyber Forensic Technologies"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c394"
+  },
+  "moduleCode": "IT1205",
+  "moduleName": "Operating Systems"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c395"
+  },
+  "moduleCode": "IT1204",
+  "moduleName": "Data Structures & Algorithms"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c396"
+  },
+  "moduleCode": "ITP291",
+  "moduleName": "Network Security & Project"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c397"
+  },
+  "moduleCode": "ITP311",
+  "moduleName": "Applications Security & Project"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c398"
+  },
+  "moduleCode": "IT3523",
+  "moduleName": "InfoSecurity Governance"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c399"
+  },
+  "moduleCode": "ITP391",
+  "moduleName": "Operations Security & Case Study"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c39a"
+  },
+  "moduleCode": "IT3541",
+  "moduleName": "Digital Rights Management"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c39b"
+  },
+  "moduleCode": "IT3542",
+  "moduleName": "IT Project Management"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c39c"
+  },
+  "moduleCode": "IT3546",
+  "moduleName": "Cloud Computing Security"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c39d"
+  },
+  "moduleCode": "IT3526",
+  "moduleName": "Cyber Security Attack & Defense"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c39e"
+  },
+  "moduleCode": "IT3549",
+  "moduleName": "Cyber Security Operations & Intelligence"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c39f"
+  },
+  "moduleCode": "IT3548",
+  "moduleName": "Mobile Security"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3a0"
+  },
+  "moduleCode": "IT3525",
+  "moduleName": "Cyber Forensic Process"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3a1"
+  },
+  "moduleCode": "IT3545",
+  "moduleName": "Disaster Recovery & Business Continuity Management"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3a2"
+  },
+  "moduleCode": "IT3543",
+  "moduleName": "Advanced Cyber Forensic Techniques"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3a3"
+  },
+  "moduleCode": "IT3547",
+  "moduleName": "Malware Analysis"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3a4"
+  },
+  "moduleCode": "IT1622",
+  "moduleName": "Trends in Fintech & Services"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3a5"
+  },
+  "moduleCode": "IT1634",
+  "moduleName": "Economics"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3a6"
+  },
+  "moduleCode": "IT1636",
+  "moduleName": "Consumer Banking"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3a7"
+  },
+  "moduleCode": "IT1633",
+  "moduleName": "Capital Markets and Financial Instruments"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3a8"
+  },
+  "moduleCode": "IT2634",
+  "moduleName": "Risk Management"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3a9"
+  },
+  "moduleCode": "IT2633",
+  "moduleName": "Cyber Security for Financial Services"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3aa"
+  },
+  "moduleCode": "IT2626",
+  "moduleName": "Law, Governance & Ethics"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3ab"
+  },
+  "moduleCode": "ITP262",
+  "moduleName": "Business Analytics & Project"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3ac"
+  },
+  "moduleCode": "IT3621",
+  "moduleName": "Emerging Fintech"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3ad"
+  },
+  "moduleCode": "ITP361",
+  "moduleName": "Fintech Innovation Project"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3ae"
+  },
+  "moduleCode": "IT2635",
+  "moduleName": "Investment and Financial Derivatives"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3af"
+  },
+  "moduleCode": "IT3642",
+  "moduleName": "International Finance and Treasury"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3b0"
+  },
+  "moduleCode": "IT3643",
+  "moduleName": "Personal Financial Planning and Insurance"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3b1"
+  },
+  "moduleCode": "IT3622",
+  "moduleName": "Enterprise Solutions"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3b2"
+  },
+  "moduleCode": "IT3623",
+  "moduleName": "Business Process Management"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3b3"
+  },
+  "moduleCode": "IT1753",
+  "moduleName": "Principles of Computing"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3b4"
+  },
+  "moduleCode": "IT1768",
+  "moduleName": "Database Systems"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3b5"
+  },
+  "moduleCode": "IT1773",
+  "moduleName": "Infocomm Security Fundamentals"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3b6"
+  },
+  "moduleCode": "ITP171",
+  "moduleName": "IT Fundamentals & Project"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3b7"
+  },
+  "moduleCode": "ITP172",
+  "moduleName": "Networking Fundamentals & Project"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3b8"
+  },
+  "moduleCode": "IT2116",
+  "moduleName": "Software Engineering"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3b9"
+  },
+  "moduleCode": "IT2762",
+  "moduleName": "Network and Communications"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3ba"
+  },
+  "moduleCode": "IT2768",
+  "moduleName": "IT Services & Management"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3bb"
+  },
+  "moduleCode": "IT2775",
+  "moduleName": "Operations Security"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3bc"
+  },
+  "moduleCode": "IT2771",
+  "moduleName": "Rich Internet Application Development"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3bd"
+  },
+  "moduleCode": "IT2774",
+  "moduleName": "Network Security"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3be"
+  },
+  "moduleCode": "ITP272",
+  "moduleName": "Sensor Technologies & Project"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3bf"
+  },
+  "moduleCode": "IT3779",
+  "moduleName": "Smart Object Technologies"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3c0"
+  },
+  "moduleCode": "ITP374",
+  "moduleName": "Systems & Network Security Project"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3c1"
+  },
+  "moduleCode": "IT3784",
+  "moduleName": "Computer & Network Forensics"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3c2"
+  },
+  "moduleCode": "IT3549",
+  "moduleName": "Cyber Security Operations"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3c3"
+  },
+  "moduleCode": "IT3526",
+  "moduleName": "Cyber Security Attack & Defense"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3c4"
+  },
+  "moduleCode": "ITP372",
+  "moduleName": "Enterprise Networking & Project"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3c5"
+  },
+  "moduleCode": "IT3787",
+  "moduleName": "Enterprise Systems Administration"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3c6"
+  },
+  "moduleCode": "IT3790",
+  "moduleName": "Virtualisation & Data Centre Management"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3c7"
+  },
+  "moduleCode": "IT3797",
+  "moduleName": "Open Systems Administration"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3c8"
+  },
+  "moduleCode": "IT3799",
+  "moduleName": "IT Services Operations Management"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3c9"
+  },
+  "moduleCode": "ITP371",
+  "moduleName": "Enterprise Software Development & Project"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3ca"
+  },
+  "moduleCode": "IT3783",
+  "moduleName": "Mobile Applications Development"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3cb"
+  },
+  "moduleCode": "IT3795",
+  "moduleName": "Database Administration"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3cc"
+  },
+  "moduleCode": "IT3800",
+  "moduleName": "Open Source Technologies Development"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3cd"
+  },
+  "moduleCode": "IT3786",
+  "moduleName": "Data Analytics & Visualisation"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3ce"
+  },
+  "moduleCode": "ITP373",
+  "moduleName": "Global Supply Chain Management & Project"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3cf"
+  },
+  "moduleCode": "IT3792",
+  "moduleName": "Logistics & Distribution"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3d0"
+  },
+  "moduleCode": "IT3793",
+  "moduleName": "Advanced Planning & Optimisation"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3d1"
+  },
+  "moduleCode": "IT3794",
+  "moduleName": "Operations Management"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3d2"
+  },
+  "moduleCode": "IT1213",
+  "moduleName": "Data Communications & Networking"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3d3"
+  },
+  "moduleCode": "IT2106",
+  "moduleName": "IP Technology & Networking"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3d4"
+  },
+  "moduleCode": "IT1214",
+  "moduleName": "Digital Media Interaction Design"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3d5"
+  },
+  "moduleCode": "IT2107",
+  "moduleName": "Mobile Usability Design"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3d6"
+  },
+  "moduleCode": "ITP211",
+  "moduleName": "Object-Oriented Analysis, Design & Project"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3d7"
+  },
+  "moduleCode": "IT2127",
+  "moduleName": "C# Application Development"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3d8"
+  },
+  "moduleCode": "IT2128",
+  "moduleName": "C++ Application Development"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3d9"
+  },
+  "moduleCode": "ITP212",
+  "moduleName": "Java Enterprise Development & Project"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3da"
+  },
+  "moduleCode": "IT3180",
+  "moduleName": "Emerging Trends & Technologies"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3db"
+  },
+  "moduleCode": "IT3111",
+  "moduleName": "InfoSecurity Management"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3dc"
+  },
+  "moduleCode": "IT3112",
+  "moduleName": "System & Network Security"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3dd"
+  },
+  "moduleCode": "IT3118",
+  "moduleName": "Digital Forensics"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3de"
+  },
+  "moduleCode": "IT3160",
+  "moduleName": "Concepts of Geospatial Information System"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3df"
+  },
+  "moduleCode": "IT3161",
+  "moduleName": "Geospatial Visualisation"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3e0"
+  },
+  "moduleCode": "IT3178",
+  "moduleName": "Cloud Computing"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3e1"
+  },
+  "moduleCode": "ITP312",
+  "moduleName": "Smart Device Development & Project"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3e2"
+  },
+  "moduleCode": "IT3125",
+  "moduleName": "Psychology & Sociology for Online Media"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3e3"
+  },
+  "moduleCode": "IT3127",
+  "moduleName": "Enterprise Social Media"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3e4"
+  },
+  "moduleCode": "IT3128",
+  "moduleName": "Social Media Marketing & Analytics"
+},{
+  "_id": {
+    "$oid": "637748f30dfdf3c3ff18c3e5"
+  },
+  "moduleCode": "ITP313",
+  "moduleName": "Social Media Technologies & Project"
+}]

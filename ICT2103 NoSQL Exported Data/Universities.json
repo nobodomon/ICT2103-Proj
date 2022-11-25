@@ -1,0 +1,31 @@
+[{
+  "_id": {
+    "$oid": "63773a688c75cdd6b3afdc7a"
+  },
+  "universityName": "National University of Singapore"
+},{
+  "_id": {
+    "$oid": "63773a6d8c75cdd6b3afdc7b"
+  },
+  "universityName": "Nanyang Technological University"
+},{
+  "_id": {
+    "$oid": "63773a758c75cdd6b3afdc7c"
+  },
+  "universityName": "Singapore Management University"
+},{
+  "_id": {
+    "$oid": "63773a7b8c75cdd6b3afdc7d"
+  },
+  "universityName": "Singapore Institute of Technology"
+},{
+  "_id": {
+    "$oid": "63773a818c75cdd6b3afdc7e"
+  },
+  "universityName": "Singapore University of Social Sciences"
+},{
+  "_id": {
+    "$oid": "63773a858c75cdd6b3afdc7f"
+  },
+  "universityName": "Singapore University of Technology and Design"
+}]

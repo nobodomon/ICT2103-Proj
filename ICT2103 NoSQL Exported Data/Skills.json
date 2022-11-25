@@ -1,0 +1,401 @@
+[{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6a3"
+  },
+  "skill": "Python"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6a4"
+  },
+  "skill": "C++"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6a5"
+  },
+  "skill": "C"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6a6"
+  },
+  "skill": "Assembly"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6a7"
+  },
+  "skill": "C#"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6a8"
+  },
+  "skill": "F#"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6a9"
+  },
+  "skill": "Elixir"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6aa"
+  },
+  "skill": "Jenkins"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6ab"
+  },
+  "skill": "NodeJS"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6ac"
+  },
+  "skill": "DevSecOps"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6ad"
+  },
+  "skill": "Swift"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6ae"
+  },
+  "skill": "HTML"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6af"
+  },
+  "skill": "CSS"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6b0"
+  },
+  "skill": "React"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6b1"
+  },
+  "skill": "React Native"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6b2"
+  },
+  "skill": "JavaScript"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6b3"
+  },
+  "skill": "Java"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6b4"
+  },
+  "skill": "Ruby"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6b5"
+  },
+  "skill": "PowerShell"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6b6"
+  },
+  "skill": "Access"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6b7"
+  },
+  "skill": "SQL"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6b8"
+  },
+  "skill": "XQuery"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6b9"
+  },
+  "skill": "XML"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6ba"
+  },
+  "skill": "Statistics"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6bb"
+  },
+  "skill": "Networking"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6bc"
+  },
+  "skill": "AWS"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6bd"
+  },
+  "skill": "Google Cloud"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6be"
+  },
+  "skill": "Microsoft Azure"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6bf"
+  },
+  "skill": "Oracle"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6c0"
+  },
+  "skill": "MongoDb"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6c1"
+  },
+  "skill": "MySQL"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6c2"
+  },
+  "skill": "Kernels"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6c3"
+  },
+  "skill": "Internet of Things"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6c4"
+  },
+  "skill": "Networking"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6c5"
+  },
+  "skill": "Cloud Computing"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6c6"
+  },
+  "skill": "Data Mining"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6c7"
+  },
+  "skill": "Data Crawling"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6c8"
+  },
+  "skill": "DevOps"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6c9"
+  },
+  "skill": "Data Science"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6ca"
+  },
+  "skill": "Web Development"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6cb"
+  },
+  "skill": "User Interface Design"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6cc"
+  },
+  "skill": "UI/UX"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6cd"
+  },
+  "skill": "System Architecture"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6ce"
+  },
+  "skill": "Apache"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6cf"
+  },
+  "skill": "C-- (C minus minus)"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6d0"
+  },
+  "skill": "C++ (C plus plus)"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6d1"
+  },
+  "skill": "C# (C sharp)"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6d2"
+  },
+  "skill": "C"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6d3"
+  },
+  "skill": "C Shell (csh)"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6d4"
+  },
+  "skill": "Carbon"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6d5"
+  },
+  "skill": "COBOL"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6d6"
+  },
+  "skill": "Open Programming Language (OPL)"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6d7"
+  },
+  "skill": "OpenEdge Advanced Business Language (ABL)"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6d8"
+  },
+  "skill": "PHP"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6d9"
+  },
+  "skill": "Pico"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6da"
+  },
+  "skill": "Pipelines"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6db"
+  },
+  "skill": "Swift"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6dc"
+  },
+  "skill": "SQL"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6dd"
+  },
+  "skill": "MYSQL"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6de"
+  },
+  "skill": "TypeScript"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6df"
+  },
+  "skill": "UNITY"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6e0"
+  },
+  "skill": "Xtend"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6e1"
+  },
+  "skill": "Teamwork"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6e2"
+  },
+  "skill": "Mathematics"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6e3"
+  },
+  "skill": "A-Mathematics"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6e4"
+  },
+  "skill": "Discrete Mathematics"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6e5"
+  },
+  "skill": "Continuous Mathematics"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6e6"
+  },
+  "skill": "Algebra Mathematics"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6e7"
+  },
+  "skill": "Statistics"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6e8"
+  },
+  "skill": "Data Structure and Algorithm"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6e9"
+  },
+  "skill": "Interaction"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6ea"
+  },
+  "skill": "Communication"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6eb"
+  },
+  "skill": "Operating Systems"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6ec"
+  },
+  "skill": "Data Link layer"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6ed"
+  },
+  "skill": "Networking"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6ee"
+  },
+  "skill": "JQuery"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6ef"
+  },
+  "skill": "Problem-Solving"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6f0"
+  },
+  "skill": "Critical  Thinking"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6f1"
+  },
+  "skill": "Decision Making"
+},{
+  "_id": {
+    "$oid": "63774b260dfdf3c3ff18c6f2"
+  },
+  "skill": "Object Oriented Programming"
+}]

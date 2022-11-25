@@ -1,0 +1,745 @@
+[{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e8ff"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c73f"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e900"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c761"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e901"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c762"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e902"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c763"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e903"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c77c"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e904"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c75a"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e905"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c740"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e906"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c764"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e907"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c741"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e908"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c765"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e909"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c769"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e90a"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c75b"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e90b"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c767"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e90c"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c768"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e90d"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c77b"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e90e"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c77d"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e90f"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c75c"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e910"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c76b"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e911"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c74b"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e912"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c746"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e913"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c76e"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e914"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c77f"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e915"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c75d"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e916"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c743"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e917"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c744"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e918"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c749"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e919"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c773"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e91a"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c745"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e91b"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c74a"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e91c"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c755"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e91d"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c76f"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e91e"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c74c"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e91f"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c74d"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e920"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c771"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e921"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c780"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e922"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c753"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e923"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c774"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e924"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c776"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e925"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c777"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e926"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c757"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e927"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c75e"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e928"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c758"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e929"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c75f"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e92a"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c758"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e92b"
+  },
+  "universityCourse": "63773ce3c8bfde249addd8a3",
+  "universityModule": "63774f3f0dfdf3c3ff18c760"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e92c"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c73f"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e92d"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c761"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e92e"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c762"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e92f"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c763"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e930"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c77c"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e931"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c75a"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e932"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c740"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e933"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c764"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e934"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c741"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e935"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c765"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e936"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c769"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e937"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c75b"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e938"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c767"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e939"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c768"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e93a"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c77b"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e93b"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c77d"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e93c"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c75c"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e93d"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c76b"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e93e"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c74b"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e93f"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c746"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e940"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c76e"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e941"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c77f"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e942"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c75d"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e943"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c747"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e944"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c748"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e945"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c749"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e946"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c775"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e947"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c778"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e948"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c745"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e949"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c74a"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e94a"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c781"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e94b"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c74e"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e94c"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c74f"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e94d"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c751"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e94e"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c750"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e94f"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c753"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e950"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c757"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e951"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c755"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e952"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c752"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e953"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c757"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e954"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c75e"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e955"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c759"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e956"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c75f"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e957"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c75f"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e958"
+  },
+  "universityCourse": "63773cf2c8bfde249addd8a4",
+  "universityModule": "63774f3f0dfdf3c3ff18c760"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e959"
+  },
+  "universityCourse": "63773cffc8bfde249addd8a5",
+  "universityModule": "63774f3f0dfdf3c3ff18c736"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e95a"
+  },
+  "universityCourse": "63773cffc8bfde249addd8a5",
+  "universityModule": "63774f3f0dfdf3c3ff18c762"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e95b"
+  },
+  "universityCourse": "63773cffc8bfde249addd8a5",
+  "universityModule": "63774f3f0dfdf3c3ff18c763"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e95c"
+  },
+  "universityCourse": "63773cffc8bfde249addd8a5",
+  "universityModule": "63774f3f0dfdf3c3ff18c76a"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e95d"
+  },
+  "universityCourse": "63773cffc8bfde249addd8a5",
+  "universityModule": "63774f3f0dfdf3c3ff18c779"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e95e"
+  },
+  "universityCourse": "63773cffc8bfde249addd8a5",
+  "universityModule": "63774f3f0dfdf3c3ff18c77c"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e95f"
+  },
+  "universityCourse": "63773cffc8bfde249addd8a5",
+  "universityModule": "63774f3f0dfdf3c3ff18c77e"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e960"
+  },
+  "universityCourse": "63773cffc8bfde249addd8a5",
+  "universityModule": "63774f3f0dfdf3c3ff18c737"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e961"
+  },
+  "universityCourse": "63773cffc8bfde249addd8a5",
+  "universityModule": "63774f3f0dfdf3c3ff18c764"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e962"
+  },
+  "universityCourse": "63773cffc8bfde249addd8a5",
+  "universityModule": "63774f3f0dfdf3c3ff18c765"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e963"
+  },
+  "universityCourse": "63773cffc8bfde249addd8a5",
+  "universityModule": "63774f3f0dfdf3c3ff18c769"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e964"
+  },
+  "universityCourse": "63773cffc8bfde249addd8a5",
+  "universityModule": "63774f3f0dfdf3c3ff18c730"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e965"
+  },
+  "universityCourse": "63773cffc8bfde249addd8a5",
+  "universityModule": "63774f3f0dfdf3c3ff18c738"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e966"
+  },
+  "universityCourse": "63773cffc8bfde249addd8a5",
+  "universityModule": "63774f3f0dfdf3c3ff18c72e"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e967"
+  },
+  "universityCourse": "63773cffc8bfde249addd8a5",
+  "universityModule": "63774f3f0dfdf3c3ff18c739"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e968"
+  },
+  "universityCourse": "63773cffc8bfde249addd8a5",
+  "universityModule": "63774f3f0dfdf3c3ff18c76b"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e969"
+  },
+  "universityCourse": "63773cffc8bfde249addd8a5",
+  "universityModule": "63774f3f0dfdf3c3ff18c76d"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e96a"
+  },
+  "universityCourse": "63773cffc8bfde249addd8a5",
+  "universityModule": "63774f3f0dfdf3c3ff18c774"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e96b"
+  },
+  "universityCourse": "63773cffc8bfde249addd8a5",
+  "universityModule": "63774f3f0dfdf3c3ff18c77f"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e96c"
+  },
+  "universityCourse": "63773cffc8bfde249addd8a5",
+  "universityModule": "63774f3f0dfdf3c3ff18c72d"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e96d"
+  },
+  "universityCourse": "63773cffc8bfde249addd8a5",
+  "universityModule": "63774f3f0dfdf3c3ff18c72f"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e96e"
+  },
+  "universityCourse": "63773cffc8bfde249addd8a5",
+  "universityModule": "63774f3f0dfdf3c3ff18c731"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e96f"
+  },
+  "universityCourse": "63773cffc8bfde249addd8a5",
+  "universityModule": "63774f3f0dfdf3c3ff18c732"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e970"
+  },
+  "universityCourse": "63773cffc8bfde249addd8a5",
+  "universityModule": "63774f3f0dfdf3c3ff18c775"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e971"
+  },
+  "universityCourse": "63773cffc8bfde249addd8a5",
+  "universityModule": "63774f3f0dfdf3c3ff18c733"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e972"
+  },
+  "universityCourse": "63773cffc8bfde249addd8a5",
+  "universityModule": "63774f3f0dfdf3c3ff18c734"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e973"
+  },
+  "universityCourse": "63773cffc8bfde249addd8a5",
+  "universityModule": "63774f3f0dfdf3c3ff18c735"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e974"
+  },
+  "universityCourse": "63773cffc8bfde249addd8a5",
+  "universityModule": "63774f3f0dfdf3c3ff18c73e"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e975"
+  },
+  "universityCourse": "63773cffc8bfde249addd8a5",
+  "universityModule": "63774f3f0dfdf3c3ff18c770"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e976"
+  },
+  "universityCourse": "63773cffc8bfde249addd8a5",
+  "universityModule": "63774f3f0dfdf3c3ff18c780"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e977"
+  },
+  "universityCourse": "63773cffc8bfde249addd8a5",
+  "universityModule": "63774f3f0dfdf3c3ff18c73a"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e978"
+  },
+  "universityCourse": "63773cffc8bfde249addd8a5",
+  "universityModule": "63774f3f0dfdf3c3ff18c73c"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e979"
+  },
+  "universityCourse": "63773cffc8bfde249addd8a5",
+  "universityModule": "63774f3f0dfdf3c3ff18c73b"
+},{
+  "_id": {
+    "$oid": "63790dcf4fdde9720ac1e97a"
+  },
+  "universityCourse": "63773cffc8bfde249addd8a5",
+  "universityModule": "63774f3f0dfdf3c3ff18c73d"
+}]

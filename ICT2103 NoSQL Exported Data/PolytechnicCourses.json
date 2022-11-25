@@ -1,0 +1,43 @@
+[{
+  "_id": {
+    "$oid": "63773c1fdd9727b2ff44adc1"
+  },
+  "polytechnic": "63773ac18c75cdd6b3afdc80",
+  "courseCode": "C78",
+  "courseName": "Business Informatics"
+},{
+  "_id": {
+    "$oid": "63773c2bdd9727b2ff44adc2"
+  },
+  "polytechnic": "63773ac18c75cdd6b3afdc80",
+  "courseCode": "C43",
+  "courseName": "Business Intelligence & Analytics"
+},{
+  "_id": {
+    "$oid": "63773c38dd9727b2ff44adc3"
+  },
+  "polytechnic": "63773ac18c75cdd6b3afdc80",
+  "courseCode": "C54",
+  "courseName": "Cyber Security & Forensics "
+},{
+  "_id": {
+    "$oid": "63773c4cdd9727b2ff44adc4"
+  },
+  "polytechnic": "63773ac18c75cdd6b3afdc80",
+  "courseCode": "C58",
+  "courseName": "Financial Informatics"
+},{
+  "_id": {
+    "$oid": "63773c5cdd9727b2ff44adc5"
+  },
+  "polytechnic": "63773ac18c75cdd6b3afdc80",
+  "courseCode": "C80",
+  "courseName": "Infocomm and Security"
+},{
+  "_id": {
+    "$oid": "63773c69dd9727b2ff44adc6"
+  },
+  "polytechnic": "63773ac18c75cdd6b3afdc80",
+  "courseCode": "C85",
+  "courseName": "Information Technology"
+}]

@@ -1,0 +1,24 @@
+[{
+  "_id": {
+    "$oid": "63766a7892dfbe4ad5a3a4f8"
+  },
+  "username": "doraemon",
+  "password": "44de3ed43a38bbf73a9e4d5ea79f0b06ab29f5d003984a335cd3f79781c04e51",
+  "role": "user"
+},{
+  "_id": {
+    "$oid": "63766a9592dfbe4ad5a3a4f9"
+  },
+  "username": "admin",
+  "password": "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918",
+  "role": "user"
+},{
+  "_id": {
+    "$oid": "63766a9d92dfbe4ad5a3a4fa"
+  },
+  "username": "student",
+  "password": "264c8c381bf16c982a4e59b0dd4c6f7808c51a05f64c35db42cc78a2a72875bb",
+  "role": "user",
+  "polytechnicCourse": "63773c1fdd9727b2ff44adc1",
+  "universityCourse": "63773ce3c8bfde249addd8a3"
+}]

@@ -1,0 +1,22 @@
+[{
+  "_id": {
+    "$oid": "63773ce3c8bfde249addd8a3"
+  },
+  "university": "63773a7b8c75cdd6b3afdc7d",
+  "courseName": "Information & Communications Technology majoring in Software Engineering",
+  "courseCode": "BENG SE"
+},{
+  "_id": {
+    "$oid": "63773cf2c8bfde249addd8a4"
+  },
+  "university": "63773a7b8c75cdd6b3afdc7d",
+  "courseName": "Information & Communications Technology majoring in Information Security",
+  "courseCode": "BENG IS"
+},{
+  "_id": {
+    "$oid": "63773cffc8bfde249addd8a5"
+  },
+  "university": "63773a7b8c75cdd6b3afdc7d",
+  "courseName": "Applied Computing",
+  "courseCode": "BSC AP"
+}]

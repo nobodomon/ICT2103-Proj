@@ -1,0 +1,766 @@
+[{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c72d"
+  },
+  "credits": "6",
+  "moduleCode": "AAI1001",
+  "moduleName": "Data Engineering and Visualization",
+  "period": 2,
+  "yearOffered": "YEAR 2"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c72e"
+  },
+  "credits": "6",
+  "moduleCode": "ACC1024",
+  "moduleName": "Foundations of Finance",
+  "period": 1,
+  "yearOffered": "YEAR 2"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c72f"
+  },
+  "credits": "6",
+  "moduleCode": "ACC2026",
+  "moduleName": "Investment Risk Management",
+  "period": 2,
+  "yearOffered": "YEAR 2"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c730"
+  },
+  "credits": "6",
+  "moduleCode": "BAC1001",
+  "moduleName": "Introduction to Fintech",
+  "period": 3,
+  "yearOffered": "YEAR 1"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c731"
+  },
+  "credits": "6",
+  "moduleCode": "BAC2001",
+  "moduleName": "Software Requirements Engineering and Design",
+  "period": 2,
+  "yearOffered": "YEAR 2"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c732"
+  },
+  "credits": "6",
+  "moduleCode": "BAC2002",
+  "moduleName": "Blockchain and Cryptocurrency",
+  "period": 2,
+  "yearOffered": "YEAR 2"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c733"
+  },
+  "credits": "6",
+  "moduleCode": "BAC2003",
+  "moduleName": "Fintech projects",
+  "period": 3,
+  "yearOffered": "YEAR 2"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c734"
+  },
+  "credits": "6",
+  "moduleCode": "BAC3001",
+  "moduleName": "Business Valuation and Analysis",
+  "period": 1,
+  "yearOffered": "YEAR 3"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c735"
+  },
+  "credits": "6",
+  "moduleCode": "BAC3002",
+  "moduleName": "Fintech: Advanced Topics",
+  "period": 1,
+  "yearOffered": "YEAR 3"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c736"
+  },
+  "credits": "N.A.",
+  "moduleCode": "BAC3003A",
+  "moduleName": "Integrated Work Study Programme (Career Skills)",
+  "period": 1,
+  "yearOffered": "YEAR 1"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c737"
+  },
+  "credits": "N.A.",
+  "moduleCode": "BAC3003A",
+  "moduleName": "Integrated Work Study Programme (Career Skills)",
+  "period": 2,
+  "yearOffered": "YEAR 1"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c738"
+  },
+  "credits": "N.A.",
+  "moduleCode": "BAC3003A",
+  "moduleName": "Integrated Work Study Programme (Career Skills)",
+  "period": 3,
+  "yearOffered": "YEAR 1"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c739"
+  },
+  "credits": "N.A.",
+  "moduleCode": "BAC3003A",
+  "moduleName": "Integrated Work Study Programme (Career Skills)",
+  "period": 1,
+  "yearOffered": "YEAR 2"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c73a"
+  },
+  "credits": "10",
+  "moduleCode": "BAC3003B",
+  "moduleName": "Integrated Work Study Programme (Work Attachment)",
+  "period": 2,
+  "yearOffered": "YEAR 3"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c73b"
+  },
+  "credits": "10",
+  "moduleCode": "BAC3003B",
+  "moduleName": "Integrated Work Study Programme (Work Attachment)",
+  "period": 3,
+  "yearOffered": "YEAR 3"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c73c"
+  },
+  "credits": "5",
+  "moduleCode": "BAC3004",
+  "moduleName": "Capstone Project",
+  "period": 2,
+  "yearOffered": "YEAR 3"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c73d"
+  },
+  "credits": "5",
+  "moduleCode": "BAC3004",
+  "moduleName": "Capstone Project",
+  "period": 3,
+  "yearOffered": "YEAR 3"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c73e"
+  },
+  "credits": "3",
+  "moduleCode": "CEG2013",
+  "moduleName": "Project Management and Professional Ethics",
+  "period": 1,
+  "yearOffered": "YEAR 3"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c73f"
+  },
+  "credits": "6",
+  "moduleCode": "ICT1011",
+  "moduleName": "Computer Organization & Architecture",
+  "period": 1,
+  "yearOffered": "YEAR 1"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c740"
+  },
+  "credits": "6",
+  "moduleCode": "ICT1012",
+  "moduleName": "Operating Systems",
+  "period": 2,
+  "yearOffered": "YEAR 1"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c741"
+  },
+  "credits": "6",
+  "moduleCode": "ICT1013",
+  "moduleName": "Computer Networks",
+  "period": 2,
+  "yearOffered": "YEAR 1"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c742"
+  },
+  "credits": "6",
+  "moduleCode": "ICT2104",
+  "moduleName": "Embedded Systems Programming",
+  "period": 1,
+  "yearOffered": "YEAR 2"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c743"
+  },
+  "credits": "6",
+  "moduleCode": "ICT2112",
+  "moduleName": "Software Design",
+  "period": 2,
+  "yearOffered": "YEAR 2"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c744"
+  },
+  "credits": "6",
+  "moduleCode": "ICT2113",
+  "moduleName": "Software Modelling and Analysis",
+  "period": 2,
+  "yearOffered": "YEAR 2"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c745"
+  },
+  "credits": "6",
+  "moduleCode": "ICT2114",
+  "moduleName": "Integrative Team Project",
+  "period": 3,
+  "yearOffered": "YEAR 2"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c746"
+  },
+  "credits": "6",
+  "moduleCode": "ICT2212",
+  "moduleName": "Ethical Hacking",
+  "period": 1,
+  "yearOffered": "YEAR 2"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c747"
+  },
+  "credits": "6",
+  "moduleCode": "ICT2213",
+  "moduleName": "Applied Cryptography",
+  "period": 2,
+  "yearOffered": "YEAR 2"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c748"
+  },
+  "credits": "6",
+  "moduleCode": "ICT2214",
+  "moduleName": "Web Security",
+  "period": 2,
+  "yearOffered": "YEAR 2"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c749"
+  },
+  "credits": "6",
+  "moduleCode": "ICT2215",
+  "moduleName": "Mobile and Embedded Security",
+  "period": 2,
+  "yearOffered": "YEAR 2"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c74a"
+  },
+  "credits": "6",
+  "moduleCode": "ICT2216",
+  "moduleName": "Secure Software Development",
+  "period": 3,
+  "yearOffered": "YEAR 2"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c74b"
+  },
+  "credits": "6",
+  "moduleCode": "ICT2217",
+  "moduleName": "Network Security",
+  "period": 1,
+  "yearOffered": "YEAR 2"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c74c"
+  },
+  "credits": "6",
+  "moduleCode": "ICT3112",
+  "moduleName": "Software Verification and Validation",
+  "period": 1,
+  "yearOffered": "YEAR 3"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c74d"
+  },
+  "credits": "6",
+  "moduleCode": "ICT3113",
+  "moduleName": "Performance Testing and Optimisation",
+  "period": 1,
+  "yearOffered": "YEAR 3"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c74e"
+  },
+  "credits": "6",
+  "moduleCode": "ICT3212",
+  "moduleName": "Operations Security and Incident Management",
+  "period": 1,
+  "yearOffered": "YEAR 3"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c74f"
+  },
+  "credits": "6",
+  "moduleCode": "ICT3213",
+  "moduleName": "Malware Analysis and Defence",
+  "period": 1,
+  "yearOffered": "YEAR 3"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c750"
+  },
+  "credits": "6",
+  "moduleCode": "ICT3214",
+  "moduleName": "Security Analytics",
+  "period": 1,
+  "yearOffered": "YEAR 3"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c751"
+  },
+  "credits": "6",
+  "moduleCode": "ICT3215",
+  "moduleName": "Digital Forensics",
+  "period": 1,
+  "yearOffered": "YEAR 3"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c752"
+  },
+  "credits": "6",
+  "moduleCode": "ICT3216",
+  "moduleName": "Special Topics in Security",
+  "period": 2,
+  "yearOffered": "YEAR 3"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c753"
+  },
+  "credits": "6",
+  "moduleCode": "ICT3217",
+  "moduleName": "Specialised R&D Project",
+  "period": 2,
+  "yearOffered": "YEAR 3"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c754"
+  },
+  "credits": "6",
+  "moduleCode": "ICT3218",
+  "moduleName": "Security Governance, Risk Management and Compliance",
+  "period": 2,
+  "yearOffered": "YEAR 3"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c755"
+  },
+  "credits": "6",
+  "moduleCode": "ICT3219",
+  "moduleName": "Industry Certification Module",
+  "period": 3,
+  "yearOffered": "YEAR 2"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c756"
+  },
+  "credits": "6",
+  "moduleCode": "ICT3219",
+  "moduleName": "Industry Certification Module",
+  "period": 2,
+  "yearOffered": "YEAR 3"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c757"
+  },
+  "credits": "5",
+  "moduleCode": "ICT4011",
+  "moduleName": "Capstone Project",
+  "period": 3,
+  "yearOffered": "YEAR 3"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c758"
+  },
+  "credits": "5",
+  "moduleCode": "ICT4011",
+  "moduleName": "Capstone Project",
+  "period": 1,
+  "yearOffered": "YEAR 4"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c759"
+  },
+  "credits": "5",
+  "moduleCode": "ICT4011",
+  "moduleName": "Capstone Project",
+  "period": 2,
+  "yearOffered": "YEAR 4"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c75a"
+  },
+  "credits": "N.A.",
+  "moduleCode": "ICT4012A",
+  "moduleName": "Integrated Work Study Programme (Career Skills)",
+  "period": 1,
+  "yearOffered": "YEAR 1"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c75b"
+  },
+  "credits": "N.A.",
+  "moduleCode": "ICT4012A",
+  "moduleName": "Integrated Work Study Programme (Career Skills)",
+  "period": 2,
+  "yearOffered": "YEAR 1"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c75c"
+  },
+  "credits": "N.A.",
+  "moduleCode": "ICT4012A",
+  "moduleName": "Integrated Work Study Programme (Career Skills)",
+  "period": 3,
+  "yearOffered": "YEAR 1"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c75d"
+  },
+  "credits": "N.A.",
+  "moduleCode": "ICT4012A",
+  "moduleName": "Integrated Work Study Programme (Career Skills)",
+  "period": 1,
+  "yearOffered": "YEAR 2"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c75e"
+  },
+  "credits": "0",
+  "moduleCode": "ICT4012B",
+  "moduleName": "Integrated Work Study Programme (Work Attachment)",
+  "period": 3,
+  "yearOffered": "YEAR 3"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c75f"
+  },
+  "credits": "0",
+  "moduleCode": "ICT4012B",
+  "moduleName": "Integrated Work Study Programme (Work Attachment)",
+  "period": 1,
+  "yearOffered": "YEAR 4"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c760"
+  },
+  "credits": "0",
+  "moduleCode": "ICT4012B",
+  "moduleName": "Integrated Work Study Programme (Work Attachment)",
+  "period": 2,
+  "yearOffered": "YEAR 4"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c761"
+  },
+  "credits": "6",
+  "moduleCode": "INF1001",
+  "moduleName": "Introduction to Computing",
+  "period": 1,
+  "yearOffered": "YEAR 1"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c762"
+  },
+  "credits": "6",
+  "moduleCode": "INF1002",
+  "moduleName": "Programming Fundamentals",
+  "period": 1,
+  "yearOffered": "YEAR 1"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c763"
+  },
+  "credits": "6",
+  "moduleCode": "INF1003",
+  "moduleName": "Mathematics 1",
+  "period": 1,
+  "yearOffered": "YEAR 1"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c764"
+  },
+  "credits": "6",
+  "moduleCode": "INF1004",
+  "moduleName": "Mathematics 2",
+  "period": 2,
+  "yearOffered": "YEAR 1"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c765"
+  },
+  "credits": "6",
+  "moduleCode": "INF1005",
+  "moduleName": "Web Systems & Technologies",
+  "period": 2,
+  "yearOffered": "YEAR 1"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c766"
+  },
+  "credits": "6",
+  "moduleCode": "INF1006",
+  "moduleName": "Computer Networks",
+  "period": 3,
+  "yearOffered": "YEAR 1"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c767"
+  },
+  "credits": "6",
+  "moduleCode": "INF1007",
+  "moduleName": "Ethics and Professional Conducts",
+  "period": 3,
+  "yearOffered": "YEAR 1"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c768"
+  },
+  "credits": "6",
+  "moduleCode": "INF1008",
+  "moduleName": "Data Structures and Algorithms",
+  "period": 3,
+  "yearOffered": "YEAR 1"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c769"
+  },
+  "credits": "6",
+  "moduleCode": "INF1009",
+  "moduleName": "Object Oriented Programming",
+  "period": 2,
+  "yearOffered": "YEAR 1"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c76a"
+  },
+  "credits": "6",
+  "moduleCode": "INF1101",
+  "moduleName": "Introduction to Computer Systems",
+  "period": 1,
+  "yearOffered": "YEAR 1"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c76b"
+  },
+  "credits": "6",
+  "moduleCode": "INF2001",
+  "moduleName": "Introduction to Software Engineering",
+  "period": 1,
+  "yearOffered": "YEAR 2"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c76c"
+  },
+  "credits": "6",
+  "moduleCode": "INF2002",
+  "moduleName": "Human Computer Interaction",
+  "period": 1,
+  "yearOffered": "YEAR 2"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c76d"
+  },
+  "credits": "6",
+  "moduleCode": "INF2003",
+  "moduleName": "Database Systems",
+  "period": 1,
+  "yearOffered": "YEAR 2"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c76e"
+  },
+  "credits": "6",
+  "moduleCode": "INF2004",
+  "moduleName": "Embedded Systems Programming",
+  "period": 1,
+  "yearOffered": "YEAR 2"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c76f"
+  },
+  "credits": "6",
+  "moduleCode": "INF2005",
+  "moduleName": "Cyber Security Fundamentals",
+  "period": 3,
+  "yearOffered": "YEAR 2"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c770"
+  },
+  "credits": "6",
+  "moduleCode": "INF2005",
+  "moduleName": "Cyber Security Fundamentals",
+  "period": 1,
+  "yearOffered": "YEAR 3"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c771"
+  },
+  "credits": "6",
+  "moduleCode": "INF2006",
+  "moduleName": "Cloud Computing and Big Data",
+  "period": 1,
+  "yearOffered": "YEAR 3"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c772"
+  },
+  "credits": "6",
+  "moduleCode": "INF2006",
+  "moduleName": "Cloud Computing and Big Data",
+  "period": 1,
+  "yearOffered": "YEAR 2"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c773"
+  },
+  "credits": "6",
+  "moduleCode": "INF2007",
+  "moduleName": "Mobile Application Development",
+  "period": 2,
+  "yearOffered": "YEAR 2"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c774"
+  },
+  "credits": "6",
+  "moduleCode": "INF2008",
+  "moduleName": "Machine Learning",
+  "period": 2,
+  "yearOffered": "YEAR 3"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c775"
+  },
+  "credits": "6",
+  "moduleCode": "INF2008",
+  "moduleName": "Machine Learning",
+  "period": 2,
+  "yearOffered": "YEAR 2"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c776"
+  },
+  "credits": "6",
+  "moduleCode": "INF2009",
+  "moduleName": "Edge Computing and Analytics",
+  "period": 2,
+  "yearOffered": "YEAR 3"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c777"
+  },
+  "credits": "6",
+  "moduleCode": "UCM3001",
+  "moduleName": "Change Management",
+  "period": 2,
+  "yearOffered": "YEAR 3"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c778"
+  },
+  "credits": "6",
+  "moduleCode": "UCM3001",
+  "moduleName": "Change Management",
+  "period": 2,
+  "yearOffered": "YEAR 2"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c779"
+  },
+  "credits": "4",
+  "moduleCode": "UCS1001",
+  "moduleName": "Critical Thinking and Communicating",
+  "period": 1,
+  "yearOffered": "YEAR 1"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c77a"
+  },
+  "credits": "4",
+  "moduleCode": "UCS1001",
+  "moduleName": "Critical Thinking and Communicating",
+  "period": 2,
+  "yearOffered": "YEAR 1"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c77b"
+  },
+  "credits": "4",
+  "moduleCode": "UCS1001",
+  "moduleName": "Critical Thinking and Communicating",
+  "period": 3,
+  "yearOffered": "YEAR 1"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c77c"
+  },
+  "credits": "2",
+  "moduleCode": "UDC1001",
+  "moduleName": "Digital Competency Essentials",
+  "period": 1,
+  "yearOffered": "YEAR 1"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c77d"
+  },
+  "credits": "2",
+  "moduleCode": "UDE1001",
+  "moduleName": "Introduction to Design Innovation",
+  "period": 3,
+  "yearOffered": "YEAR 1"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c77e"
+  },
+  "credits": "2",
+  "moduleCode": "UDE1001",
+  "moduleName": "Introduction to Design Innovation",
+  "period": 1,
+  "yearOffered": "YEAR 1"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c77f"
+  },
+  "credits": "4",
+  "moduleCode": "UDE2001",
+  "moduleName": "Interdisciplinary Design Innovation",
+  "period": 1,
+  "yearOffered": "YEAR 2"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c780"
+  },
+  "credits": "3",
+  "moduleCode": "USI2001",
+  "moduleName": "Social Innovation Project",
+  "period": 1,
+  "yearOffered": "YEAR 3"
+},{
+  "_id": {
+    "$oid": "63774f3f0dfdf3c3ff18c781"
+  },
+  "credits": "3",
+  "moduleCode": "USI2001",
+  "moduleName": "Social Innovation Project",
+  "period": 3,
+  "yearOffered": "YEAR 2"
+}]

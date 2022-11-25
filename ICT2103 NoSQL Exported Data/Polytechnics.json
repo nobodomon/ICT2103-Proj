@@ -1,0 +1,26 @@
+[{
+  "_id": {
+    "$oid": "63773ac18c75cdd6b3afdc80"
+  },
+  "polytechnicName": "Nanyang Polytechnic"
+},{
+  "_id": {
+    "$oid": "63773ac88c75cdd6b3afdc81"
+  },
+  "polytechnicName": "Ngee Ann Polytechnic"
+},{
+  "_id": {
+    "$oid": "63773ad08c75cdd6b3afdc82"
+  },
+  "polytechnicName": "Singapore Polytechnic"
+},{
+  "_id": {
+    "$oid": "63773ad78c75cdd6b3afdc83"
+  },
+  "polytechnicName": "Temasek Polytechnic"
+},{
+  "_id": {
+    "$oid": "63773adc8c75cdd6b3afdc84"
+  },
+  "polytechnicName": "Republic Polytechnic"
+}]
